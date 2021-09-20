@@ -1,6 +1,4 @@
 /node_modules
 /.vscode
 yarn.lock
-server.js
-styles.css.map
 sass
