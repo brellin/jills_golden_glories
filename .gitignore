@@ -3,3 +3,4 @@
 yarn.lock
 *.scss
 *.css.map
+server.js
