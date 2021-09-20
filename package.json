@@ -1,11 +1,11 @@
 {
-  "name": "golden-glories",
+  "name": "jills-golden-glories",
   "version": "1.0.0",
   "description": "English Cream Golden Retrievers in the Abilene Area",
   "main": "server.js",
   "author": "brellin",
-  "license": "y",
-  "private": false,
+  "license": "GPL-3.0",
+  "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "express": "^4.17.1"
@@ -15,5 +15,6 @@
   },
   "scripts": {
     "start": "node server.js"
-  }
+  },
+  "repository": "https://github.com/brellin/jills_golden_glories.git"
 }
