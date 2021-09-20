@@ -1,4 +1,5 @@
 /node_modules
 /.vscode
 yarn.lock
-sass
+*.scss
+*.css.map

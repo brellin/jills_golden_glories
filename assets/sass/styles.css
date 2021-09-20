@@ -1,0 +1,181 @@
+@font-face {
+  font-family: "Samantha Upright";
+  src: url("../fonts/Samantha Upright.ttf");
+  src: url("../fonts/Samantha Upright.otf");
+}
+@font-face {
+  font-family: "Little Star Story";
+  src: url("../fonts/Little Star Story.otf");
+}
+html {
+  font-size: 62.5%;
+}
+
+body, h1, h2, h3, h4, h5, p, button, div, section {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  background-image: url(../images/bg.jpg);
+  background-size: 100px;
+  background-attachment: fixed;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body a {
+  text-decoration: none;
+  color: #3030bb;
+}
+body a:hover {
+  text-decoration: underline;
+}
+body header {
+  width: 100%;
+  height: 50vh;
+  background-image: url("../images/happy.jpg");
+  transition: 1s ease-out;
+  background-color: #3030bb;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 30%;
+  background-attachment: fixed;
+  image-rendering: smooth;
+}
+body #root {
+  width: 100%;
+}
+body #root nav {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  position: sticky;
+  top: -1px;
+  background: linear-gradient(#3030bb, 80%, transparent);
+  margin-top: -1px;
+}
+body #root nav a {
+  color: #ffcc00;
+  padding: 15px 5%;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: 0.2s ease;
+}
+@media (max-width: 800px) {
+  body #root nav a {
+    padding: 15px 2%;
+  }
+}
+body #root nav a:hover, body #root nav a.active {
+  font-size: 1.7rem;
+  font-weight: bolder;
+}
+body #root section.routes {
+  min-height: 37vh;
+  margin: -50px auto 0;
+  width: 80%;
+  background: whitesmoke;
+  padding: 100px 30px 15px;
+  font-size: 1.5rem;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+@media (max-width: 800px) {
+  body #root section.routes {
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+body div.burger {
+  z-index: 50;
+  width: 0;
+  height: 0;
+  box-shadow: 2px 2px 5px black;
+  background-color: #3030bb;
+  border-radius: 50%;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+@media (max-width: 800px) {
+  body div.burger {
+    width: 50px;
+    height: 50px;
+    background-image: linear-gradient(transparent 24%, #ffcc00 27%, #ffcc00 37%, transparent 40%, transparent 44%, #ffcc00 47%, #ffcc00 57%, transparent 60%, transparent 64%, #ffcc00 67%, #ffcc00 77%, transparent 80%);
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
+}
+body div.burger:focus {
+  width: 55px;
+  height: 55px;
+  margin-bottom: -5px;
+}
+body footer {
+  width: 80%;
+  text-align: center;
+  padding: 5px 30px;
+  white-space: pre;
+  background: linear-gradient(whitesmoke, transparent);
+}
+body footer div.extLinks {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+body footer div.extLinks span svg {
+  font-size: 5rem;
+  color: #3030bb;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+body footer div.extLinks span svg:hover {
+  transform: scale(1.2);
+  filter: hue-rotate(-10deg) brightness(2.5);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  background: #ffe8c3;
+  padding: 0 2px;
+  border: 2px inset #ffe8c3;
+}
+
+/*# sourceMappingURL=styles.css.map */
