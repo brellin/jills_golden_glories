@@ -50,6 +50,8 @@ document.querySelector('header').addEventListener('click', function (e) {
     router.nav.classList.remove('open');
 });
 
+router.findRouteMatch();
+
 setTimeout(_ => {
     document.querySelector('header').classList.add('small');
 }, 2500);

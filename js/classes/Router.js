@@ -43,7 +43,7 @@ export default class {
         const possibleMatches = this.routes.map(route => ({ ...route, isMatch: location.pathname === route.path }));
         let match = possibleMatches.find(pm => pm.isMatch);
 
-        match = !match ? { ...this.routes[ 0 ], isMatch: true } : match;
+        if (!match) match = { ...this.routes[ 0 ], isMatch: true };
 
         const view = new match.view();
 
@@ -57,9 +57,13 @@ export default class {
     };
 
     handleActiveLink = _ => {
-        this.nav.childNodes.forEach(link => link.innerText === this.routes.find(route => route.path === location.pathname).title ?
-            link.classList.add('active') :
-            link.classList.remove('active'));
+        this.nav.childNodes.forEach(link => {
+            const routeMatch = this.routes.find(route => route.path === location.pathname);
+            if (routeMatch) link.innerText === routeMatch.title ?
+                link.classList.add('active') :
+                link.classList.remove('active');
+            else link.classList.remove('active');
+        });
     };
 
 }
