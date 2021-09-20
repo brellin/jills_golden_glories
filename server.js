@@ -16,7 +16,7 @@ app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
 app.use('/node_modules', express.static(path.resolve(__dirname, 'node_modules')));
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'html', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
 app.listen(port, _ => console.log(portString(port)));
