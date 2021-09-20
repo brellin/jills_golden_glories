@@ -3,6 +3,6 @@ ID = "5a9578aa-4c10-4945-bb15-2edd1a0fdfec"
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "index.html"
   status = 200
   force = true
