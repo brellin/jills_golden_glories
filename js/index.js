@@ -1,6 +1,14 @@
 import Router from './Router.js';
-import Home from "./views/Home.js";
-import RaisingPuppies from "./views/RaisingPuppies.js";
+import { Home, RaisingPuppies } from './views/index.js';
+
+const root = document.querySelector('#root');
+const burger = document.createElement('div');
+burger.classList.add('burger');
+burger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    router.nav.classList.toggle('open');
+});
+root.appendChild(burger);
 
 const routes = [
     {
@@ -15,11 +23,11 @@ const routes = [
     },
 ];
 
-const router = new Router(document.querySelector('#root'),
+const router = new Router(root,
     document.createElement('nav'),
     document.createElement('section'),
     routes
 );
 
 router.addRoutesToNav();
-router.addNavAndDisplayToRoot();
+router.display.classList.add('routes');

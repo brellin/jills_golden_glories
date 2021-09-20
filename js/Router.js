@@ -11,9 +11,15 @@ export default class {
         this.nav = nav;
         this.display = display;
         this.routes = routes;
+        this.root.appendChild(this.nav);
+        this.root.appendChild(this.display);
         window.addEventListener('popstate', this.findRouteMatch);
     }
 
+    /**
+     * Adds each provided route as an <a class="className"> to the navigation, adds an event lisener to automatically detect the active route, and another listener to propagate every <a> clicked for the same purpose.
+     * @param {String} className name of the class to be used for navigation links (defaults to "NavLink")
+     */
     addRoutesToNav = (className = 'NavLink') => {
         this.routes.forEach(route => {
             const el = document.createElement('a');
@@ -33,11 +39,6 @@ export default class {
         });
     };
 
-    addNavAndDisplayToRoot = _ => {
-        this.root.appendChild(this.nav);
-        this.root.appendChild(this.display);
-    };
-
     findRouteMatch = async _ => {
         const possibleMatches = this.routes.map(route => ({ ...route, isMatch: location.pathname === route.path }));
         let match = possibleMatches.find(pm => pm.isMatch);
@@ -46,12 +47,19 @@ export default class {
 
         const view = new match.view();
 
+        this.handleActiveLink();
         this.display.innerHTML = await view.getHtml();
     };
 
     navigateTo = url => {
         history.pushState(null, null, url);
         this.findRouteMatch();
+    };
+
+    handleActiveLink = _ => {
+        this.nav.childNodes.forEach(link => link.innerText === this.routes.find(route => route.path === location.pathname).title ?
+            link.classList.add('active') :
+            link.classList.remove('active'));
     };
 
 }
