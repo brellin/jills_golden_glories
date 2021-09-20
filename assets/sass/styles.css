@@ -277,13 +277,13 @@ body footer div.extLinks {
   -webkit-align-items: flex-start;
   align-items: flex-start;
 }
-body footer div.extLinks span svg {
+body footer div.extLinks span {
   font-size: 5rem;
   color: #3030bb;
   cursor: pointer;
   transition: 0.3s ease;
 }
-body footer div.extLinks span svg:hover {
+body footer div.extLinks span:hover {
   transform: scale(1.2);
   filter: hue-rotate(-10deg) brightness(2.5);
 }
