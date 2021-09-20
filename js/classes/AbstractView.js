@@ -7,7 +7,7 @@ export default class {
         document.title = `Golden Glories${ title ? ` - ${ title }` : '' }`;
     }
 
-    async getHtml() {
+    getHtml() {
         return "";
     }
 

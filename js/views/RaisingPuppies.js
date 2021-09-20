@@ -7,7 +7,7 @@ export default class extends AbstractView {
         this.setTitle('Raising Puppies');
     }
 
-    async getHtml() {
+    getHtml() {
         return `
         <img src="/assets/images/Lily.png" alt="Lily, an English Cream Golden Retriever" title="Lady Liliana Rae" class="lily_main" />
 

@@ -39,7 +39,7 @@ export default class {
         });
     };
 
-    findRouteMatch = async _ => {
+    findRouteMatch = _ => {
         const possibleMatches = this.routes.map(route => ({ ...route, isMatch: location.pathname === route.path }));
         let match = possibleMatches.find(pm => pm.isMatch);
 
@@ -48,7 +48,7 @@ export default class {
         const view = new match.view();
 
         this.handleActiveLink();
-        this.display.innerHTML = await view.getHtml();
+        this.display.innerHTML = view.getHtml();
     };
 
     navigateTo = url => {
