@@ -1,13 +1,9 @@
-import Router from './Router.js';
-import { Home, RaisingPuppies } from './views/index.js';
+import Router from './classes/Router.js';
+import { Home, RaisingPuppies, AboutTheBreed, AboutUs } from './views/index.js';
 
 const root = document.querySelector('#root');
 const burger = document.createElement('div');
 burger.classList.add('burger');
-burger.addEventListener('click', function (e) {
-    e.stopPropagation();
-    router.nav.classList.toggle('open');
-});
 root.appendChild(burger);
 
 const routes = [
@@ -21,6 +17,16 @@ const routes = [
         title: 'Raising Puppies',
         view: RaisingPuppies
     },
+    {
+        path: '/about_the_breed',
+        title: 'About the Breed',
+        view: AboutTheBreed
+    },
+    {
+        path: '/about_us',
+        title: 'About Us',
+        view: AboutUs
+    },
 ];
 
 const router = new Router(root,
@@ -31,3 +37,19 @@ const router = new Router(root,
 
 router.addRoutesToNav();
 router.display.classList.add('routes');
+burger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    router.nav.classList.toggle('open');
+});
+router.display.addEventListener('click', function (e) {
+    e.stopPropagation();
+    router.nav.classList.remove('open');
+});
+document.querySelector('header').addEventListener('click', function (e) {
+    e.stopPropagation();
+    router.nav.classList.remove('open');
+});
+
+setTimeout(_ => {
+    document.querySelector('header').classList.add('small');
+}, 2500);

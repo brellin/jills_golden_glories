@@ -11,7 +11,7 @@ html {
   font-size: 62.5%;
 }
 
-body, h1, h2, h3, h4, h5, p, button, div, section {
+body, div, section {
   margin: 0;
   padding: 0;
 }
@@ -19,20 +19,19 @@ body, h1, h2, h3, h4, h5, p, button, div, section {
 body {
   display: flex;
   display: -webkit-flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
   -webkit-align-items: center;
   align-items: center;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
   background-image: url(../images/bg.jpg);
   background-size: 100px;
   background-attachment: fixed;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.5rem;
 }
 body a {
   text-decoration: none;
@@ -43,15 +42,85 @@ body a:hover {
 }
 body header {
   width: 100%;
-  height: 50vh;
+  height: 100vh;
   background-image: url("../images/happy.jpg");
   transition: 1s ease-out;
-  background-color: #3030bb;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 0 30%;
   background-attachment: fixed;
   image-rendering: smooth;
+}
+@media (max-width: 800px) {
+  body header {
+    height: 30vh;
+  }
+}
+@media (max-width: 1500px) {
+  body header {
+    background-position-y: 0;
+  }
+}
+body header.small {
+  height: 50vh;
+}
+@media (max-width: 800px) {
+  body header.small {
+    height: 30vh;
+  }
+}
+body header.small div.imgs img {
+  margin-top: 15px;
+}
+body header.small div.imgs img:nth-child(1) {
+  height: 7.5vw;
+}
+@media (max-width: 800px) {
+  body header.small div.imgs img:nth-child(2) {
+    height: 20vw;
+    margin-top: 25%;
+  }
+}
+body header div.imgs {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+@media (max-width: 800px) {
+  body header div.imgs {
+    display: flex;
+    display: -webkit-flex;
+    -webkit-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    margin-top: auto;
+  }
+}
+body header div.imgs img {
+  margin-top: 25%;
+  height: 20vw;
+  filter: drop-shadow(7.5px 7.5px 4px black);
+  image-rendering: smooth;
+  transition: 1s ease-out;
+}
+@media (max-width: 800px) {
+  body header div.imgs img:nth-child(1) {
+    opacity: 0;
+  }
+}
+@media (max-width: 800px) {
+  body header div.imgs img:nth-child(2) {
+    margin-top: 25%;
+  }
 }
 body #root {
   width: 100%;
@@ -60,18 +129,60 @@ body #root nav {
   width: 100%;
   display: flex;
   display: -webkit-flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
   -webkit-align-items: flex-start;
   align-items: flex-start;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
   position: sticky;
   top: -1px;
   background: linear-gradient(#3030bb, 80%, transparent);
   margin-top: -1px;
+  transition: 0.2s ease;
+}
+@media (max-width: 800px) {
+  body #root nav {
+    margin: 75px 0 0 15px;
+    background: none;
+    position: absolute;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+  }
+  body #root nav a {
+    transform: translateX(calc(-60vw));
+    transition-duration: 0s;
+    width: 50vw;
+    margin-top: -1px;
+    background: #3030bb;
+  }
+  body #root nav a:nth-child(1) {
+    transition-duration: .4s;
+  }
+  body #root nav a:nth-child(2) {
+    transition-duration: .5s;
+  }
+  body #root nav a:nth-child(3) {
+    transition-duration: .6s;
+  }
+  body #root nav a:nth-child(4) {
+    transition-duration: .7s;
+  }
+  body #root nav a:nth-child(5) {
+    transition-duration: .8s;
+  }
+  body #root nav a:nth-child(6) {
+    transition-duration: .9s;
+  }
+  body #root nav.open a {
+    transform: translateX(0);
+  }
 }
 body #root nav a {
   color: #ffcc00;
@@ -89,29 +200,32 @@ body #root nav a:hover, body #root nav a.active {
   font-size: 1.7rem;
   font-weight: bolder;
 }
+@media (max-width: 800px) {
+  body #root nav a {
+    background: #3030bb;
+    width: 50vw;
+    text-align: center;
+  }
+}
 body #root section.routes {
   min-height: 37vh;
   margin: -50px auto 0;
   width: 80%;
   background: whitesmoke;
   padding: 100px 30px 15px;
-  font-size: 1.5rem;
-  display: flex;
-  display: -webkit-flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
-  -webkit-align-items: flex-start;
-  align-items: flex-start;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
+  font-size: 2.5rem;
+  overflow: hidden;
 }
 @media (max-width: 800px) {
   body #root section.routes {
-    align-items: flex-start;
-    width: 100%;
+    width: 90%;
   }
+}
+body #root section.routes img.lily_main {
+  width: 25%;
+  margin-top: 30px;
+  padding-right: 15px;
+  float: left;
 }
 body div.burger {
   z-index: 50;
@@ -148,17 +262,20 @@ body footer {
   white-space: pre;
   background: linear-gradient(whitesmoke, transparent);
 }
+@media (max-width: 800px) {
+  body footer {
+    width: 90%;
+  }
+}
 body footer div.extLinks {
   display: flex;
   display: -webkit-flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
   -webkit-justify-content: space-around;
   justify-content: space-around;
   -webkit-align-items: flex-start;
   align-items: flex-start;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
 }
 body footer div.extLinks span svg {
   font-size: 5rem;

@@ -9,22 +9,24 @@
     <script defer src="/node_modules/@fortawesome/fontawesome-free/js/brands.js"></script>
     <script defer src="/node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
     <script defer src="/node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
+    <script type="module" src="/js/index.js"></script>
     <title>Golden Glories</title>
 </head>
 
 <body>
-    <noscript>You need to install javascript to run this application.</noscript>
-    <script type="module" src="/js/index.js"></script>
-    <header></header>
+    <noscript>You need to enable javascript to run this application.</noscript>
+    <header>
+        <div class="imgs">
+            <img src="/assets/images/logo.png" alt="Golden Glories Logo">
+            <img src="/assets/images/header.png" alt="Golden Glories Text">
+        </div>
+    </header>
     <div id="root"></div>
     <footer>
         <div class="extLinks">
-            <span>
-                <i class="fab fa-facebook"></i>
+            <span onclick="window.open('https://facebook.com/JillsGoldenGlories')"> <i class="fab fa-facebook"></i>
             </span>
-            <span>
-                <i class="fas fa-at"></i>
-            </span>
+            <span onclick="window.open('mailto:jill@goldenglories.com')"> <i class="fas fa-at"></i> </span>
         </div>
         <p>© 2021 Golden Glories. Website by <a href='https://willumstead.com' target='_blank'>Will Umstead</a>.</p>
     </footer>
