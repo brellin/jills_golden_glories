@@ -239,6 +239,7 @@ header div.imgs img {
   #root section.routes {
     padding: 100px 0 15px;
     width: 100%;
+    min-height: 46.5vh;
   }
   #root section.routes p, #root section.routes img {
     margin: auto 15px;
