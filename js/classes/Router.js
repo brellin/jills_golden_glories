@@ -4,7 +4,7 @@ export default class {
      * @param {HTMLElement} root HTML element to contain both navigation and routes
      * @param {HTMLElement} nav HTML element to contain the navigation, usually a nav tag
      * @param {HTMLElement} display HTML element to contain the area in which the routes will be displayed
-     * @param {Array.<{path: String, title: String, view: Class}>} routes array of objects defining the routes as listed
+     * @param {Array.<{path: string, title: string, view: object, subRoutes: Array.<{path: String, title: String, view: object}>}>} routes array of objects defining the routes as listed
      */
     constructor(root, nav, display, routes) {
         this.root = root;
@@ -18,15 +18,25 @@ export default class {
 
     /**
      * Adds each provided route as an <a class="className"> to the navigation, adds an event lisener to automatically detect the active route, and another listener to propagate every <a> clicked for the same purpose.
-     * @param {String} className name of the class to be used for navigation links (defaults to "NavLink")
+     * @param {string} className name of the class to be used for navigation links (defaults to "NavLink")
+     * @param {string} subClassName name of the class to be used for sub-navigation links (defaults to "NavLink")
      */
-    addRoutesToNav = (className = 'NavLink') => {
+    addRoutesToNav = (className = 'NavLink', subClassName = 'Sub') => {
         this.routes.forEach(route => {
-            const el = document.createElement('a');
-            el.innerText = route.title;
-            el.classList.add(className);
-            el.href = route.path;
-            this.nav.appendChild(el);
+            function createLink(rt) {
+                const el = document.createElement('a');
+                el.innerText = rt.title;
+                el.classList.add(className);
+                el.href = rt.path;
+                return el;
+            }
+            const rtEl = createLink(route);
+            if (route.subRoutes) route.subRoutes.forEach(sr => {
+                const subRoute = createLink(sr);
+                subRoute.classList.add(subClassName);
+                rtEl.appendChild(subRoute);
+            });
+            this.nav.appendChild(rtEl);
         });
         document.addEventListener('DOMContentLoaded', _ => {
             document.body.addEventListener('click', e => {

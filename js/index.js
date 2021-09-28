@@ -59,4 +59,4 @@ if (window.innerWidth > 800) window.onload = _ => {
     localStorage.getItem('notFirstVisit') ? addSmallClass() : setTimeout(addSmallClass, 2500);
 };
 
-window.onbeforeunload = _ => localStorage.setItem('notFirstVisit', true);
+window.onbeforeunload = function () { localStorage.setItem('notFirstVisit', true); };
