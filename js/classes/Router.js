@@ -34,7 +34,7 @@ export default class {
             if (route.subRoutes) route.subRoutes.forEach(sr => {
                 const subRoute = createLink(sr);
                 subRoute.classList.add(subClassName);
-                rtEl.appendChild(subRoute);
+                this.nav.appendChild(subRoute);
             });
             this.nav.appendChild(rtEl);
         });
