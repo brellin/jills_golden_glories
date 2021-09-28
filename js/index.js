@@ -52,6 +52,11 @@ document.querySelector('header').addEventListener('click', function (e) {
 
 router.findRouteMatch();
 
-setTimeout(_ => {
-    document.querySelector('header').classList.add('small');
-}, 2500);
+if (window.innerWidth > 800) window.onload = _ => {
+    function addSmallClass() {
+        document.querySelector('header').classList.add('small');
+    }
+    localStorage.getItem('notFirstVisit') ? addSmallClass() : setTimeout(addSmallClass, 2500);
+};
+
+window.onbeforeunload = _ => localStorage.setItem('notFirstVisit', true);
