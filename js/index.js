@@ -1,10 +1,18 @@
 import Router from './classes/Router.js';
 import { Home, RaisingPuppies, AboutTheBreed, AboutUs } from './views/index.js';
 
+let isWide = window.innerWidth > 800;
+
+window.addEventListener('resize', function () {
+    const burger = document.querySelector('.burger');
+    if (window.innerWidth <= 800 && !burger) addBurger();
+    else if (window.innerWidth > 800) {
+        if (burger) root.removeChild(burger);
+        if (!header.classList.contains('small')) header.classList.add('small');
+    }
+});
 const root = document.querySelector('#root');
-const burger = document.createElement('div');
-burger.classList.add('burger');
-root.appendChild(burger);
+const header = document.querySelector('header');
 
 const routes = [
     {
@@ -29,34 +37,33 @@ const routes = [
     },
 ];
 
+const display = document.createElement('section');
+display.classList.add('routes');
+
 const router = new Router(root,
     document.createElement('nav'),
-    document.createElement('section'),
+    display,
     routes
 );
 
-router.addRoutesToNav();
-router.display.classList.add('routes');
-burger.addEventListener('click', function (e) {
-    e.stopPropagation();
-    router.nav.classList.toggle('open');
-});
-router.display.addEventListener('click', function (e) {
-    e.stopPropagation();
-    router.nav.classList.remove('open');
-});
-document.querySelector('header').addEventListener('click', function (e) {
-    e.stopPropagation();
-    router.nav.classList.remove('open');
+function addBurger() {
+    const burger = document.createElement('div');
+    burger.classList.add('burger');
+    root.appendChild(burger);
+    burger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        router.nav.classList.toggle('open');
+    });
+    document.body.addEventListener('click', function (e) {
+        e.stopPropagation();
+        router.nav.classList.remove('open');
+    });
+}
+
+if (!isWide && !document.querySelector('.burger')) addBurger();
+
+if (isWide) window.addEventListener('load', function () {
+    localStorage.getItem('notFirstVisit') ? header.classList.add('small') : setTimeout(function () { header.classList.add('small'); }, 2500);
 });
 
-router.findRouteMatch();
-
-if (window.innerWidth > 800) window.onload = _ => {
-    function addSmallClass() {
-        document.querySelector('header').classList.add('small');
-    }
-    localStorage.getItem('notFirstVisit') ? addSmallClass() : setTimeout(addSmallClass, 2500);
-};
-
-window.onbeforeunload = function () { localStorage.setItem('notFirstVisit', true); };
+window.addEventListener('beforeunload', function () { localStorage.setItem('notFirstVisit', true); });

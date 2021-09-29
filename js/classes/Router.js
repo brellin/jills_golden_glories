@@ -13,43 +13,47 @@ export default class {
         this.routes = routes;
         this.root.appendChild(this.nav);
         this.root.appendChild(this.display);
-        window.addEventListener('popstate', this.findRouteMatch);
+        window.addEventListener('popstate', this.populateRoute);
+        this.addRoutesToNav();
+        this.populateRoute();
     }
 
     /**
-     * Adds each provided route as an <a class="className"> to the navigation, adds an event lisener to automatically detect the active route, and another listener to propagate every <a> clicked for the same purpose.
+     * Adds each provided route as a link node to the navigation - with sub-route handling - and adds an event listener to use internal routing.
      * @param {string} className name of the class to be used for navigation links (defaults to "NavLink")
-     * @param {string} subClassName name of the class to be used for sub-navigation links (defaults to "NavLink")
+     * @param {string} subClassName name of the class to be used for sub-navigation links (defaults to "Sub")
      */
     addRoutesToNav = (className = 'NavLink', subClassName = 'Sub') => {
         this.routes.forEach(route => {
-            function createLink(rt) {
+
+            const createLink = rt => {
                 const el = document.createElement('a');
                 el.innerText = rt.title;
                 el.classList.add(className);
                 el.href = rt.path;
-                return el;
-            }
-            const rtEl = createLink(route);
-            if (route.subRoutes) route.subRoutes.forEach(sr => {
-                const subRoute = createLink(sr);
-                subRoute.classList.add(subClassName);
-                this.nav.appendChild(subRoute);
-            });
-            this.nav.appendChild(rtEl);
-        });
-        document.addEventListener('DOMContentLoaded', _ => {
-            document.body.addEventListener('click', e => {
-                if (e.target.matches(`.${ className }`)) {
+                el.addEventListener('click', e => {
                     e.preventDefault();
-                    this.navigateTo(e.target.href);
-                }
-            });
-            this.findRouteMatch();
+                    this.navigate(e.target.href);
+                });
+                return el;
+            };
+
+            this.nav.appendChild(createLink(route));
+
+            if (route.subRoutes) {
+                const subMenu = document.createElement('div');
+                route.subRoutes.forEach(sr => {
+                    const subRoute = createLink(sr);
+                    subRoute.classList.add(subClassName);
+                    subMenu.appendChild(subRoute);
+                });
+                this.nav.appendChild(subMenu);
+            }
+
         });
     };
 
-    findRouteMatch = _ => {
+    populateRoute = _ => {
         const possibleMatches = this.routes.map(route => ({ ...route, isMatch: location.pathname === route.path }));
         let match = possibleMatches.find(pm => pm.isMatch);
 
@@ -61,9 +65,9 @@ export default class {
         this.display.innerHTML = view.getHtml();
     };
 
-    navigateTo = url => {
+    navigate = url => {
         history.pushState(null, null, url);
-        this.findRouteMatch();
+        this.populateRoute();
     };
 
     handleActiveLink = _ => {
