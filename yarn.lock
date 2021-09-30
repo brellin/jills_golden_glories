@@ -895,6 +895,11 @@ responselike@^1.0.2:
   dependencies:
     lowercase-keys "^1.0.0"
 
+router-vanilla@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/router-vanilla/-/router-vanilla-1.0.0.tgz#535f1edb727db2e23a9377c0bf1e56a03f319a5c"
+  integrity sha512-+oTaJguqvTwqk+Z+gJJix2NvAV4nPRXHqXI1N3vu+RRHGmPPvZuRXmJrFGS8oUvLQyp6V14N+ddvlUHdKw/llA==
+
 safe-buffer@5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"

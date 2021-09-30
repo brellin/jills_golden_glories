@@ -7,7 +7,8 @@
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4"
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "router-vanilla": "^1.0.0"
   },
   "devDependencies": {
     "express": "^4.17.1",
