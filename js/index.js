@@ -1,4 +1,4 @@
-import Router from 'https://unpkg.com/router-vanilla';
+import Router from 'https://unpkg.com/router-vanilla@1.1.0/Router.js';
 import { Home, RaisingPuppies, AboutTheBreed, AboutUs } from './views/index.js';
 
 let isWide = window.innerWidth > 800;
