@@ -7,14 +7,16 @@
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4"
+    "router-vanilla": "^1.1.0"
   },
   "devDependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "open": "^8.2.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "rm -rf dist && mkdir dist && cp -a ./. ./dist"
   },
   "repository": "https://github.com/brellin/jills_golden_glories.git"
 }
