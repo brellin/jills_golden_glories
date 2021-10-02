@@ -1,4 +1,4 @@
-import { View } from "../classes";
+import { View } from "../classes/index.js";
 import { ext_links } from '../../assets/utils/data.js';
 
 export default class extends View {
