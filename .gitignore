@@ -2,3 +2,4 @@
 /.vscode
 *.scss
 server.js
+/js/classes
