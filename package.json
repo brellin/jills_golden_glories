@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build": "rm -rf dist && mkdir dist && cp -a ./. ./dist"
+    "build": "rm -rf dist && mkdir dist && cp -a ./. /dist"
   },
   "repository": "https://github.com/brellin/jills_golden_glories.git"
 }
