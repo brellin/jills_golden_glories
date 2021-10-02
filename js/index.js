@@ -1,4 +1,4 @@
-import { Router } from 'router-vanilla';
+import { Router } from '../node_modules/router-vanilla';
 import { Home, RaisingPuppies, AboutTheBreed, AboutUs } from './views/index.js';
 
 let isWide = window.innerWidth > 800;
