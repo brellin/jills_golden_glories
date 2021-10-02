@@ -1,6 +1,6 @@
-import AbstractView from "../classes/AbstractView.js";
+import { View } from "../classes";
 
-export default class extends AbstractView {
+export default class extends View {
     constructor() {
         super();
         this.setTitle('About Us');

@@ -1,7 +1,7 @@
-import AbstractView from "../classes/AbstractView.js";
+import { View } from "../classes";
 import { ext_links } from '../../assets/utils/data.js';
 
-export default class extends AbstractView {
+export default class extends View {
     constructor() {
         super();
         this.setTitle('Raising Puppies');
