@@ -10,7 +10,7 @@ export default class extends View {
     getHtml() {
         return `
         <div className="rp">
-            <img src="/assets/images/Lily.png" alt="Lily, an English Cream Golden Retriever" title="Lady Liliana Rae" class="lily_main" />
+            <div title="Lady Liliana Rae" class="lily_main"></div>
             
             <p>When you buy one of our puppies, you can rest assured that we raise each one with care. We use methods categorized as <i>Early Neurological Stimulation</i> (<a href="${ ext_links.ens }" target="_blank" rel="noopener noreferrer" title="AKC's Explanation of ENS">ENS</a>) that stimulate neurological activity at a very young age, to ensure your puppy will be as great to you as Lily has been to us.</p>
             
