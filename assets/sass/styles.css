@@ -325,6 +325,12 @@ footer div.extLinks {
   align-items: flex-start;
   width: 100%;
 }
+@media (max-width: 800px) {
+  footer div.extLinks {
+    flex-wrap: wrap;
+    flex-basis: 50%;
+  }
+}
 footer div.extLinks div.ext-link {
   display: flex;
   display: -webkit-flex;
@@ -334,6 +340,12 @@ footer div.extLinks div.ext-link {
   justify-content: flex-start;
   -webkit-align-items: center;
   align-items: center;
+}
+@media (max-width: 800px) {
+  footer div.extLinks div.ext-link {
+    flex-basis: 50%;
+    margin: 10px auto;
+  }
 }
 footer div.extLinks div.ext-link a {
   transition: 0.3s ease;
