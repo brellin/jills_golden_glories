@@ -161,13 +161,6 @@ header div.imgs img {
     align-items: flex-start;
     width: auto;
   }
-  #root nav a {
-    transform: translateX(calc(-60vw));
-    transition-duration: 0s;
-    width: 50vw;
-    margin-top: -1px;
-    background: #3030bb;
-  }
   #root nav a:nth-child(1) {
     transition-duration: .4s;
   }
@@ -186,28 +179,35 @@ header div.imgs img {
   #root nav a:nth-child(6) {
     transition-duration: .9s;
   }
-  #root nav.open a {
+  #root nav.open div {
     transform: translateX(0);
   }
 }
-#root nav a {
-  color: #ffcc00;
-  padding: 15px 5%;
-  text-decoration: none;
+#root nav div {
   font-size: 1.5rem;
+  padding: 15px 5%;
   transition: 0.2s ease;
 }
+#root nav div:hover, #root nav div.active {
+  font-size: 1.7rem;
+  font-weight: bolder;
+}
 @media (max-width: 800px) {
-  #root nav a {
+  #root nav div {
     padding: 15px 2%;
     background: #3030bb;
     width: 50vw;
     text-align: center;
+    transform: translateX(calc(-60vw));
+    transition-duration: 0s;
+    width: 50vw;
+    margin-top: -1px;
+    background: #3030bb;
   }
 }
-#root nav a:hover, #root nav a.active {
-  font-size: 1.7rem;
-  font-weight: bolder;
+#root nav div a {
+  color: #ffcc00;
+  text-decoration: none;
 }
 #root section.routes {
   min-height: 37vh;
