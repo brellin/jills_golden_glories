@@ -381,6 +381,11 @@ footer div.extLinks div.ext-link a img {
 footer div.extLinks div.ext-link a span {
   font-size: 1.5rem;
 }
+@media (max-width: 800px) {
+  footer div.extLinks div.ext-link a span {
+    display: none;
+  }
+}
 footer div.extLinks div.ext-link a span:hover {
   text-decoration: underline;
 }
