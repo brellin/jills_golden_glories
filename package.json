@@ -7,7 +7,7 @@
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
-    "router-vanilla": "^1.1.0"
+    "router-vanilla": "^1.1.2"
   },
   "devDependencies": {
     "express": "^4.17.1",
