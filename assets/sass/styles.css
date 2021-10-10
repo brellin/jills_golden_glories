@@ -161,22 +161,22 @@ header div.imgs img {
     align-items: flex-start;
     width: auto;
   }
-  #root nav a:nth-child(1) {
+  #root nav div:nth-child(1) {
     transition-duration: .4s;
   }
-  #root nav a:nth-child(2) {
+  #root nav div:nth-child(2) {
     transition-duration: .5s;
   }
-  #root nav a:nth-child(3) {
+  #root nav div:nth-child(3) {
     transition-duration: .6s;
   }
-  #root nav a:nth-child(4) {
+  #root nav div:nth-child(4) {
     transition-duration: .7s;
   }
-  #root nav a:nth-child(5) {
+  #root nav div:nth-child(5) {
     transition-duration: .8s;
   }
-  #root nav a:nth-child(6) {
+  #root nav div:nth-child(6) {
     transition-duration: .9s;
   }
   #root nav.open div {
