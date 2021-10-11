@@ -32,7 +32,7 @@ body div.wrap {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.5rem;
-  width: 100%;
+  width: 100vw;
   margin: 0;
 }
 body div.wrap a {
@@ -212,7 +212,7 @@ header div.imgs img {
 #root section.routes {
   min-height: 37vh;
   margin: -50px auto 0;
-  width: 80%;
+  width: calc(100% - 60px);
   background: whitesmoke;
   padding: 100px 30px 15px;
   font-size: 2.5rem;
@@ -232,7 +232,6 @@ header div.imgs img {
 #root section.routes div.spacer {
   height: 350px;
   width: calc(100% + 60px);
-  margin-left: -30px;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -248,7 +247,7 @@ header div.imgs img {
     min-height: 46.5vh;
   }
   #root section.routes p, #root section.routes img {
-    margin: auto 15px;
+    margin: 15px 15px;
     max-width: calc(100% - 30px);
   }
 }
@@ -305,7 +304,7 @@ div.burger:focus {
 }
 
 footer {
-  width: 80%;
+  width: 100%;
   padding: 5px 30px;
   background: linear-gradient(whitesmoke, transparent);
   display: flex;
