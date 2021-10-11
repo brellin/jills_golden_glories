@@ -227,12 +227,24 @@ header div.imgs img {
   -webkit-align-items: center;
   align-items: center;
 }
+#root section.routes div.rp {
+  width: 80%;
+}
+#root section.routes div.agrVegr {
+  width: fit-content;
+  max-width: 80%;
+}
+#root section.routes div.agrVegr img {
+  width: 100%;
+}
 #root section.routes p, #root section.routes img {
-  max-width: calc(100% - 60px);
+  width: 80%;
+  margin: 15px auto;
 }
 #root section.routes div.spacer {
   height: 350px;
   width: calc(100% + 60px);
+  margin-left: -30px;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -248,8 +260,11 @@ header div.imgs img {
     min-height: 46.5vh;
   }
   #root section.routes p, #root section.routes img {
-    margin: 15px 15px;
+    margin: 15px auto;
     max-width: calc(100% - 30px);
+  }
+  #root section.routes p {
+    margin: 15px 15px;
   }
 }
 #root section.routes div.lily_about {
