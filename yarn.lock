@@ -908,10 +908,10 @@ responselike@^1.0.2:
   dependencies:
     lowercase-keys "^1.0.0"
 
-router-vanilla@^1.2.0:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/router-vanilla/-/router-vanilla-1.2.3.tgz#4313bff6c17ade34a838bfc67a852ccc7ba896f2"
-  integrity sha512-sfn2jq0+VBfcXl63ZnbS4JO+llRqgfoagya88lk55cN/ckojHRcTsngbY9Jiq9/eR3puO52Bf2ZzgMeywljfsQ==
+router-vanilla@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/router-vanilla/-/router-vanilla-1.3.0.tgz#97698b8dde9f493e21c9d23289ad0bdfaedee002"
+  integrity sha512-J9xnQXcFUE8n7R1nQ+0p2UPKcQhGqiJm0yWNq/zLKMtIdlaFihtCFfuhxMJCWBtepay/yUiynL5ukFS7maKRgg==
 
 safe-buffer@5.1.2:
   version "5.1.2"
