@@ -43,7 +43,14 @@ display.classList.add('routes');
 const router = new Router(root,
     document.createElement('nav'),
     display,
-    routes
+    routes,
+    {
+        topOfPage: {
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        }
+    }
 );
 
 function addBurger() {
