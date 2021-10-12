@@ -6,7 +6,7 @@ export default class extends View {
         this.setTitle('About Us');
     }
 
-    getHtml() {
+    renderHtml() {
         return `
         <div class="rp">
             <div title="Lady Liliana Rae" class="lily_about"></div>

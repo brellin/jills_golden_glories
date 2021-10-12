@@ -7,7 +7,7 @@ export default class extends View {
         this.setTitle('Raising Puppies');
     }
 
-    getHtml() {
+    renderHtml() {
         return `
         <div class="rp">
             <div title="Lady Liliana Rae" class="lily_pup"></div>
