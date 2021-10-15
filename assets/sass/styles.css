@@ -251,6 +251,9 @@ header div.imgs img {
   justify-content: space-around;
   -webkit-align-items: center;
   align-items: center;
+  background-color: #ffeea9a4;
+  padding: 0 15px;
+  margin-bottom: 10px;
 }
 #root section.routes div.sub-contain div.bloodline div {
   max-width: 50%;
