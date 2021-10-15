@@ -1,11 +1,11 @@
 import Home from './Home.js';
-import RaisingPuppies from './RaisingPuppies.js';
+import ENS from './ENS.js';
 import AboutTheBreed from './AboutTheBreed.js';
-import AboutUs from './AboutUs.js';
+import Bloodlines from './Bloodlines.js';
 
 export {
     Home,
-    RaisingPuppies,
+    ENS,
     AboutTheBreed,
-    AboutUs
+    Bloodlines
 };

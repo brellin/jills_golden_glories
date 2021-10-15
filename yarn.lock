@@ -909,9 +909,9 @@ responselike@^1.0.2:
     lowercase-keys "^1.0.0"
 
 router-vanilla@^1.3.1:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/router-vanilla/-/router-vanilla-1.3.4.tgz#a7033cb713f003351204ce05035c0582b057ecd9"
-  integrity sha512-bqkV8J4hdtX0gcTrs8o5qgznhUndgjMOKNqEf9iy621b3LTviGmO3P28KhjbfwRVnSOuj6nsuSMD0jSwzMrPsQ==
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/router-vanilla/-/router-vanilla-1.3.6.tgz#d20fc09884312a2f58eafde8f6bcc0e4ad5145ea"
+  integrity sha512-WSzu9p3A6HASZiWaOQCO5uHF+Bvojniz+wbbLcBkjz7VTe51uOv9GyBbJ7gGVe11hIuSzIoAqJvyUMszUwztYg==
 
 safe-buffer@5.1.2:
   version "5.1.2"

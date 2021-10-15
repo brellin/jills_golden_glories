@@ -1,7 +1,6 @@
 @font-face {
   font-family: "Samantha Upright";
-  src: url("../fonts/Samantha Upright.ttf");
-  src: url("../fonts/Samantha Upright.otf");
+  src: url("../fonts/Samantha Upright.ttf"), url("../fonts/Samantha Upright.otf");
 }
 @font-face {
   font-family: "Little Star Story";
@@ -11,9 +10,10 @@ html {
   font-size: 62.5%;
 }
 
-body, div, section, header {
+body, div, section, header, footer {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body div.wrap {
@@ -213,7 +213,7 @@ header div.imgs img {
 #root section.routes {
   min-height: 37vh;
   margin: -50px auto 0;
-  width: calc(100% - 60px);
+  width: 100%;
   background: whitesmoke;
   padding: 100px 30px 15px;
   font-size: 2.5rem;
@@ -227,8 +227,37 @@ header div.imgs img {
   -webkit-align-items: center;
   align-items: center;
 }
-#root section.routes div.rp {
+#root section.routes h1 {
+  font-family: "Samantha Upright";
+  font-size: 8rem;
+  margin: 10px auto;
+  text-align: center;
+}
+#root section.routes h2 {
+  font-family: "Samantha Upright";
+  font-size: 5rem;
+  margin: 7.5px auto;
+}
+#root section.routes div.sub-contain {
   width: 80%;
+}
+#root section.routes div.sub-contain div.bloodline {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  align-items: center;
+}
+#root section.routes div.sub-contain div.bloodline div {
+  max-width: 50%;
+  width: 100%;
+}
+#root section.routes div.sub-contain div.bloodline img {
+  max-width: 50%;
 }
 #root section.routes div.agrVegr {
   width: fit-content;
@@ -244,7 +273,6 @@ header div.imgs img {
 #root section.routes div.spacer {
   height: 350px;
   width: calc(100% + 60px);
-  margin-left: -30px;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -320,7 +348,7 @@ div.burger:focus {
 }
 
 footer {
-  width: calc(100% - 60px);
+  width: 100%;
   padding: 5px 30px;
   background: linear-gradient(whitesmoke, transparent);
   display: flex;

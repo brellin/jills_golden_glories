@@ -1,5 +1,5 @@
-import Router from './classes/Router.js';
-import { Home, RaisingPuppies, AboutTheBreed, AboutUs } from './views/index.js';
+import { Router } from './classes/index.js';
+import { Home, ENS, AboutTheBreed, Bloodlines } from './views/index.js';
 
 let isWide = window.innerWidth > 800;
 
@@ -21,9 +21,9 @@ const routes = [
         view: Home
     },
     {
-        path: '/raising_puppies',
-        title: 'Raising Puppies',
-        view: RaisingPuppies
+        path: '/ens',
+        title: 'ENS',
+        view: ENS
     },
     {
         path: '/about_the_breed',
@@ -31,9 +31,9 @@ const routes = [
         view: AboutTheBreed
     },
     {
-        path: '/about_us',
-        title: 'About Us',
-        view: AboutUs
+        path: '/bloodlines',
+        title: 'Bloodlines',
+        view: Bloodlines
     },
 ];
 
