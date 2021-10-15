@@ -36,7 +36,8 @@ export default class extends View {
                     <img src="../../assets/images/maks.jpg" alt="Maks sitting pretty" />
                 </div>
                 
-                <div class="bloodline">
+                ${/*
+                    <div class="bloodline">
                     <div>
                         <h2>${ l('C') }ash (father of puppies)</h2>
                         <p>See pedigree of Cash <a href=${ ext_links.bloodlines.cash } target="_blank" rel="noopener noreferrer">here</a></p>
@@ -57,7 +58,7 @@ export default class extends View {
                         <h2>${ l('C') }ash's ${ l('M') }other</h2>
                         <p>See pedigree of Lily <a href=${ ext_links.bloodlines.rus } target="_blank" rel="noopener noreferrer">here</a></p>
                     </div>
-                </div>
+    </div>*/_ => { } }
             </div>
         `;
     }
