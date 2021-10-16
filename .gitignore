@@ -3,3 +3,5 @@
 *.scss
 server.js
 /js/classes
+# Local Netlify folder
+.netlify
