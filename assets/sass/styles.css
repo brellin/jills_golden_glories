@@ -42,6 +42,27 @@ body div.wrap a {
 body div.wrap a:hover {
   text-decoration: underline;
 }
+body div.wrap h1 {
+  font-family: "Samantha Upright";
+  font-size: 13rem;
+  line-height: 2.5;
+  text-align: center;
+  color: #3030bb;
+  text-shadow: 3px 3px 2px #22d4f3;
+  background: linear-gradient(whitesmoke, #ffeea9a4, whitesmoke);
+  width: 100vw;
+}
+body div.wrap div.spacer {
+  height: 350px;
+  width: calc(100% + 60px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+body div.wrap div.spacer.home {
+  background-image: url(../images/lily_sit.jpg);
+  background-position-y: 20%;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -57,6 +78,7 @@ header {
   transition: 1s ease-out;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   background-position-y: 20%;
   image-rendering: smooth;
   margin: 0;
@@ -227,17 +249,6 @@ header div.imgs img {
   -webkit-align-items: center;
   align-items: center;
 }
-#root section.routes h1 {
-  font-family: "Samantha Upright";
-  font-size: 8rem;
-  margin: 10px auto;
-  text-align: center;
-}
-#root section.routes h2 {
-  font-family: "Samantha Upright";
-  font-size: 5rem;
-  margin: 7.5px auto;
-}
 #root section.routes div.sub-contain {
   width: 80%;
 }
@@ -245,22 +256,48 @@ header div.imgs img {
   width: 100%;
   display: flex;
   display: -webkit-flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
   -webkit-align-items: center;
   align-items: center;
   background-color: #ffeea9a4;
-  padding: 0 15px;
+  padding: 30px 0;
   margin-bottom: 10px;
+  border-radius: 50px;
 }
-#root section.routes div.sub-contain div.bloodline div {
-  max-width: 50%;
-  width: 100%;
+#root section.routes div.sub-contain div.bloodline h2 {
+  font-family: "Samantha Upright";
+  margin: 5px auto;
+  font-size: 7.5rem;
+  color: #ffcc00;
+  text-shadow: 2px 2px 1px black;
 }
 #root section.routes div.sub-contain div.bloodline img {
-  max-width: 50%;
+  border-radius: 25px;
+  max-width: 100%;
+}
+#root section.routes div.sub-contain div.bloodline a {
+  color: #3030bb;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+#root section.routes div.sub-contain div.bloodline a::before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  transform: translate(-100vw, 30px);
+  transition: 0.3s ease-in-out;
+}
+#root section.routes div.sub-contain div.bloodline a:hover {
+  color: #22d4f3;
+}
+#root section.routes div.sub-contain div.bloodline a:hover::before {
+  background: #22d4f3;
+  transform: translateY(30px);
 }
 #root section.routes div.agrVegr {
   width: fit-content;
@@ -272,17 +309,6 @@ header div.imgs img {
 #root section.routes p, #root section.routes img {
   width: 80%;
   margin: 15px auto;
-}
-#root section.routes div.spacer {
-  height: 350px;
-  width: calc(100% + 60px);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-#root section.routes div.spacer.home {
-  background-image: url(../images/lily_sit.jpg);
-  background-position-y: 20%;
 }
 @media (max-width: 800px) {
   #root section.routes {
@@ -352,7 +378,7 @@ div.burger:focus {
 
 footer {
   width: 100%;
-  padding: 5px 30px;
+  padding: 50px 30px;
   background: linear-gradient(whitesmoke, transparent);
   display: flex;
   display: -webkit-flex;
@@ -398,6 +424,7 @@ footer div.extLinks div.ext-link {
   justify-content: flex-start;
   -webkit-align-items: center;
   align-items: center;
+  margin-bottom: 50px;
 }
 @media (max-width: 800px) {
   footer div.extLinks div.ext-link {

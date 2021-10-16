@@ -9,8 +9,8 @@ export default class extends View {
 
     renderHtml() {
         return `
+        <h1>${ l('E') }arly ${ l('N') }eurological ${ l('S') }timulation</h1>
         <div class="sub-contain">
-            <h1>${ l('E') }arly ${ l('N') }eurological ${ l('S') }timulation</h1>
 
             <div title="Lady Liliana Rae" class="lily_pup"></div>
             

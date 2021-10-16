@@ -21,8 +21,8 @@ const routes = [
         view: Home
     },
     {
-        path: '/ens',
-        title: 'ENS',
+        path: '/puppies',
+        title: 'Puppies',
         view: ENS
     },
     {
