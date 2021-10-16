@@ -266,6 +266,11 @@ header div.imgs img {
 #root section.routes div.sub-contain {
   width: 80%;
 }
+@media (max-width: 800px) {
+  #root section.routes div.sub-contain {
+    width: 100%;
+  }
+}
 #root section.routes div.sub-contain div.bloodline {
   width: 100%;
   display: flex;
@@ -336,13 +341,6 @@ header div.imgs img {
     padding: 100px 0 15px;
     width: 100%;
     min-height: 46.5vh;
-  }
-  #root section.routes p, #root section.routes img {
-    margin: 15px auto;
-    max-width: calc(100% - 30px);
-  }
-  #root section.routes p {
-    margin: 15px 15px;
   }
 }
 #root section.routes div.lily_about {
