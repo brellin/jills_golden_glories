@@ -1,4 +1,4 @@
-import View from "./ViewImp";
+import View from "./ViewImp.js";
 
 export default class extends View {
     constructor() {
