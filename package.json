@@ -11,13 +11,12 @@
   },
   "devDependencies": {
     "express": "^4.17.1",
-    "node-sass": "^6.0.1",
     "nodemon": "^2.0.12",
     "open": "^8.2.1"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "cd js && mkdir classes && cd .. && cp -r node_modules/router-vanilla/*.js js/classes"
+    "start": "node server.js",
+    "build": "cd js && mkdir classes && cd .. && cp -r node_modules/router-vanilla/* js/classes"
   },
   "repository": "https://github.com/brellin/jills_golden_glories.git"
 }
