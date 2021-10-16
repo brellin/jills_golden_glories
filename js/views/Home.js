@@ -9,7 +9,7 @@ export default class extends View {
 
     renderHtml() {
         return `
-        <h1>${ l('W') }elcome to ${ l('G') }olden ${ l('G') }lories!</h1>
+        <h1>${ l('W') }elcome${ window.screen.width > 800 ? ` to ${ l('G') }olden ${ l('G') }lories!` : '' }</h1>
         <p>We enjoy breeding English Cream Golden Retrievers.  When we got Lily, we didn’t know what a wonderful journey we had ahead of us.  Lily is so fun, intelligent, attentive, and beautiful.  We have trained her to be obedient, which serves very well when she is in action as a therapy dog.  She gets the attention of everyone she encounters and so many people comment that they want her.  Being around her is a joy and her offspring will do the same.</p>
         <div class="spacer home"></div>
         <p>We have learned that the English Cream Goldens are not only calm and gentle, but very trainable and observant.  Lily loves to play hide and seek with her toys and surprises us with how quickly she can find them.</p>

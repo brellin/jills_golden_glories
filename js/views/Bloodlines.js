@@ -10,7 +10,7 @@ export default class extends View {
     bloodlines = [
         {
             callName: 'Lily',
-            headerText: `${ l('L') }ily (mother of puppies)`,
+            headerText: `${ l('L') }ily${ window.screen.width > 800 ? ' ' : '<br />' }(mother of puppies)`,
             bloodlink: ext_links.bloodlines.lily,
             imgSrc: '../../assets/images/lily_lay.jpg',
             imgAlt: 'Lily laying down'

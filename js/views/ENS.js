@@ -9,7 +9,7 @@ export default class extends View {
 
     renderHtml() {
         return `
-        <h1>${ l('E') }arly ${ l('N') }eurological ${ l('S') }timulation</h1>
+        <h1>${ window.screen.width > 800 ? `${ l('E') }arly ${ l('N') }eurological ${ l('S') }timulation` : 'Puppies' }</h1>
         <div class="sub-contain">
 
             <div title="Lady Liliana Rae" class="lily_pup"></div>
