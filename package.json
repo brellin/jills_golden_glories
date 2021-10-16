@@ -15,7 +15,7 @@
     "open": "^8.2.1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "build": "cd js && mkdir classes && cd .. && cp -r node_modules/router-vanilla/* js/classes"
   },
   "repository": "https://github.com/brellin/jills_golden_glories.git"

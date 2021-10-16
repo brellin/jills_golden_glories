@@ -1,7 +1,7 @@
-import Home from './Home.js';
-import ENS from './ENS.js';
-import AboutTheBreed from './AboutTheBreed.js';
-import Bloodlines from './Bloodlines.js';
+import Home from './Home';
+import ENS from './ENS';
+import AboutTheBreed from './AboutTheBreed';
+import Bloodlines from './Bloodlines';
 
 export {
     Home,

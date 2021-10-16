@@ -1,5 +1,5 @@
-import { Router } from './classes/index.js';
-import { Home, ENS, AboutTheBreed, Bloodlines } from './views/index.js';
+import { Router } from './classes/index';
+import { Home, ENS, AboutTheBreed, Bloodlines } from './views/index';
 
 let isWide = window.innerWidth > 800;
 

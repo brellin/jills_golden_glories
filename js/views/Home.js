@@ -1,5 +1,5 @@
-import View from "./ViewImp.js";
-import { l } from '../../assets/utils/data.js';
+import View from "./ViewImp";
+import { l } from '../../assets/utils/data';
 
 export default class extends View {
     constructor() {
