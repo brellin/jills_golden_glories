@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
@@ -24,6 +25,15 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'index.scss'
+        }),
+        new NetlifyPlugin({
+            redirects: [
+                {
+                    from: '/*',
+                    to: '/index.html',
+                    status: 200
+                }
+            ]
         })
     ],
     module: {
