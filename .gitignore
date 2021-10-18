@@ -1,7 +1,7 @@
 /node_modules
 /.vscode
 *.scss
-server.js
-/js/classes
+.env
+/dist
 # Local Netlify folder
 .netlify

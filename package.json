@@ -2,21 +2,35 @@
   "name": "jills-golden-glories",
   "version": "1.0.0",
   "description": "English Cream Golden Retrievers in the Abilene Area",
-  "main": "index.html",
+  "main": "./src/index.js",
   "author": "brellin",
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
-    "router-vanilla": "^1.3.1"
+    "router-vanilla": "^1.3.9"
   },
   "devDependencies": {
-    "express": "^4.17.1",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.4.0",
+    "dotenv": "^10.0.0",
+    "html-webpack-plugin": "^5.4.0",
+    "loader": "^2.1.1",
+    "mini-css-extract-plugin": "^2.4.2",
+    "node-sass": "^6.0.1",
     "nodemon": "^2.0.12",
-    "open": "^8.2.1"
+    "open": "^8.2.1",
+    "sass-loader": "^12.2.0",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "cd js && mkdir classes && cd .. && cp -r node_modules/router-vanilla/* js/classes"
+    "start": "webpack serve",
+    "build": "webpack"
   },
   "repository": "https://github.com/brellin/jills_golden_glories.git"
 }

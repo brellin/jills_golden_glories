@@ -1,12 +1,14 @@
-import { Router } from './classes/index.js';
-import { Home, ENS, AboutTheBreed, Bloodlines } from './views/index.js';
+import { Router } from 'router-vanilla';
+import { Home, ENS, AboutTheBreed, Bloodlines } from './assets/views/index.js';
 
-let isWide = window.innerWidth > 800;
+import './assets/sass/index.scss';
+
+let isWide = window.screen.width > 800;
 
 window.addEventListener('resize', function () {
     const burger = document.querySelector('.burger');
     if (window.innerWidth <= 800 && !burger) addBurger();
-    else if (window.innerWidth > 800) {
+    else if (isWide) {
         if (burger) root.removeChild(burger);
         if (!header.classList.contains('small')) header.classList.add('small');
     }
