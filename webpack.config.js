@@ -1,11 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 module.exports = {
     entry: './src/app.js',
     mode: process.env.NODE_ENV,
+    output: {
+        clean: true,
+        filename: 'app.js',
+        assetModuleFilename: 'assets/[hash][ext][query]'
+    },
     devServer: {
         port: 9455,
         static: path.resolve(__dirname, 'src'),
@@ -40,6 +46,7 @@ module.exports = {
         ]
     },
     resolve: {
-        modules: [ 'node_modules', './src/assets' ]
+        modules: [ 'node_modules', './src/assets' ],
+        extensions: [ '.js', '.jpg', '.otf', '.ttf', '.png', '.scss' ]
     }
 };
