@@ -2,13 +2,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+
 module.exports = {
     entry: './src/app.js',
-    mode: 'development',
+    mode: process.env.NODE_ENV,
     output: {
         clean: true,
         filename: 'app.js',
-        assetModuleFilename: 'images/[hash][ext][query]'
+        assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     devServer: {
         port: 9455,
@@ -20,7 +22,7 @@ module.exports = {
             template: './src/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: 'assets/index.scss'
+            filename: 'assets/sass/index.scss'
         })
     ],
     module: {
@@ -28,7 +30,9 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    'style-loader',
+                    process.env.NODE_ENV === 'development'
+                        ? "style-loader"
+                        : MiniCssExtractPlugin.loader,
                     "css-loader",
                     "postcss-loader",
                     "sass-loader",
