@@ -1,7 +1,7 @@
 import { Router } from 'router-vanilla';
 import { Home, ENS, AboutTheBreed, Bloodlines } from './assets/views/index.js';
 
-import './assets/sass/index.scss';
+// import './assets/sass/index.scss';
 
 let isWide = window.screen.width > 800;
 

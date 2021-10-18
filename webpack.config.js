@@ -2,15 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-require('dotenv').config({ path: path.join(__dirname, '.env') });
-
 module.exports = {
     entry: './src/app.js',
     mode: 'development',
     output: {
         clean: true,
         filename: 'app.js',
-        assetModuleFilename: 'assets/images/[hash][ext][query]'
+        assetModuleFilename: 'images/[hash][ext][query]'
     },
     devServer: {
         port: 9455,
