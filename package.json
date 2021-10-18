@@ -2,7 +2,7 @@
   "name": "jills-golden-glories",
   "version": "1.0.0",
   "description": "English Cream Golden Retrievers in the Abilene Area",
-  "main": "./src/index.js",
+  "main": "./src/app.js",
   "author": "brellin",
   "license": "GPL-3.0",
   "private": true,
