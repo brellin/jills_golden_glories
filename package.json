@@ -33,7 +33,8 @@
   },
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack"
+    "build": "webpack",
+    "build:p": "webpack --mode=production"
   },
   "repository": "https://github.com/brellin/jills_golden_glories.git"
 }
