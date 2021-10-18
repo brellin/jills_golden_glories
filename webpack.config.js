@@ -6,7 +6,7 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 module.exports = {
     entry: './src/app.js',
-    mode: process.env.NODE_ENV,
+    mode: 'development',
     output: {
         clean: true,
         filename: 'app.js',
@@ -22,7 +22,7 @@ module.exports = {
             template: './src/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: 'index.scss'
+            filename: 'assets/index.scss'
         })
     ],
     module: {
@@ -30,9 +30,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    process.env.NODE_ENV === 'development'
-                        ? "style-loader"
-                        : MiniCssExtractPlugin.loader,
+                    'style-loader',
                     "css-loader",
                     "postcss-loader",
                     "sass-loader",
