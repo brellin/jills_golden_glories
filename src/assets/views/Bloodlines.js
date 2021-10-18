@@ -1,5 +1,6 @@
 import View from "./ViewImp.js";
 import { ext_links, l } from "../utils/data.js";
+import lilyLay from '../images/lily_lay.jpg';
 
 export default class extends View {
     constructor() {
@@ -12,7 +13,7 @@ export default class extends View {
             callName: 'Lily',
             headerText: `${ l('L') }ily${ window.screen.width > 800 ? ' ' : '<br />' }(mother of puppies)`,
             bloodlink: ext_links.bloodlines.lily,
-            imgSrc: '../../assets/images/lily_lay.jpg',
+            imgSrc: lilyLay,
             imgAlt: 'Lily laying down'
         },
         {
