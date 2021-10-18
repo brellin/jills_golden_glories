@@ -22,7 +22,7 @@ module.exports = {
             template: './src/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: 'assets/sass/index.scss'
+            filename: 'index.scss'
         })
     ],
     module: {
@@ -30,12 +30,13 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    process.env.NODE_ENV === 'development'
+                        ? "style-loader"
+                        : MiniCssExtractPlugin.loader,
                     "css-loader",
                     "postcss-loader",
                     "sass-loader",
-                ],
-                include: path.resolve(__dirname, 'src/assets/sass')
+                ]
             },
             {
                 test: /\.js$/,
