@@ -1,6 +1,9 @@
 import View from "./ViewImp.js";
 import { ext_links, l } from "../utils/data.js";
+
 import lilyLay from '../images/lily_lay.jpg';
+import dama from '../../assets/images/dama.jpg';
+import maks from '../../assets/images/maks.jpg';
 
 export default class extends View {
     constructor() {
@@ -20,14 +23,14 @@ export default class extends View {
             callName: 'Dama',
             headerText: `${ l('L') }ily's ${ l('M') }other`,
             bloodlink: ext_links.bloodlines.dama,
-            imgSrc: '../../assets/images/dama.jpg',
+            imgSrc: dama,
             imgAlt: 'Dama with her tail being held up'
         },
         {
             callName: 'Maks',
             headerText: `${ l('L') }ily's ${ l('F') }ather`,
             bloodlink: ext_links.bloodlines.maks,
-            imgSrc: '../../assets/images/maks.jpg',
+            imgSrc: maks,
             imgAlt: 'Maks sitting pretty'
         },
         // {

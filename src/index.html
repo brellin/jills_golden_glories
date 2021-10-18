@@ -18,7 +18,7 @@
         <header>
             <div class="imgs">
                 <img src=<%=require("./assets/images/logo.png")%> alt="Golden Glories Logo">
-                <img src="/assets/images/header.png" alt="Golden Glories Text">
+                <img src=<%=require("./assets/images/header.png")%> alt="Golden Glories Text">
             </div>
         </header>
         <div id="root"></div>
@@ -33,16 +33,18 @@
 
                 <div class="ext-link">
                     <a href="https://akc.org" target="_blank">
-                        <img title="American Kennel Club" src="/assets/images/akc.png" alt="American Kennel Club Logo"
-                            class="akc">
+                        <img title="American Kennel Club" src=<%=require("./assets/images/akc.png")%> alt="American
+                        Kennel
+                        Club Logo"
+                        class="akc">
                         <span>American Kennel Club</span>
                     </a>
                 </div>
 
                 <div class="ext-link">
                     <a href="https://therapydogs.com" target="_blank" class="atd">
-                        <img title="Alliance of Therapy Dogs" src="/assets/images/ATD_logo.png"
-                            alt="Alliance of Therapy Dogs Logo" class="atd">
+                        <img title="Alliance of Therapy Dogs" src=<%=require("./assets/images/ATD_logo.png")%>
+                        alt="Alliance of Therapy Dogs Logo" class="atd">
                         <span>Alliance of Therapy Dogs</span>
                     </a>
                 </div>
