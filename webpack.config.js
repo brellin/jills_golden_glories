@@ -31,6 +31,7 @@ module.exports = {
                     "css-loader",
                     "sass-loader",
                 ],
+                include: path.resolve(__dirname, 'src/assets/sass')
             },
             {
                 test: /\.js$/,
