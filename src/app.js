@@ -3,6 +3,8 @@ import { Home, ENS, AboutTheBreed, Bloodlines } from './assets/views/index.js';
 
 import './assets/sass/index.scss';
 
+import headerImg from './assets/images/header.png';
+
 let isWide = window.screen.width > 800;
 
 window.addEventListener('resize', function () {

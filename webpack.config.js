@@ -6,7 +6,7 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 module.exports = {
     entry: './src/app.js',
-    mode: process.env.NODE_ENV,
+    mode: 'development',
     output: {
         clean: true,
         filename: 'app.js',
@@ -19,7 +19,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            favicon: './src/assets/images/logo.png'
         }),
         new MiniCssExtractPlugin({
             filename: 'index.scss'
