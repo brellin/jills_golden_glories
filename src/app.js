@@ -1,5 +1,6 @@
 import { Router } from 'router-vanilla';
 import { Home, ENS, AboutTheBreed, Bloodlines } from './assets/views/index.js';
+console.log(ENS.name);
 
 import './assets/sass/index.scss';
 
