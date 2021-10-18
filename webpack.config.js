@@ -10,7 +10,7 @@ module.exports = {
     output: {
         clean: true,
         filename: 'app.js',
-        assetModuleFilename: 'images/[hash][ext][query]'
+        assetModuleFilename: 'assets/images/[name][ext]'
     },
     devServer: {
         port: 9455,
@@ -22,7 +22,7 @@ module.exports = {
             template: './src/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].scss'
+            filename: 'index.scss'
         })
     ],
     module: {
@@ -30,10 +30,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: { publicPath: __dirname }
-                    },
+                    'style-loader',
                     "css-loader",
                     "postcss-loader",
                     "sass-loader",
@@ -52,12 +49,12 @@ module.exports = {
             },
             {
                 test: /\.(jpg|png)$/,
-                type: 'asset/inline'
+                type: 'asset/resource'
             }
         ]
     },
     resolve: {
-        modules: [ 'node_modules' ],
+        modules: [ 'node_modules', path.resolve(__dirname, 'src/assets/images') ],
         extensions: [ '.js', '.jpg', '.otf', '.ttf', '.png', '.scss' ]
     },
     devtool: 'source-map'
