@@ -1,0 +1,43 @@
+$blue: #3030bb;
+$gold: #ffcc00;
+$gold_bg: #ffeea9a4;
+$light_blue: #22d4f3;
+
+@font-face {
+   font-family: 'Samantha Upright';
+   src: url('../fonts/Samantha\ Upright.ttf'),
+   url('../fonts/Samantha\ Upright.otf');
+}
+
+@font-face {
+   font-family: 'Little Star Story';
+   src: url('../fonts/Little\ Star\ Story.otf');
+}
+
+@mixin flex($d: row, $j: flex-start, $a: flex-start, $w: nowrap) {
+   display: flex;
+   display: -webkit-flex;
+   -webkit-flex-flow: $d $w;
+   flex-flow: $d $w;
+   -webkit-justify-content: $j;
+   justify-content: $j;
+   -webkit-align-items: $a;
+   align-items: $a;
+} 
+
+@mixin round-image-vignette($r: 50%, $f: left) {
+   float: $f;
+   border-radius: $r;
+   box-shadow: 0 0 5px 2.5px inset whitesmoke;
+}
+
+@mixin transform($transforms) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}
+
+@function scaleBg($w, $h, $tw) {
+   @return $h * $tw / $w;
+}

@@ -1,0 +1,82 @@
+header {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../images/lily_respond_crop.jpg);
+  transition: 1s ease-out;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position-y: 20%;
+  image-rendering: smooth;
+  margin: 0;
+  
+  @media (max-width: 800px) {
+      height: 30vh;
+      background-position-y: 0;
+      background-size: contain;
+  }
+  
+  &.small {
+    height: 50vh;
+    
+    @media (max-width: 800px) {
+      height: 30vh;
+    }
+    
+    div.imgs img {
+      margin-top: 15px;
+
+      &:nth-child(1){
+        height: 7.5vw;
+      }
+      
+      &:nth-child(2){
+        
+        @media (max-width: 800px) {
+          height: 20vw;
+          margin-top: 25%;
+        }
+
+      }
+      
+    }
+
+  }
+  
+  div.imgs {
+    width: 100%;
+    @include flex($j: flex-start, $a: flex-start);
+    
+    @media (max-width: 800px) {
+      @include flex($j: flex-end, $a: flex-start);
+      margin-top: auto;
+    }
+    
+    img {
+      margin-top: 25%;
+      height: 20vw;
+      filter: drop-shadow(7.5px 7.5px 4px black);
+      image-rendering: smooth;
+      transition: 1s ease-out;
+      
+      &:nth-child(1){
+        
+        @media (max-width: 800px) {
+          opacity: 0;
+        }
+
+      }
+
+      &:nth-child(2){
+        
+        @media (max-width: 800px) {
+          margin-top: 25%;
+        }
+
+      }
+      
+    }
+    
+  }
+
+}

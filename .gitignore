@@ -1,6 +1,5 @@
 /node_modules
 /.vscode
-*.scss
 .env
 /dist
 # Local Netlify folder
