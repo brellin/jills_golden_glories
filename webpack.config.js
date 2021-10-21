@@ -35,8 +35,8 @@ module.exports = {
     },
     devServer: {
         port: 9455,
-        static: path.resolve(__dirname, 'src'),
-        open: true
+        historyApiFallback: true,
+        open: true,
     },
     plugins,
     module: {
