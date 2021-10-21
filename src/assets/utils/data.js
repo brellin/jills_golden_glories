@@ -7,7 +7,9 @@ const ext_links = {
         majik: 'https://k9data.com/pedigree.asp?ID=690639',
         rus: 'https://k9data.com/pedigree.asp?ID=891316'
     },
-    ens: 'https://www.akc.org/expert-advice/dog-breeding/breeder-puppy-socialization-early-neurological-stimulation/'
+    ens: 'https://www.akc.org/expert-advice/dog-breeding/breeder-puppy-socialization-early-neurological-stimulation/',
+    tweed: 'https://en.wikipedia.org/wiki/Tweed_Water_Spaniel',
+    wavy: 'https://en.wikipedia.org/wiki/Curly-coated_Retriever'
 };
 
 const letters = {

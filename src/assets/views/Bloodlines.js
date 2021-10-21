@@ -67,6 +67,7 @@ export default class extends View {
                         href="${ bl.bloodlink }" 
                         target="_blank"
                         rel="noopener noreferrer"
+                        class="slide"
                     >
                         View ${ bl.callName }'${ bl.callName[ bl.callName.length - 1 ] === 's' ? '' : 's' } pedigree
                     </a>
