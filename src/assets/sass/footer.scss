@@ -3,6 +3,16 @@ footer {
   padding: 50px 30px;
   background: linear-gradient(whitesmoke, transparent);
   @include flex(column, flex-start, center);
+        
+  a {
+    text-decoration: none;
+    color: $blue;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+    
+  }
   
   @media (max-width: 800px) {
     width: 100%;
