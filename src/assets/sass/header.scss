@@ -11,8 +11,10 @@ header {
   margin: 0;
   
   @media (max-width: 800px) {
-    height: 30vh;
-    background-position-y: 0;
+    $h: 993px;
+    $w: 1423px;
+    height: scaleBg($w, 100%, $h);
+    background-position-y: -5%;
     background-size: contain;
   }
   
@@ -48,8 +50,9 @@ header {
     @include flex($j: flex-start, $a: flex-start);
     
     @media (max-width: 800px) {
-      @include flex($j: flex-end, $a: flex-start);
-      margin-top: auto;
+      @include flex($j: flex-end, $a: flex-end);
+      position: relative;
+      bottom: 0;
     }
     
     img {
@@ -63,14 +66,6 @@ header {
         
         @media (max-width: 800px) {
           opacity: 0;
-        }
-
-      }
-
-      &:nth-child(2){
-        
-        @media (max-width: 800px) {
-          margin-top: 25%;
         }
 
       }

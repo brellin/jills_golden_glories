@@ -29,7 +29,12 @@ body {
             text-decoration: none;
             position: relative;
             transition: .3s ease-in-out;
-
+            
+            @media (max-width: 800px) {
+                color: $blue;
+                line-height: 2;
+            }
+            
             &::before {
                 content: '';
                 width: 100%;
@@ -37,14 +42,30 @@ body {
                 position: absolute;
                 transform: translate(-100vw, 30px);
                 transition: .3s ease-in-out;
+                
+                @media (max-width: 800px) {
+                    background: $blue;
+                    transform: translate(0, 40px);
+                }
+                
             }
             
             &:hover {
                 color: $light_blue;
+
+                @media (max-width: 800px) {
+                    color: $blue;
+                }
                 
                 &::before {
                     background: $light_blue;
                     transform: translateY(30px);
+                    
+                    @media (max-width: 800px) {
+                        background: $blue;
+                        transform: translate(0, 40px);
+                    }
+                    
                 }
                 
             }
