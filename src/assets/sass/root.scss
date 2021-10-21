@@ -1,5 +1,20 @@
 #root {
   width: 100%;
+    
+    p {
+        width: 80%;
+        margin: 15px auto;
+    }
+
+    div.agrVegr {
+        width: fit-content;
+        max-width: 80%;
+        
+        img {
+            width: 100%;
+        }
+        
+    }
   
     nav {
         width: 100%;

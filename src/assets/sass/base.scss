@@ -10,21 +10,6 @@ body, div, section, header, footer {
 
 body {
     
-    div.agrVegr {
-      width: fit-content;
-      max-width: 80%;
-      
-      img {
-        width: 100%;
-      }
-      
-    }
-    
-    p, img {
-      width: 80%;
-      margin: 15px auto;
-    }
-
     div.wrap {
         @include flex(column, flex-start, center);
         background-image: url(../images/bg.jpg);

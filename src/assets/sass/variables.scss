@@ -38,6 +38,6 @@ $light_blue: #22d4f3;
 	transform: $transforms;
 }
 
-@function scaleBg($w, $h, $tw) {
-   @return $h * $tw / $w;
+@function scaleBg($x, $y, $tw) {
+   @return calc($y * $tw) / $x;
 }
