@@ -6,7 +6,7 @@ import './assets/sass/index.scss';
 let isWide = window.screen.width > 800;
 
 function makeHeaderSmall() {
-    if (process.env.NODE_ENV === 'development') header.classList.add('small');
+    header.classList.add('small');
 }
 
 window.addEventListener('resize', function () {
