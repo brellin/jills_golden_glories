@@ -5,12 +5,16 @@ import './assets/sass/index.scss';
 
 let isWide = window.screen.width > 800;
 
+function makeHeaderSmall() {
+    if (process.env.NODE_ENV === 'development') header.classList.add('small');
+}
+
 window.addEventListener('resize', function () {
     const burger = document.querySelector('.burger');
     if (window.innerWidth <= 800 && !burger) addBurger();
     else if (isWide) {
         if (burger) root.removeChild(burger);
-        if (!header.classList.contains('small')) header.classList.add('small');
+        if (!header.classList.contains('small')) makeHeaderSmall();
     }
 });
 const root = document.querySelector('#root');
@@ -72,7 +76,7 @@ function addBurger() {
 if (!isWide && !document.querySelector('.burger')) addBurger();
 
 if (isWide) window.addEventListener('load', function () {
-    localStorage.getItem('notFirstVisit') ? header.classList.add('small') : setTimeout(function () { header.classList.add('small'); }, 2500);
+    localStorage.getItem('notFirstVisit') ? makeHeaderSmall() : setTimeout(function () { makeHeaderSmall(); }, 2500);
 });
 
 window.addEventListener('beforeunload', function () { localStorage.setItem('notFirstVisit', true); });

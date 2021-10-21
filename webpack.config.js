@@ -5,37 +5,40 @@ const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
+const plugins = [
+    new HtmlWebpackPlugin({
+        template: './src/index.html',
+        favicon: './src/assets/images/logo.png'
+    }),
+    new MiniCssExtractPlugin({
+        filename: 'index.scss'
+    })
+];
+
+if (!process.env.NODE_ENV) plugins.push(new NetlifyPlugin({
+    redirects: [
+        {
+            from: '/*',
+            to: '/index.html',
+            status: 200
+        }
+    ]
+}));
+
 module.exports = {
     entry: './src/app.js',
     mode: 'development',
     output: {
         clean: true,
         filename: 'app.js',
-        assetModuleFilename: 'assets/images/[name][ext]'
+        assetModuleFilename: 'images/[name][ext]'
     },
     devServer: {
         port: 9455,
         static: path.resolve(__dirname, 'src'),
         open: true
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            favicon: './src/assets/images/logo.png'
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'index.scss'
-        }),
-        new NetlifyPlugin({
-            redirects: [
-                {
-                    from: '/*',
-                    to: '/index.html',
-                    status: 200
-                }
-            ]
-        })
-    ],
+    plugins,
     module: {
         rules: [
             {
@@ -44,7 +47,12 @@ module.exports = {
                     'style-loader',
                     "css-loader",
                     "postcss-loader",
-                    "sass-loader",
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            additionalData: `$env: ${ process.env.NODE_ENV };`
+                        }
+                    },
                 ]
             },
             {
