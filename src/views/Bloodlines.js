@@ -1,9 +1,9 @@
-import View from "./ViewImp.js";
-import { ext_links, l } from "../utils/data.js";
+import View from "./ViewImp";
+import { ext_links, l } from "../assets/utils/data";
 
-import lilyLay from '../images/lily_lay.jpg';
-import dama from '../../assets/images/dama.jpg';
-import maks from '../../assets/images/maks.jpg';
+import lilyLay from '../assets/images/lily_lay.jpg';
+import dama from '../assets/images/dama.jpg';
+import maks from '../assets/images/maks.jpg';
 
 export default class extends View {
     constructor() {

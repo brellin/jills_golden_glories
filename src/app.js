@@ -1,5 +1,5 @@
 import { Router } from 'router-vanilla';
-import { Home, ENS, AboutTheBreed, Bloodlines } from './assets/views';
+import { Home, ENS, AboutTheBreed, Bloodlines } from './views';
 
 import './assets/sass/index.scss';
 

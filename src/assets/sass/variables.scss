@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $blue: #3030bb;
 $gold: #ffcc00;
 $gold_bg: #ffeea9a4;
@@ -39,5 +41,5 @@ $light_blue: #22d4f3;
 }
 
 @function scaleBg($x, $y, $tw) {
-   @return calc($y * $tw) / $x;
+   @return math.div(calc($y * $tw), $x);
 }
