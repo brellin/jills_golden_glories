@@ -27,6 +27,7 @@ div.wrap {
         text-decoration: none;
         position: relative;
         transition: .3s ease-in-out;
+        white-space: nowrap;
         
         @media (max-width: 800px) {
             color: $blue;
