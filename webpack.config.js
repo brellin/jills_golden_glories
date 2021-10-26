@@ -9,21 +9,23 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
         favicon: './src/assets/images/logo.png'
+    })
+];
+
+if (!process.env.NODE_ENV) plugins.push(
+    new NetlifyPlugin({
+        redirects: [
+            {
+                from: '/*',
+                to: '/index.html',
+                status: 200
+            }
+        ]
     }),
     new MiniCssExtractPlugin({
         filename: 'index.scss'
     })
-];
-
-if (!process.env.NODE_ENV) plugins.push(new NetlifyPlugin({
-    redirects: [
-        {
-            from: '/*',
-            to: '/index.html',
-            status: 200
-        }
-    ]
-}));
+);
 
 module.exports = {
     entry: './src/app.js',
