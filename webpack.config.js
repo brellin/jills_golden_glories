@@ -17,7 +17,7 @@ const plugins = [
     })
 ];
 
-if (env === 'development') plugins.push(
+if (env === 'production') plugins.push(
     new NetlifyPlugin({
         redirects: [
             {
