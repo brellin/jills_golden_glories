@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { NetlifyPlugin } = require('netlify-webpack-plugin');
+const { webpack, Module } = require('webpack');
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
@@ -16,7 +17,7 @@ const plugins = [
     })
 ];
 
-if (env === 'production') plugins.push(
+if (env === 'development') plugins.push(
     new NetlifyPlugin({
         redirects: [
             {
@@ -26,9 +27,7 @@ if (env === 'production') plugins.push(
             }
         ]
     }),
-    new MiniCssExtractPlugin({
-        filename: 'index.scss'
-    })
+    new MiniCssExtractPlugin()
 );
 
 module.exports = {
@@ -50,7 +49,9 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    env === 'development' ? 'style-loader' : {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
                     "css-loader",
                     "postcss-loader",
                     {
