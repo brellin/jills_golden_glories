@@ -5,6 +5,10 @@ const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
+const env = process.env.NODE_ENV;
+
+console.log('\n\nnode_env:', env, '\n\n');
+
 const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
@@ -12,7 +16,7 @@ const plugins = [
     })
 ];
 
-if (!process.env.NODE_ENV) plugins.push(
+if (env === 'production') plugins.push(
     new NetlifyPlugin({
         redirects: [
             {
@@ -46,13 +50,13 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    'style-loader',
+                    env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
                     "css-loader",
                     "postcss-loader",
                     {
                         loader: "sass-loader",
                         options: {
-                            additionalData: `$env: ${ process.env.NODE_ENV };`
+                            additionalData: `$env: ${ env };`
                         }
                     },
                 ]
