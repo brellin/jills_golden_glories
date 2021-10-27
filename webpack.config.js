@@ -5,7 +5,7 @@ const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
-const env = process.env.NODE_ENV;
+const env = process.env.ENV;
 
 console.log('\n\nnode_env:', env, '\n\n');
 
