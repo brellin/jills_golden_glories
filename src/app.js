@@ -1,13 +1,11 @@
 import { Router } from 'router-vanilla';
-import { Home, ENS, AboutTheBreed, Bloodlines } from './views';
 
+import routes from './views';
 import './assets/sass/index.scss';
 
 let isWide = window.screen.width > 800;
 
-function makeHeaderSmall() {
-    header.classList.add('small');
-}
+function makeHeaderSmall() { header.classList.add('small'); }
 
 window.addEventListener('resize', function () {
     const burger = document.querySelector('.burger');
@@ -19,29 +17,6 @@ window.addEventListener('resize', function () {
 });
 const root = document.querySelector('#root');
 const header = document.querySelector('header');
-
-const routes = [
-    {
-        path: '/',
-        title: 'Home',
-        view: Home
-    },
-    {
-        path: '/puppies',
-        title: 'Puppies',
-        view: ENS
-    },
-    {
-        path: '/about_the_breed',
-        title: 'About the Breed',
-        view: AboutTheBreed
-    },
-    {
-        path: '/bloodlines',
-        title: 'Bloodlines',
-        view: Bloodlines
-    },
-];
 
 const display = document.createElement('section');
 display.classList.add('routes');

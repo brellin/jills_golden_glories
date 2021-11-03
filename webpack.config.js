@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { NetlifyPlugin } = require('netlify-webpack-plugin');
-const { webpack, Module } = require('webpack');
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
@@ -39,7 +38,7 @@ module.exports = {
         assetModuleFilename: 'images/[name][ext]'
     },
     devServer: {
-        port: 9455,
+        port: 9360,
         historyApiFallback: true,
         open: true,
     },
@@ -68,7 +67,8 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: [ '@babel/preset-env' ]
+                            presets: [ [ '@babel/preset-env', { targets: { node: 'current' } } ] ],
+                            envName: 'process.env.ENV'
                         },
                     },
                 ]

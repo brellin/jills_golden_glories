@@ -7,7 +7,7 @@ export default class extends View {
         this.setTitle('About the Breed');
     }
 
-    renderHtml() {
+    async renderHtml() {
         return `
             <h1>History of the Breed</h1>
             <br />

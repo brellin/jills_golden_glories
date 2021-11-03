@@ -7,7 +7,7 @@ export default class extends View {
         this.setTitle('Puppies & Process');
     }
 
-    renderHtml() {
+    async renderHtml() {
         return `
         <h1>${ window.screen.width > 800 ? `${ l('E') }arly ${ l('N') }eurological ${ l('S') }timulation` : 'Puppies' }</h1>
         <div class="sub-contain">

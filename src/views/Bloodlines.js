@@ -56,7 +56,7 @@ export default class extends View {
         // },
     ];
 
-    renderHtml() {
+    async renderHtml() {
         return `
             <h1>${ l('B') }loodlines</h1>
             <div class="sub-contain">
