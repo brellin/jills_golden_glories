@@ -18,8 +18,8 @@ export default class extends View {
                     <p>${ pup.sold ? 'Sold.' : 'Not yet sold.' }</p>
                     <img src="${ pup.picture }" alt="${ pup.title }" data-id="${ pup._id }" />
                 </div>
-                `) }
-            </div>
+                `).join('') }
+            </div >
 
             <div class="new_puppy">
                 <h1>Add a New Puppy</h1>
@@ -28,10 +28,10 @@ export default class extends View {
                     <label htmlFor="puppy_uploader">Image:</label>
                     <input type="file" accept="image/*" id="puppy_uploader" />
                 </div>
-                
+
                 <div>
                     <label htmlFor="sold">Sold:</label>
-                    
+
                     <select id="sold">
                         <option value="true">Yes</option>
                         <option value="false" selected>No</option>
@@ -48,4 +48,4 @@ export default class extends View {
         `;
     }
 
-}
+};
