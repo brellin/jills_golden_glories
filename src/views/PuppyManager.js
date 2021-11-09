@@ -1,29 +1,45 @@
 import View from './ViewImp';
 import { getAllPuppies } from '../assets/utils/requests';
 
+const addChildToContainer = (pup, cont = document.querySelector('div.current_puppies')) => {
+    cont.innerHTML += `<div>
+        <button class="x">X</button>
+        <h2>${ pup.title }</h2>
+        <select>
+            <option value="true" ${ pup.sold ? 'selected' : '' }>Sold</option>
+            <option value="false" ${ !pup.sold ? 'selected' : '' }>Not Sold</option>
+        </select>
+        <img src="${ pup.picture }" alt="${ pup.title }" data-id="${ pup._id }" title="${ pup.title }" />
+    </div>`;
+};
+
 export default class extends View {
     constructor() {
         super();
         this.setTitle('Puppy Manager');
+        getAllPuppies()
+            .then(pups => {
+                if (pups) {
+                    document.querySelector('.current_puppies').innerHTML = '';
+                    pups.forEach(pup => addChildToContainer(pup));
+                }
+            });
     }
 
     async renderHtml() {
-        const pups = await getAllPuppies();
         return `
         <h1>Puppy Manager</h1>
             <div class="current_puppies">
-                ${ pups.map(pup => `
-                <div>
-                    <h2>${ pup.title }</h2>
-                    <p>${ pup.sold ? 'Sold.' : 'Not yet sold.' }</p>
-                    <img src="${ pup.picture }" alt="${ pup.title }" data-id="${ pup._id }" />
-                </div>
-                `).join('') }
+                ${ `<div>
+                    <h2>Nothing</h2>
+                    <p>...</p>
+                    <img src="https://goldenglories.com/images/logo.png" alt="Nothing" title="Awaiting response from server" />
+                </div>`.repeat(3) }
             </div >
 
-            <div class="new_puppy">
-                <h1>Add a New Puppy</h1>
+            <h1>Add a New Puppy</h1>
 
+            <div class="new_puppy">
                 <div>
                     <label htmlFor="puppy_uploader">Image:</label>
                     <input type="file" accept="image/*" id="puppy_uploader" />

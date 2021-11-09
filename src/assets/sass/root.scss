@@ -1,5 +1,7 @@
 #root {
-  width: 100%;
+    width: 100%;
+    font-family: "Little Star Story";
+    font-size: 1.5rem;
     
     p {
         width: 80%;
@@ -35,6 +37,7 @@
         background: linear-gradient($blue, 80%, transparent);
         margin-top: -1px;
         transition: .2s ease;
+        z-index: 2;
 
         @media (max-width: 800px) {
             margin: 75px 0 0;
@@ -104,33 +107,7 @@
         }
 
         div.bloodline {
-            width: 100%;
-            @include flex(column, center, center);
-            background-color: $gold_bg;
-            padding: 30px 0;
-            margin-bottom: 10px;
-            border-radius: 50px;
-            
-            h2 {
-                font-family: 'Samantha Upright';
-                margin: 5px auto;
-                font-size: 7.5rem;
-                color: $gold;
-                text-shadow: 2px 2px 1px black;
-                text-align: center;
-
-                @media (max-width: 800px) {
-                    font-size: 5rem;
-                    line-height: 1;
-                }
-            
-            }
-            
-            img {
-                border-radius: 25px;
-                max-width: 100%;
-            }
-
+            @include card;
         }
         
         }

@@ -33,13 +33,25 @@ export default [
         view: PuppyManager,
         display: false,
         loadScript: _ => {
+            const addImage = (image, cont = document.querySelector('div.new_puppy')) => {
+                const imgExists = cont.children.namedItem('newPupImage');
+                if (imgExists) cont.removeChild(imgExists);
+                const newImg = document.createElement('img');
+                newImg.src = image;
+                newImg.id = 'newPupImage';
+                cont.insertBefore(newImg, cont.firstChild);
+            };
             const fd = new FormData();
             const puppyUploader = document.querySelector('#puppy_uploader');
             const sold = document.querySelector('#sold');
             const puppyTitle = document.querySelector('#puppy_title');
             const newPuppyButton = document.querySelector('button#new_puppy');
-            puppyUploader.onchange = e => fd.set('picture', e.target.files[ 0 ]);
-            sold.onchange = e => fd.set('sold', e.target.value);
+            puppyUploader.onchange = e => {
+                const [ file ] = e.target.files;
+                fd.set('picture', file);
+                addImage(URL.createObjectURL(file));
+            };
+            sold.onchange = e => fd.set('sold', JSON.parse(e.target.value));
             puppyTitle.onchange = e => fd.set('title', e.target.value);
             newPuppyButton.onclick = async e => {
                 e.preventDefault();
@@ -49,10 +61,11 @@ export default [
                     else alert(`You must give ${ fd.get('title') } a picture.`);
                     return;
                 }
-                if (!fd.has('sold')) fd.set('sold', sold.value);
+                if (!fd.has('sold')) fd.set('sold', JSON.parse(sold.value));
                 const data = await postNewPuppy(fd);
                 console.log(data);
             };
+
         }
     }
 ];

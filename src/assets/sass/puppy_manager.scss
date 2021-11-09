@@ -1,3 +1,68 @@
+div.current_puppies div {
+    @include card;
+    position: relative;
+    
+    button.x {
+        border-radius: 50%;
+        outline: none;
+        background: $gold;
+        align-self: flex-end;
+        font-size: 2.5rem;
+        padding: 5px 10px;
+        cursor: pointer;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        z-index: 1;
+        transition: .2s ease-in-out;
+        border: #00000099 2px solid;
+        
+        &:hover {
+            padding: 6px 12px;
+            border-radius: 5px;
+            transform: rotate(180deg)
+        }
+        
+    }
+
+    select {
+        font-size: 2rem;
+    }
+    
+}
+
 div.new_puppy {
-    @include flex(column, flex-start, center);
+    @include card;
+    width: 50%;
+    padding: 15px 30px;
+
+    div {
+        @include flex($j: baseline, $a: center);
+        width: 100%;
+        margin-bottom: 10px;
+        
+        label {
+            width: 75px;
+            text-align: right;
+            font-size: 2.5rem;
+            font-family: "Little Star Story";
+        }
+        
+        input, select {
+            margin-left: 10px;
+            font-size: 2rem;
+        }
+        
+    }
+    
+    img {
+        max-width: 100%;
+    }
+    
+    button {
+        font-size: 2.5rem;
+        font-family: "Little Star Story";
+        cursor: pointer;
+    }
+    
 }

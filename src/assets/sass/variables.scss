@@ -40,6 +40,36 @@ $light_blue: #22d4f3;
 	transform: $transforms;
 }
 
+@mixin card {
+   width: 100%;
+   @include flex(column, center, center);
+   background-color: $gold_bg;
+   padding: 30px 0;
+   margin-bottom: 10px;
+   border-radius: 50px;
+   box-shadow: #00000056 7px 7px 5px;
+   
+   h2 {
+      font-family: 'Samantha Upright';
+      margin: 5px auto;
+      font-size: 7.5rem;
+      color: $gold;
+      text-shadow: 2px 2px 1px black;
+      text-align: center;
+
+      @media (max-width: 800px) {
+         font-size: 5rem;
+         line-height: 1;
+      }
+   
+   }
+   
+   img {
+      border-radius: 25px;
+      max-width: 100%;
+   }
+}
+
 @function scaleBg($x, $y, $tw) {
    @return math.div(calc($y * $tw), $x);
 }
