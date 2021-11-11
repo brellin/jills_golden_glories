@@ -26,7 +26,7 @@ const clearPuppyAdder = (cont = document.querySelector('div.new_puppy')) => {
 };
 
 export const addPuppyToContainer = (pup, cont = document.querySelector('div.current_puppies')) => {
-    console.log(pup);
+    if (cont.querySelector('h2') && cont.querySelector('h2').innerText === 'Nothing') cont.innerHTML = '';
     cont.innerHTML += `<div class="pup" data-id="${ pup._id }">
         <button class="x">X</button>
         <h2>${ pup.title }</h2>
@@ -44,10 +44,11 @@ export const addPuppyToContainer = (pup, cont = document.querySelector('div.curr
     </div>`;
     const x = document.querySelectorAll('button.x');
     x.forEach(b => {
-        b.onclick = e => {
-            const cont = e.target.parentNode;
-            if (confirm(`Are you certain you want to delete ${ cont.querySelector('h2').innerText }?`)) {
-                console.log(deletePup(cont.dataset.id));
+        b.onclick = async e => {
+            const container = e.target.parentNode;
+            if (confirm(`Are you certain you want to delete ${ container.querySelector('h2').innerText }?`)) {
+                await deletePup(container.dataset.id);
+                container.parentNode.removeChild(container);
             }
         };
     });
@@ -79,8 +80,7 @@ export default [
         title: 'Puppy Manager',
         view: PuppyManager,
         display: false,
-        loadScript: e => {
-            console.log('puppymanager loadScript e:', e);
+        loadScript: _ => {
             const fd = new FormData();
             const puppyUploader = document.querySelector('#puppy_uploader');
             const sold = document.querySelector('#sold');
