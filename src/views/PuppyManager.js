@@ -1,17 +1,7 @@
 import View from './ViewImp';
-import { getAllPuppies } from '../assets/utils/requests';
+import { getAllPuppies, updatePup } from '../assets/utils/requests';
+import { addPuppyToContainer } from './';
 
-const addChildToContainer = (pup, cont = document.querySelector('div.current_puppies')) => {
-    cont.innerHTML += `<div>
-        <button class="x">X</button>
-        <h2>${ pup.title }</h2>
-        <select>
-            <option value="true" ${ pup.sold ? 'selected' : '' }>Sold</option>
-            <option value="false" ${ !pup.sold ? 'selected' : '' }>Not Sold</option>
-        </select>
-        <img src="${ pup.picture }" alt="${ pup.title }" data-id="${ pup._id }" title="${ pup.title }" />
-    </div>`;
-};
 
 export default class extends View {
     constructor() {
@@ -19,9 +9,17 @@ export default class extends View {
         this.setTitle('Puppy Manager');
         getAllPuppies()
             .then(pups => {
-                if (pups) {
+                if (pups && pups.length) {
                     document.querySelector('.current_puppies').innerHTML = '';
-                    pups.forEach(pup => addChildToContainer(pup));
+                    pups.forEach(pup => addPuppyToContainer(pup));
+                    const pupsConts = document.querySelectorAll('div.pup');
+                    pupsConts.forEach(cont => cont.querySelector('select').onchange = async e => {
+                        const data = await updatePup(cont.dataset.id, {
+                            cloudinary_name: cont.dataset.cloudinary_name,
+                            sold: JSON.parse(e.target.value)
+                        });
+                        console.log(data);
+                    });
                 }
             });
     }

@@ -1,34 +1,51 @@
-div.current_puppies div {
-    @include card;
-    position: relative;
+#root div.current_puppies {
+    width: 100%;
     
-    button.x {
-        border-radius: 50%;
-        outline: none;
-        background: $gold;
-        align-self: flex-end;
-        font-size: 2.5rem;
-        padding: 5px 10px;
-        cursor: pointer;
-        position: absolute;
-        top: 5%;
-        right: 5%;
-        z-index: 1;
-        transition: .2s ease-in-out;
-        border: #00000099 2px solid;
+    div {
+        @include card;
+        position: relative;
+
+        img {
+            max-width: 80%;
+            width: auto;
+            image-rendering: smooth;
+        }
         
-        &:hover {
-            padding: 6px 12px;
-            border-radius: 5px;
-            transform: rotate(180deg)
+        button.x {
+            border-radius: 50%;
+            outline: none;
+            background: $gold;
+            align-self: flex-end;
+            font-size: 2.5rem;
+            padding: 5px 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1;
+            transition: .2s ease-in-out;
+            border: #00000099 2px solid;
+            margin: 1px 2px;
+            
+            &:hover {
+                padding: 6px 12px;
+                border-radius: 5px;
+                transform: rotate(180deg);
+                margin: 0;
+            }
+            
+        }
+
+        select {
+            font-size: 2rem;
+        }
+
+        p {
+            width: auto;
         }
         
     }
 
-    select {
-        font-size: 2rem;
-    }
-    
 }
 
 div.new_puppy {

@@ -23,3 +23,17 @@ export const getAllPuppies = async _ => {
         return data;
     } catch ({ message }) { console.error(message); }
 };
+
+export const updatePup = async (id, update) => {
+    try {
+        const { data } = await axios.put(`puppies/${ id }`, update);
+        return data;
+    } catch (err) { console.error(err); }
+};
+
+export const deletePup = async (id) => {
+    try {
+        const { data } = await axios.delete(`puppies/${ id }`);
+        return data;
+    } catch (err) { console.error(err); }
+};
