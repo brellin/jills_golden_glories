@@ -1,7 +1,7 @@
 #root div.current_puppies {
     width: 100%;
     
-    div {
+    div.pup {
         @include card;
         position: relative;
 
@@ -11,33 +11,74 @@
             image-rendering: smooth;
         }
         
-        button.x {
-            border-radius: 50%;
-            outline: none;
-            background: $gold;
+        button.ellipsis {
+            @include spin-button;
             align-self: flex-end;
-            font-size: 2.5rem;
-            padding: 5px 10px;
-            cursor: pointer;
             position: absolute;
             top: 20px;
             right: 20px;
-            z-index: 1;
-            transition: .2s ease-in-out;
-            border: #00000099 2px solid;
-            margin: 1px 2px;
+            z-index: 1;        
+        }
+        
+        button.x {
+            @include spin-button;
+            align-self: flex-end;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1;            
+        }
+
+        div.pic-con-con {
+            @include flex(column, flex-start, center);
+            max-width: 100%;
             
-            &:hover {
-                padding: 6px 12px;
-                border-radius: 5px;
-                transform: rotate(180deg);
-                margin: 0;
+            div.pic-con {
+                position: relative;
+                @include card;
+                width: max-content;
+                padding: 15px;
+                
+                div.head-con {
+                    @include flex($j: space-between);
+                    width: 100%;
+
+                    div {
+                        width:40px;
+                    }
+                    
+                    button.dimg {
+                        @include spin-button;
+                    }
+
+                }
+
+                img {
+                    width: 100%;
+                }
+                
             }
             
         }
 
-        select {
-            font-size: 2rem;
+        input[type="text"], select {
+            background: $gold_input;
+            border: 1px inset $gold_bg;
+            outline: none;
+            font-size: 5rem;
+            text-align: center;
+            margin: 10px 0;
+            caret-color: $gold;
+
+            option {
+                background: $gold_input;
+
+            }
+
+            &:focus {
+                outline: 2px solid $gold;
+            }
+            
         }
 
         p {

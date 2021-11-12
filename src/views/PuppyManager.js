@@ -10,16 +10,9 @@ export default class extends View {
         getAllPuppies()
             .then(pups => {
                 if (pups && pups.length) {
-                    document.querySelector('.current_puppies').innerHTML = '';
-                    pups.forEach(pup => addPuppyToContainer(pup));
-                    const pupsConts = document.querySelectorAll('div.pup');
-                    pupsConts.forEach(cont => cont.querySelector('select').onchange = async e => {
-                        const data = await updatePup(cont.dataset.id, {
-                            cloudinary_name: cont.dataset.cloudinary_name,
-                            sold: JSON.parse(e.target.value)
-                        });
-                        console.log(data);
-                    });
+                    const currentPuppies = document.querySelector('.current_puppies');
+                    currentPuppies.innerHTML = '';
+                    pups.forEach(pup => addPuppyToContainer(pup, currentPuppies));
                 }
             });
     }
@@ -28,10 +21,14 @@ export default class extends View {
         return `
         <h1>Puppy Manager</h1>
             <div class="current_puppies">
-                ${ `<div>
+                ${ `<div class='pup'>
                     <h2>Nothing</h2>
                     <p>...</p>
-                    <img src="https://goldenglories.com/images/logo.png" alt="Nothing" title="Awaiting response from server" />
+                    <img
+                        src="https://goldenglories.com/images/logo.png"
+                        alt="Nothing"
+                        title="Awaiting response from server"
+                    />
                 </div>`.repeat(3) }
             </div >
 

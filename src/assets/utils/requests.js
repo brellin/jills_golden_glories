@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-console.log(process.env.NODE_ENV);
-
 axios.defaults.baseURL = process.env.NODE_ENV && process.env.NODE_ENV === 'development' ?
     'http://localhost:9455/' :
     'https://goldenglories.herokuapp.com/';
@@ -27,6 +25,13 @@ export const getAllPuppies = async _ => {
 export const updatePup = async (id, update) => {
     try {
         const { data } = await axios.put(`puppies/${ id }`, update);
+        return data;
+    } catch (err) { console.error(err); }
+};
+
+export const deletePicture = async (id, public_id) => {
+    try {
+        const { data } = await axios.put(`puppies/picture/${ id }`, { public_id });
         return data;
     } catch (err) { console.error(err); }
 };
