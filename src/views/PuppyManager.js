@@ -1,7 +1,6 @@
 import View from './ViewImp';
-import { getAllPuppies, updatePup } from '../assets/utils/requests';
-import { addPuppyToContainer } from './';
-
+import { getAllPuppies } from '../assets/utils/requests';
+import { addPuppyToContainer } from './rendering/PMRenderer';
 
 export default class extends View {
     constructor() {
@@ -10,9 +9,8 @@ export default class extends View {
         getAllPuppies()
             .then(pups => {
                 if (pups && pups.length) {
-                    const currentPuppies = document.querySelector('.current_puppies');
-                    currentPuppies.innerHTML = '';
-                    pups.forEach(pup => addPuppyToContainer(pup, currentPuppies));
+                    document.querySelector('.current_puppies').innerHTML = '';
+                    pups.forEach(pup => addPuppyToContainer(pup));
                 }
             });
     }
