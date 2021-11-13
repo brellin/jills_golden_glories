@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { NetlifyPlugin } = require('netlify-webpack-plugin');
+const { EnvironmentPlugin } = require('webpack');
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
@@ -13,7 +14,8 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
         favicon: './src/assets/images/logo.png'
-    })
+    }),
+    new EnvironmentPlugin([ 'SECRET' ])
 ];
 
 if (env === 'production') plugins.push(

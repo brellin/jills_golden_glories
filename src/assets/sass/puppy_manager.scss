@@ -124,3 +124,32 @@ div.new_puppy {
     }
     
 }
+
+#root div.modal-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000aa;
+    @include flex($j: center, $a: center);
+    z-index: 5;
+    
+    div.modal {
+        @include card;
+        width: max-content;
+        padding: 25px;
+
+        form {
+            @include flex(column, center, center);
+            width: 100%;
+
+            div {
+                @include flex($j: space-between, $a: center);
+            }
+            
+        }
+        
+    }
+    
+}

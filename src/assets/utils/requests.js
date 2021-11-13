@@ -36,9 +36,12 @@ export const deletePicture = async (id, public_id) => {
     } catch (err) { console.error(err); }
 };
 
-export const deletePup = async (id) => {
+export const deletePup = async id => {
     try {
         const { data } = await axios.delete(`puppies/${ id }`);
         return data;
     } catch (err) { console.error(err); }
 };
+
+export const login = async (username, password) => await axios.create({ headers: { username, password, secret: process.env.SECRET } }).post('users/login');
+
