@@ -8,9 +8,10 @@ export default class extends View {
         super();
         this.setTitle('Puppy Manager');
 
-        scrollLock();
-        document.addEventListener('DOMContentLoaded', _ => document.querySelector('form')
-            .addEventListener('submit', e => this.confirmUser(e)));
+        document.addEventListener('DOMContentLoaded', _ => {
+            scrollLock();
+            document.querySelector('form').addEventListener('submit', e => this.confirmUser(e));
+        });
     }
 
     async confirmUser(e) {
@@ -77,13 +78,13 @@ export default class extends View {
             <div class="new_puppy">
                 <div>
                     <label htmlFor="puppy_uploader">Image:</label>
-                    <input type="file" accept="image/*" id="puppy_uploader" />
+                    <input type="file" accept="image/*" id="puppy_uploader" disabled />
                 </div>
 
                 <div>
                     <label htmlFor="sold">Sold:</label>
 
-                    <select id="sold">
+                    <select id="sold" disabled>
                         <option value="true">Yes</option>
                         <option value="false" selected>No</option>
                     </select>
@@ -91,10 +92,10 @@ export default class extends View {
 
                 <div>
                     <label htmlFor="puppy_title">Title:</label>
-                    <input type="text" id="puppy_title" />
+                    <input type="text" id="puppy_title" disabled />
                 </div>
 
-                <button id="new_puppy">Submit</button>
+                <button id="new_puppy" disabled>Submit</button>
             </div>
         `;
     }

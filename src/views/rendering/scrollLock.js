@@ -21,6 +21,7 @@ function scrollLock() {
     window.addEventListener(wheelEvent, pd, wheelOpt);
     window.addEventListener('touchmove', pd, wheelOpt);
     window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+    document.querySelector('body').style.overflow = 'hidden';
 }
 
 function scrollUnLock() {
@@ -28,6 +29,8 @@ function scrollUnLock() {
     window.removeEventListener(wheelEvent, pd, wheelOpt);
     window.removeEventListener('touchmove', pd, wheelOpt);
     window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+    document.querySelector('body').style.overflow = 'auto';
+    document.querySelectorAll('[disabled]').forEach(el => el.disabled = false);
 }
 
 export { scrollLock, scrollUnLock };
