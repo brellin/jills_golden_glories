@@ -140,12 +140,32 @@ div.new_puppy {
         width: max-content;
         padding: 25px;
 
+        h2 {
+            margin: 0;
+            padding: 0;
+        }
+
         form {
             @include flex(column, center, center);
             width: 100%;
 
             div {
                 @include flex($j: space-between, $a: center);
+                margin: 10px 0;
+
+                input {
+                    background-color: $gold_input;
+                    border: 1px inset $gold_bg;
+                    border-radius: 5px;
+                    outline: none;
+                    caret-color: $gold;
+
+                    &:focus {
+                        outline: 2px solid $gold;
+                    }
+
+                }
+                
             }
             
         }

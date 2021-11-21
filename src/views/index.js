@@ -5,7 +5,7 @@ import Bloodlines from './Bloodlines';
 import PuppyManager from './PuppyManager';
 
 import { postNewPuppy } from '../assets/utils/requests';
-import { addPuppyToContainer } from './rendering/PMRenderer';
+import { addImage, addPuppyToContainer } from './rendering/PMRenderer';
 
 export default [
     {
@@ -40,9 +40,14 @@ export default [
             const puppyTitle = document.querySelector('#puppy_title');
             const newPuppyButton = document.querySelector('button#new_puppy');
             puppyUploader.onchange = e => {
-                const [ file ] = e.target.files;
-                fd.set('pictures', file);
-                addImage(URL.createObjectURL(file));
+                const thumbs = document.querySelectorAll('[data-pup-thumb]');
+                console.log(thumbs);
+                thumbs.forEach(el => el.parentElement.removeChild(el));
+                fd.delete('pictures');
+                for (const file of e.target.files) {
+                    fd.set('pictures', file);
+                    addImage(URL.createObjectURL(file));
+                }
             };
             sold.onchange = e => fd.set('sold', e.target.value);
             puppyTitle.onchange = e => fd.set('title', e.target.value);

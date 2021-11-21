@@ -1,6 +1,6 @@
 import View from './ViewImp';
 import { getAllPuppies, login } from '../assets/utils/requests';
-import { addPuppyToContainer } from './rendering/PMRenderer';
+import { addPuppyToContainer, removeModal } from './rendering/PMRenderer';
 import { scrollLock, scrollUnLock } from './rendering/scrollLock';
 
 export default class extends View {
@@ -8,10 +8,18 @@ export default class extends View {
         super();
         this.setTitle('Puppy Manager');
 
+        const isLoggedIn = JSON.parse(window.sessionStorage.getItem('loggedIn'));
         document.addEventListener('DOMContentLoaded', _ => {
-            scrollLock();
-            document.querySelector('form').addEventListener('submit', e => this.confirmUser(e));
+            document.querySelector('form#login').addEventListener('submit', e => this.confirmUser(e));
+            if (isLoggedIn === true) {
+                scrollUnLock();
+                removeModal();
+                this.fetchPuppies();
+            }
+            else scrollLock();
         });
+
+        this.loggedIn = isLoggedIn;
     }
 
     async confirmUser(e) {
@@ -22,12 +30,14 @@ export default class extends View {
 
         try {
             await login(username, password);
+            this.loggedIn = true;
+            window.sessionStorage.setItem('loggedIn', true);
             scrollUnLock();
-            const modal = document.querySelector('div.modal-bg');
-            modal.parentElement.removeChild(modal);
+            removeModal();
             this.fetchPuppies();
         } catch (err) {
-            console.log('wrong');
+            console.error(err);
+            alert('Incorrect username or password.');
         }
     }
 
@@ -45,15 +55,16 @@ export default class extends View {
         return `
         <div class="modal-bg">
             <div class="modal">
-                <form>
+                <h2>Log In</h2>
+                <form id="login">
                     <div>
-                        <label>Username: </label>
-                        <input type="text" autofocus />
+                        <label for="username">Username: </label>
+                        <input type="text" id="username" autofocus />
                     </div>
                     
                     <div>
-                        <label>Password: </label>
-                        <input type="password" />
+                        <label for="password">Password: </label>
+                        <input type="password" id="password" />
                     </div>
 
                     <button type="submit">Submit</button>
@@ -77,12 +88,12 @@ export default class extends View {
 
             <div class="new_puppy">
                 <div>
-                    <label htmlFor="puppy_uploader">Image:</label>
-                    <input type="file" accept="image/*" id="puppy_uploader" disabled />
+                    <label for="puppy_uploader">Image:</label>
+                    <input type="file" accept="image/*" id="puppy_uploader" multiple disabled />
                 </div>
 
                 <div>
-                    <label htmlFor="sold">Sold:</label>
+                    <label for="sold">Sold:</label>
 
                     <select id="sold" disabled>
                         <option value="true">Yes</option>
@@ -91,7 +102,7 @@ export default class extends View {
                 </div>
 
                 <div>
-                    <label htmlFor="puppy_title">Title:</label>
+                    <label for="puppy_title">Title:</label>
                     <input type="text" id="puppy_title" disabled />
                 </div>
 

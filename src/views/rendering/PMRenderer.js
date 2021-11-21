@@ -1,16 +1,15 @@
 import { deletePicture, deletePup } from '../../assets/utils/requests';
 import { readPublicId } from '../../assets/utils/cloudinary';
 
-export const removeImageIfExists = (cont = document.querySelector('div.new_puppy')) => {
-    const imgExists = cont.children.namedItem('newPupImage');
-    if (imgExists) cont.removeChild(imgExists);
+export const removeModal = _ => {
+    const modal = document.querySelector('div.modal-bg');
+    modal.parentElement.removeChild(modal);
 };
 
 export const addImage = (image, cont = document.querySelector('div.new_puppy')) => {
-    removeImageIfExists();
     const newImg = document.createElement('img');
     newImg.src = image;
-    newImg.id = 'newPupImage';
+    newImg.dataset.pupThumb = '';
     cont.insertBefore(newImg, cont.firstChild);
 };
 
@@ -68,7 +67,6 @@ const unEditPuppy = (pup, cont) => {
 export const addPuppyToContainer = (pup, cont = document.querySelector('div.current_puppies')) => {
     cont.append(notEditingPupLayout(pup));
     const pupCont = cont.querySelector(`[data-id="${ pup._id }"]`);
-    console.log(pupCont);
     pupCont.querySelector('button.ellipsis').addEventListener('click', function () {
         editPuppy(pup, pupCont);
     });
@@ -124,7 +122,8 @@ const editPuppy = (pup, cont) => {
             const picCon = e.target.parentNode.parentNode;
             const pid = picCon.dataset.public_id;
             if (confirm(`Are you sure you want to delete ${ readPublicId(pid) }?`)) {
-                const data = await deletePicture(pup._id, pid);
+                const data = await deletePicture(pup._id,
+                    pid);
                 console.log('pic-con', data);
                 picCon.parentNode.removeChild(picCon);
             }
