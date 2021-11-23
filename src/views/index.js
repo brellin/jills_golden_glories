@@ -41,7 +41,6 @@ export default [
             const newPuppyButton = document.querySelector('button#new_puppy');
             puppyUploader.onchange = e => {
                 const thumbs = document.querySelectorAll('[data-pup-thumb]');
-                console.log(thumbs);
                 thumbs.forEach(el => el.parentElement.removeChild(el));
                 fd.delete('pictures');
                 for (const file of e.target.files) {

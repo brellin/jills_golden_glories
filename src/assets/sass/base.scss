@@ -2,6 +2,21 @@ html {
     font-size: 62.5%;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $gold_bg;
+    width: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $gold;
+    border-radius: 50px;
+}
+
 body, div, section, header, footer {
     margin: 0;
     padding: 0;
@@ -40,7 +55,7 @@ div.wrap {
             width: 100%;
             height: 2px;
             position: absolute;
-            transform: translate(-100vw, 30px);
+            transform: translate(-100vw, 25px);
             transition: .3s ease-in-out;                
         }
         
@@ -51,7 +66,7 @@ div.wrap {
                 
                 &::before {
                     background: $light_blue;
-                    transform: translateY(30px);
+                    transform: translateY(25px);
                 }
                 
             }
@@ -68,10 +83,16 @@ div.wrap {
         color: $blue;
         text-shadow: 3px 3px 2px $light_blue;
         background: linear-gradient(whitesmoke, $gold_bg, whitesmoke);
-        width: 100vw;
+        width: calc(100% + 60px);
+        margin-block: 0;
+        padding: .83em 0;
 
         @media (max-width: 800px) {
             font-size: 7.5rem;
+        }
+
+        &.foot {
+            width: 100%;
         }
         
     }
@@ -92,6 +113,48 @@ div.wrap {
         &.home {
             background-image: url(../images/lily_sit.jpg);
             background-position-y: 20%;
+        }
+        
+        &.footer {
+            @include flex(row, space-around, stretch);
+            background-image: url(../images/lily_baby.jpg);
+            height: auto;
+            width: 100%;
+
+            @media (max-width: 800px) {
+                flex-direction: column;
+            }
+            
+            div {
+                @include card;
+                justify-content: flex-start;
+                width: 25%;
+                margin: 50px auto;
+                padding: 25px;
+
+                @media (max-width: 800px) {
+                    width: 90%;
+                }
+
+                h2 {
+                    line-height: 1;
+                    
+                    &.num {
+                        width: 75px;
+                        background-color: $gold_bg;
+                        border: 1px solid black;
+                        border-radius: 50%;
+                    }
+                    
+                }
+
+                p {
+                    font-size: 2.5rem;
+                    font-family: 'Little Star Story';
+                }
+                
+            }
+            
         }
     
     }
