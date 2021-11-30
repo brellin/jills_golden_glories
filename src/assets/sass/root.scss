@@ -141,6 +141,36 @@
             background: url(../images/lily_baby_crop.jpg);
             background-size: contain;
         }
+
+        div.puppy_slideshow {
+            width: 100%;
+            @include flex($a: center, $j: space-between);
+            height: 300px;
+            overflow: hidden;
+            
+            button {
+                z-index: 1;
+            }
+            
+            div.puppyImgs {
+                z-index: 0;
+                @include flex;
+                max-height: 100%;
+                overflow: hidden;
+                
+                img {
+                    width: 0;
+                    transition: .3s ease;
+                    
+                    &.visible {
+                        width: 100%;
+                    }
+                    
+                }
+                
+            }
+
+        }
         
     }
 

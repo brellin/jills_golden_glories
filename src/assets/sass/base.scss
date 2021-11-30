@@ -90,9 +90,19 @@ div.wrap {
         @media (max-width: 800px) {
             font-size: 7.5rem;
         }
-
+        
         &.foot {
             width: 100%;
+        }
+        
+        &.contained {
+            width: 100vw;
+            margin-left: -15%;
+            
+            @media (max-width: 800px) {
+                margin-left: 0;
+            }
+            
         }
         
     }
