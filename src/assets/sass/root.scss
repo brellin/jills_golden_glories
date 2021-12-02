@@ -150,6 +150,16 @@
             
             button {
                 z-index: 1;
+                background: $gold_bg;
+                border: 1px solid $gold;
+                border-radius: 50%;
+                font-size: 5rem;
+                transition: .3s ease-out;
+
+                &:hover {
+                    @include transform(rotate(360deg));
+                }
+
             }
             
             div.puppyImgs {
@@ -167,7 +177,7 @@
                     }
                     
                 }
-                
+
             }
 
         }
