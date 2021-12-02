@@ -143,36 +143,41 @@
         }
 
         div.puppy_slideshow {
-            width: 100%;
+            width: 100vw;
+            margin-left: -15%;
+            padding: 0 50px;
             @include flex($a: center, $j: space-between);
             height: 300px;
             overflow: hidden;
+            background: linear-gradient(transparent 10%, $gold_bg 15%, $gold_bg 85%, transparent 90%);
             
             button {
                 z-index: 1;
-                background: $gold_bg;
-                border: 1px solid $gold;
-                border-radius: 50%;
-                font-size: 5rem;
-                transition: .3s ease-out;
+                cursor: pointer;
+                @include spin-button;
+                border-radius: 5px;
+                transition-duration: .3s;
 
                 &:hover {
                     @include transform(rotate(360deg));
+                    border-radius: 50%;
                 }
 
             }
             
             div.puppyImgs {
                 z-index: 0;
-                @include flex;
-                max-height: 100%;
+                @include flex($a: center);
+                height: 80%;
                 overflow: hidden;
                 
                 img {
+                    height: 0;
                     width: 0;
                     transition: .3s ease;
                     
                     &.visible {
+                        height: 80%;
                         width: 100%;
                     }
                     
