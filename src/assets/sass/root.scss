@@ -147,9 +147,13 @@
             margin-left: -15%;
             padding: 0 50px;
             @include flex($a: center, $j: space-between);
-            height: 300px;
+            height: 50vh;
             overflow: hidden;
-            background: linear-gradient(transparent 10%, $gold_bg 15%, $gold_bg 85%, transparent 90%);
+            background: linear-gradient(transparent 15px, $gold_bg 55px, $gold_bg calc(100% - 55px), transparent calc(100% - 15px));
+
+            @media (max-width: 800px) {
+                margin-left: 0;
+            }
             
             button {
                 z-index: 1;
@@ -164,31 +168,77 @@
                 }
 
             }
-            
-            div.puppyImgs {
-                z-index: 0;
-                @include flex($a: center);
-                height: 80%;
-                overflow: hidden;
+
+            div.pupDivCont {
+                @include flex(column, space-between, center);
+                height: 100%;
                 
-                img {
-                    height: 0;
-                    width: 0;
-                    transition: .3s ease;
+                div.puppyThumbs {
+                    @include flex(row, center, flex-start);
                     
-                    &.visible {
-                        height: 80%;
-                        width: 100%;
+                    img.thumb {
+                        margin: 0;
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        transition: .3s ease;
+                        cursor: pointer;
+                        border-radius: 5px;
+
+                        &:hover, &.active {
+                            transform: scale(1.1);
+                            border: 2px solid $gold;
+                        }
+                        
                     }
                     
                 }
+                
+                div.puppyImgs {
+                    @include flex(row, center, flex-end);
+                    z-index: 0;
+                    height: 100%;
+                    position: relative;
+                    
+                    @media (max-width: 800px) {
+                        height: calc(100% - 100px);
+                    }
+                    
+                    div {
+                        @include flex(column, flex-end, center);
+                        position: absolute;
+                        opacity: 0;
+                        height: 100%;
+                        text-align: center;
+                        transition: .3s ease;
+                        
+                        img.full {
+                            height: 70%;
+                            width: auto;
+                            margin-top: 0;
 
+                            @media (max-width: 800px) {
+                                max-width: 50vw;
+                                height: auto;
+                                max-height: 100%;
+                            }
+                            
+                        }
+                        
+                        &.visible {
+                            opacity: 1;                            
+                        }
+                        
+                    }
+
+                }
+                
             }
-
+            
         }
         
     }
-
+    
     div.burger {
         z-index: 50;
         width: 0;
