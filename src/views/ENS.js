@@ -1,92 +1,14 @@
 import View from "./ViewImp";
 import { ext_links, l } from '../assets/utils/data';
 import { getAllPuppies } from '../assets/utils/requests';
+import { renderSlideshow } from "./rendering/Slideshow";
 
 export default class extends View {
     constructor() {
         super();
-        this.setTitle('Puppies & Process');
+        this.setTitle('Puppies');
         getAllPuppies()
-            .then(pups => {
-                const cont = document.querySelector('div.puppy_slideshow');
-                if (pups.length) {
-                    cont.innerHTML = '';
-
-                    const puppyThumbs = document.createElement('div');
-                    puppyThumbs.className = 'puppyThumbs';
-
-                    const puppyImgs = document.createElement('div');
-                    puppyImgs.className = 'puppyImgs';
-
-                    const pupDivCont = document.createElement('div');
-                    pupDivCont.className = 'pupDivCont';
-                    pupDivCont.appendChild(puppyThumbs);
-                    pupDivCont.appendChild(puppyImgs);
-
-                    const prev = document.createElement('button');
-                    prev.innerText = '⇠';
-                    prev.onclick = _ => {
-                        let vis;
-                        puppyImgs.childNodes.forEach((n, i) => { if (n.classList.contains('visible')) vis = i; });
-                        const currImg = puppyImgs.children[ vis ];
-                        currImg.classList.remove('visible');
-                        puppyImgs.children[ vis === 0 ? puppyImgs.children.length - 1 : vis - 1 ].classList.add('visible');
-
-                        const currThumb = puppyThumbs.children[ vis ];
-                        currThumb.classList.remove('active');
-                        puppyThumbs.children[ vis === 0 ? puppyThumbs.children.length - 1 : vis - 1 ].classList.add('active');
-
-                    };
-
-                    pups.forEach((pup, i) => {
-                        const pupThumb = document.createElement('img');
-                        pupThumb.src = pup.pictures[ 0 ].url;
-                        pupThumb.classList.add('thumb');
-                        pupThumb.onclick = function () {
-                            puppyThumbs.childNodes.forEach((n, index) => index === i ? n.classList.add('active') : n.classList.remove('active'));
-                            puppyImgs.childNodes.forEach((n, index) => index === i ? n.classList.add('visible') : n.classList.remove('visible'));
-                        };
-
-                        const pupImg = document.createElement('img');
-                        pupImg.src = pup.pictures[ 0 ].url;
-                        pupImg.classList.add('full');
-
-                        const pupTitle = document.createElement('label');
-                        pupTitle.innerText = pup.title;
-
-                        const pupImgCont = document.createElement('div');
-                        if (i === 0) {
-                            pupImgCont.classList.add('visible');
-                            pupThumb.classList.add('active');
-                        }
-                        puppyThumbs.appendChild(pupThumb);
-                        pupImgCont.appendChild(pupImg);
-                        pupImgCont.appendChild(pupTitle);
-
-                        puppyImgs.appendChild(pupImgCont);
-                    });
-                    const forw = document.createElement('button');
-                    forw.innerText = '⇢';
-                    forw.onclick = _ => {
-                        let vis;
-                        puppyImgs.childNodes.forEach((n, i) => { if (n.classList.contains('visible')) vis = i; });
-
-                        const currImg = puppyImgs.children[ vis ];
-                        currImg.classList.remove('visible');
-                        puppyImgs.children[ vis === puppyImgs.children.length - 1 ? 0 : vis + 1 ].classList.add('visible');
-
-                        const currThumb = puppyThumbs.children[ vis ];
-                        currThumb.classList.remove('active');
-                        puppyThumbs.children[ vis === puppyThumbs.children.length - 1 ? 0 : vis + 1 ].classList.add('active');
-                    };
-
-                    cont.appendChild(prev);
-                    cont.appendChild(pupDivCont);
-                    cont.appendChild(forw);
-                } else cont.innerHTML = `
-                    <p>There are no puppies available at this time.</p>
-                `;
-            })
+            .then(pups => { if (pups.length) renderSlideshow(pups); })
             .catch(err => console.error(err));
     }
 
@@ -103,7 +25,7 @@ export default class extends View {
 
             <h1 class="contained">Puppy Pictures!</h1>
 
-            <div class="puppy_slideshow"></div>
+            <div class="slideshow">There are currently no puppies available to view.</div>
         </div>
         `;
     }

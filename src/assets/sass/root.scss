@@ -142,7 +142,7 @@
             background-size: contain;
         }
 
-        div.puppy_slideshow {
+        div.slideshow {
             width: 100vw;
             margin-left: -15%;
             padding: 0 50px;
@@ -173,7 +173,7 @@
                 @include flex(column, space-between, center);
                 height: 100%;
                 
-                div.puppyThumbs {
+                div.slideThumbs {
                     @include flex(row, center, flex-start);
                     
                     img.thumb {
@@ -194,7 +194,7 @@
                     
                 }
                 
-                div.puppyImgs {
+                div.slideImgs {
                     @include flex(row, center, flex-end);
                     z-index: 0;
                     height: 100%;
