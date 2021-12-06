@@ -5,7 +5,7 @@ import Bloodlines from './Bloodlines';
 import PuppyManager from './PuppyManager';
 
 import { postNewPuppy } from '../assets/utils/requests';
-import { addImage, addPuppyToContainer } from './rendering/PMRenderer';
+import { addImage, addPuppyToContainer, clearPuppyAdder } from './rendering/PMRenderer';
 
 export default [
     {

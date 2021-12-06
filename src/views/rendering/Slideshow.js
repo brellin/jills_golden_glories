@@ -63,6 +63,7 @@ export function renderSlideshow(list, cont = document.querySelector('div.slidesh
 
         slideImgs.appendChild(slideImgCont);
     });
+
     const forw = document.createElement('button');
     forw.innerText = '⇢';
     forw.addEventListener('click', _ => changeImg(slideThumbs, slideImgs));
