@@ -1,42 +1,46 @@
 {
-  "name": "jills-golden-glories",
-  "version": "1.0.0",
-  "description": "English Cream Golden Retrievers in the Abilene Area",
-  "author": "brellin",
-  "license": "GPL-3.0",
+  "name": "golden-glories-vanilla",
+  "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
   "dependencies": {
-    "axios": "^0.24.0",
-    "router-vanilla": "^1.3.9"
+    "core-js": "^3.8.3",
+    "sass": "^1.49.9",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.14",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "babel": "^6.23.0",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^6.4.0",
-    "dotenv": "^10.0.0",
-    "html-webpack-plugin": "^5.4.0",
-    "loader": "^2.1.1",
-    "mini-css-extract-plugin": "^2.4.2",
-    "netlify-webpack-plugin": "^1.1.3",
-    "node-sass": "^6.0.1",
-    "nodemon": "^2.0.12",
-    "open": "^8.2.1",
-    "postcss": "^8.3.9",
-    "postcss-loader": "^6.2.0",
-    "postcss-preset-env": "^6.7.0",
-    "sass": "^1.43.2",
-    "sass-loader": "^12.2.0",
-    "style-loader": "^3.3.0",
-    "webpack": "^5.58.2",
-    "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1"
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3"
   },
-  "scripts": {
-    "start": "webpack serve",
-    "build": "webpack",
-    "build:p": "webpack --mode=production"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
   },
-  "repository": "https://github.com/brellin/jills_golden_glories.git"
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }
