@@ -6,17 +6,6 @@ $gold_input: #fff8da;
 $gold_bg: #ffeea9a4;
 $light_blue: #22d4f3;
 
-@font-face {
-   font-family: 'Samantha Upright';
-   src: url('../fonts/Samantha\ Upright.ttf'),
-   url('../fonts/Samantha\ Upright.otf');
-}
-
-@font-face {
-   font-family: 'Little Star Story';
-   src: url('../fonts/Little\ Star\ Story.otf');
-}
-
 @mixin flex($d: row, $j: flex-start, $a: flex-start, $w: nowrap) {
    display: flex;
    display: -webkit-flex;

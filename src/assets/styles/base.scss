@@ -1,0 +1,281 @@
+// globals
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $gold_bg;
+    width: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $gold;
+    border-radius: 50px;
+}
+
+@font-face {
+   font-family: 'Samantha Upright';
+   src: url('../fonts/Samantha\ Upright.ttf'),
+   url('../fonts/Samantha\ Upright.otf');
+}
+
+@font-face {
+   font-family: 'Little Star Story';
+   src: url('../fonts/Little\ Star\ Story.otf');
+}
+
+body, div, section, header, footer {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// constant styles
+p {
+    width: 80%;
+    margin: 15px auto;
+    text-indent: 15px;
+
+    @media (max-width: 800px) {
+        line-height: 2;
+    }
+}
+
+h1 {
+    font-family: 'Samantha Upright';
+    font-size: 13rem;
+    line-height: 2.5;
+    text-align: center;
+    color: $blue;
+    text-shadow: 3px 3px 2px $light_blue;
+    background: linear-gradient(whitesmoke, $gold_bg, whitesmoke);
+    width: calc(100% + 60px);
+    margin-block: 0;
+    padding: .83em 0;
+
+    @media (max-width: 800px) {
+        font-size: 7.5rem;
+    }
+    
+    &.foot {
+        width: 100%;
+    }
+    
+    &.contained {
+        width: 100vw;
+        margin-left: -15%;
+        
+        @media (max-width: 800px) {
+            margin-left: 0;
+        }
+        
+    }
+    
+}
+
+// spacer div
+div.spacer {
+    height: 350px;
+    width: calc(100% + 60px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    @media (max-width: 800px) {
+        height: 150px;
+        background-size: 200%;
+        background-position-x: 70%;                
+    }
+
+    &.home {
+        background-image: url('../images/lily_sit.jpg');
+        background-position-y: 20%;
+    }
+    
+    &.footer {
+        @include flex(row, space-around, stretch);
+        background-image: url('../images/lily_baby.jpg');
+        height: auto;
+        width: 100%;
+
+        @media (max-width: 800px) {
+            flex-direction: column;
+            background-size: cover;
+        }
+        
+        div {
+            @include card;
+            justify-content: flex-start;
+            width: 25%;
+            margin: 50px auto;
+            padding: 25px;
+
+            @media (max-width: 800px) {
+                width: 90%;
+            }
+
+            h2 {
+                line-height: 1;
+                
+                &.num {
+                    width: 75px;
+                    background-color: $gold_bg;
+                    border: 1px solid black;
+                    border-radius: 50%;
+                }
+                
+            }
+
+            p {
+                font-size: 2.5rem;
+                font-family: 'Little Star Story';
+            }
+            
+        }
+        
+    }
+
+}
+
+// navbar
+
+nav {
+    width: 100%;
+    @include flex($j: space-around);
+    position: sticky;
+    top: -1px;
+    background: linear-gradient($blue, 80%, transparent);
+    margin-top: -1px;
+    transition: 0.2s ease;
+    z-index: 2;
+
+    @media (max-width: 800px) {
+        margin: 75px 0 0;
+        background: none;
+        position: fixed;
+        @include flex(column, flex-start, flex-start);
+        width: auto;
+
+        @for $i from 1 through 6 {
+            div:nth-child(#{$i}) {
+                transition-duration: #{"." + ($i + 3) + "s"};
+            }
+        }
+
+        &.open div {
+            transform: translateX(0);
+        }
+}
+
+div {
+    font-size: 1.5rem;
+    padding: 15px 5%;
+    transition: 0.2s ease;
+
+    &:hover,
+    a.active {
+    font-size: 1.7rem;
+    font-weight: bolder;
+    }
+
+    @media (max-width: 800px) {
+    padding: 15px 2%;
+    background: $blue;
+    width: 50vw;
+    text-align: center;
+    transform: translateX(calc(-60vw));
+    transition-duration: 0s;
+    width: 50vw;
+    margin-top: -1px;
+    background: $blue;
+    }
+
+    a {
+    color: $gold;
+    text-decoration: none;
+    }
+}
+}
+
+// underslide links
+a.slide {
+    color: $blue;
+    text-decoration: none;
+    position: relative;
+    transition: .3s ease-in-out;
+    white-space: nowrap;
+    
+    @media (max-width: 800px) {
+        color: $blue;
+        text-decoration: underline;
+        line-height: 2;
+    }
+    
+    &::before {
+        content: '';
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        transform: translate(-100vw, 25px);
+        transition: .3s ease-in-out;                
+    }
+    
+    @media (min-width: 800px) {
+
+        &:hover {
+            color: $light_blue;
+            
+            &::before {
+                background: $light_blue;
+                transform: translateY(25px);
+            }
+            
+        }
+
+    }
+
+}
+
+// slide transition
+.slide-enter-active {
+	position: absolute; 
+	transition: 1s ease;
+	left: 100%;
+}
+
+.slide-enter {
+	position: absolute; 
+	transition: 1s ease;
+}
+
+.slide-enter-to {
+	position: absolute; 
+	left: 0;
+	top: calc(50vh + 52px);
+	
+	@media (max-width: 500px) {
+		top: 30vh;
+	}
+	
+}
+
+.slide-leave-active {
+  transition: 1s ease;
+}
+
+.slide-leave {
+	transform: scale(1);
+	opacity: 1;
+}
+
+.slide-leave-to {
+	transform: scale(0);
+	opacity: 0;
+	transform-origin: top;
+}

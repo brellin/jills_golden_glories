@@ -9,20 +9,33 @@ const routes = [
         path: '/',
         component: Home,
         meta: {
-            title: 'Golden Glories - Home'
+            title: 'Golden Glories - Home',
+            name: 'Home',
         }
     },
     {
         path: '/puppies',
         component: Puppies,
+        meta: {
+            title: 'Golden Glories - Puppies',
+            name: 'Puppies'
+        }
     },
     {
         path: '/about_the_breed',
-        component: AboutTheBreed
+        component: AboutTheBreed,
+        meta: {
+            title: 'Golden Glories - About The Breed',
+            name: 'About The Breed'
+        }
     },
     {
         path: '/bloodlines',
-        component: Bloodlines
+        component: Bloodlines,
+        meta: {
+            title: 'Golden Glories - Bloodlines',
+            name: 'Bloodlines'
+        }
     }
 ];
 
@@ -42,3 +55,7 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+
+export {
+    routes
+};
