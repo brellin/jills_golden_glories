@@ -46,11 +46,11 @@ const router = createRouter({
     linkExactActiveClass: 'exact',
     scrollBehavior: (to, from, savedPosition) => savedPosition ? savedPosition :
         to.hash ? { selector: to.hash, behavior: 'smooth' } :
-            { top: 0, behavior: 'smooth' }
+            { top: '50vh', behavior: 'smooth' }
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title ? to.meta.title : 'Will Umstead';
+    document.title = to.meta.title ? to.meta.title : 'Golden Glories';
     next();
 });
 

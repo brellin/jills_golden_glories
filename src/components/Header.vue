@@ -35,6 +35,7 @@ header {
   background-position-y: 20%;
   image-rendering: smooth;
   margin: 0;
+  z-index: 1;
 
   @media (max-width: 800px) {
     $h: 993px;

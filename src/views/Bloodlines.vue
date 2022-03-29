@@ -1,10 +1,16 @@
 <template>
-  <h1>Bloodlines</h1>
+  <h1 v-html="heading" />
 </template>
 
 <script>
+import { l } from "../assets/utils/data";
 export default {
   name: "gg-bloodlines",
+  data() {
+    return {
+      heading: `${l("B")}loodlines`,
+    };
+  },
 };
 </script>
 
