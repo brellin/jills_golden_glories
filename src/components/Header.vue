@@ -40,9 +40,7 @@ header {
   z-index: 1;
 
   @media (max-width: 800px) {
-    $h: 993px;
-    $w: 1423px;
-    height: scaleBg($w, 100%, $h);
+    height: 30vh;
     background-position-y: -5%;
     background-size: contain;
   }

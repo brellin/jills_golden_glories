@@ -118,6 +118,7 @@ footer {
   padding: 50px 30px;
   background: linear-gradient(whitesmoke, transparent);
   @include flex(column, flex-start, center);
+  font-size: 2rem;
 
   a {
     text-decoration: none;
@@ -184,7 +185,7 @@ footer {
         }
 
         span {
-          font-size: 1.5rem;
+          font-size: 2rem;
 
           @media (max-width: 800px) {
             display: none;

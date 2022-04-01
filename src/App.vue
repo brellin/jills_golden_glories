@@ -1,18 +1,21 @@
 <template>
   <div class="wrap">
     <Header />
-    <nav>
+    <div class="burger" @click="toggleIsOpen" />
+    <nav :class="isOpen && 'open'">
       <router-link
         v-for="{ path, meta } in routes"
         :key="meta.name"
         :to="path"
-        >{{ meta.name }}</router-link
+        @click="close"
       >
+        {{ meta.name }}
+      </router-link>
     </nav>
 
     <router-view v-slot="{ Component, route }">
       <transition-group name="slide">
-        <section class="routes" :key="route.path">
+        <section class="routes" :key="route.path" @click="close">
           <component :is="Component" />
         </section>
       </transition-group>
@@ -35,10 +38,19 @@ export default {
   data() {
     return {
       routes,
+      isOpen: false,
     };
   },
   beforeUnmount() {
     localStorage.setItem("notFirstVisit", true);
+  },
+  methods: {
+    toggleIsOpen() {
+      this.isOpen = !this.isOpen;
+    },
+    close() {
+      this.isOpen = false;
+    },
   },
 };
 </script>

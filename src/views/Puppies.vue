@@ -33,7 +33,10 @@ export default {
   data() {
     return {
       ...ext_links,
-      heading: `${l("E")}arly ${l("N")}eurological ${l("S")}timulation`,
+      heading:
+        window.innerWidth <= 800
+          ? "Puppies"
+          : `${l("E")}arly ${l("N")}eurological ${l("S")}timulation`,
     };
   },
 };

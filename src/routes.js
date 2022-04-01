@@ -46,7 +46,7 @@ const router = createRouter({
     linkExactActiveClass: 'exact',
     scrollBehavior: (to, from, savedPosition) => savedPosition ? savedPosition :
         to.hash ? { selector: to.hash, behavior: 'smooth' } :
-            { top: '50vh', behavior: 'smooth' }
+            { top: '0', behavior: 'smooth' }
 });
 
 router.beforeEach((to, from, next) => {
