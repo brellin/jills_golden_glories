@@ -2,9 +2,12 @@
   <div class="wrap">
     <Header />
     <nav>
-      <div v-for="{ path, meta } in routes" :key="meta.name">
-        <router-link :to="path">{{ meta.name }}</router-link>
-      </div>
+      <router-link
+        v-for="{ path, meta } in routes"
+        :key="meta.name"
+        :to="path"
+        >{{ meta.name }}</router-link
+      >
     </nav>
 
     <router-view v-slot="{ Component, route }">
@@ -14,21 +17,28 @@
         </section>
       </transition-group>
     </router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
 import { routes } from "./routes";
 import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+import "./assets/styles/nav.scss";
 export default {
-  name: "App",
+  name: "gg-wrap",
   components: {
     Header,
+    Footer,
   },
   data() {
     return {
       routes,
     };
+  },
+  beforeUnmount() {
+    localStorage.setItem("notFirstVisit", true);
   },
 };
 </script>

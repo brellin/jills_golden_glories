@@ -16,9 +16,11 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
-      this.small = true;
-    }, 1000);
+    if (this.notFirstVisit) this.small = true;
+    else
+      setTimeout(() => {
+        this.small = true;
+      }, 1000);
   },
 };
 </script>
@@ -32,7 +34,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  background-position-y: 20%;
+  background-position-y: 35%;
   image-rendering: smooth;
   margin: 0;
   z-index: 1;
