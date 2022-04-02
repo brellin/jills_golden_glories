@@ -42,7 +42,11 @@ header {
   @media (max-width: 800px) {
     height: 30vh;
     background-position-y: -5%;
-    background-size: contain;
+    background-size: 100%;
+
+    &.small {
+      height: 30vh;
+    }
   }
 
   &.small {
@@ -91,65 +95,6 @@ header {
           opacity: 0;
         }
       }
-    }
-  }
-}
-
-nav {
-  width: 100%;
-  @include flex($j: space-around);
-  position: sticky;
-  top: -1px;
-  background: linear-gradient($blue, 80%, transparent);
-  margin-top: -1px;
-  transition: 0.2s ease;
-  z-index: 2;
-
-  @media (max-width: 800px) {
-    margin: 75px 0 0;
-    background: none;
-    position: fixed;
-    @include flex(column, flex-start, flex-start);
-    width: auto;
-
-    @for $i from 1 through 6 {
-      div:nth-child(#{$i}) {
-        transition-duration: #{"." + ($i + 3) + "s"};
-      }
-    }
-
-    &.open div {
-      transform: translateX(0);
-    }
-  }
-
-  div {
-    font-size: 1.5rem;
-    padding: 15px 5%;
-    transition: 0.2s ease;
-
-    &:hover,
-    &.active {
-      font-size: 1.7rem;
-      font-weight: bolder;
-    }
-
-    @media (max-width: 800px) {
-      padding: 15px 2%;
-      background: $blue;
-      width: 50vw;
-      text-align: center;
-      transform: translateX(calc(-60vw));
-      transition-duration: 0s;
-      width: 50vw;
-      margin-top: -1px;
-      background: $blue;
-    }
-
-    a {
-      color: $gold;
-      text-decoration: none;
-      font-family: "Little Star Story";
     }
   }
 }
