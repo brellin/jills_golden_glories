@@ -43,6 +43,7 @@ header {
     height: 30vh;
     background-position-y: -5%;
     background-size: 100%;
+    background-attachment: scroll;
 
     &.small {
       height: 30vh;
