@@ -41,13 +41,9 @@ header {
 
   @media (max-width: 800px) {
     height: 30vh;
-    background-position-y: -5%;
+    background-position-y: 5%;
     background-size: 100%;
     background-attachment: scroll;
-
-    &.small {
-      height: 30vh;
-    }
   }
 
   &.small {
@@ -80,8 +76,7 @@ header {
 
     @media (max-width: 800px) {
       @include flex($j: flex-end, $a: flex-end);
-      position: relative;
-      bottom: 0;
+      height: 100%;
     }
 
     img {
@@ -94,6 +89,12 @@ header {
       &:nth-child(1) {
         @media (max-width: 800px) {
           opacity: 0;
+        }
+      }
+
+      &:nth-child(2) {
+        @media (max-width: 800px) {
+          margin-bottom: -7.5%;
         }
       }
     }
