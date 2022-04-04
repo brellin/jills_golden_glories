@@ -1,5 +1,5 @@
 <template>
-  <header :class="small && 'small'">
+  <header :class="small ? 'small' : ''">
     <div class="imgs">
       <img src="../assets/images/logo.png" alt="Golden Glories Logo" />
       <img src="../assets/images/header.png" alt="Golden Glories Text" />

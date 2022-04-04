@@ -2,7 +2,7 @@
   <div class="wrap">
     <Header />
     <div class="burger" @click="toggleIsOpen" />
-    <nav :class="isOpen && 'open'">
+    <nav :class="isOpen ? 'open' : ''">
       <router-link
         v-for="{ path, meta } in routes"
         :key="meta.name"
