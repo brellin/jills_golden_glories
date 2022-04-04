@@ -10,7 +10,7 @@
     want her. Being around her is a joy and her offspring will do the same.
   </p>
 
-  <div :class="`spacer home ${scroll && 'scroll'}`" />
+  <div :class="`spacer home${scroll ? ' scroll' : ''}`" />
 
   <p>
     We have learned that the English Cream Goldens are not only calm and gentle,
