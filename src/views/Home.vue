@@ -10,7 +10,7 @@
     want her. Being around her is a joy and her offspring will do the same.
   </p>
 
-  <div class="spacer home" />
+  <div :class="`spacer home ${scroll && 'scroll'}`" />
 
   <p>
     We have learned that the English Cream Goldens are not only calm and gentle,
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       heading: `${l("W")}elcome to ${l("G")}olden ${l("G")}lories!`,
+      scroll: document.body.style.backgroundAttachment === undefined,
     };
   },
 };

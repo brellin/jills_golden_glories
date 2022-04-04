@@ -203,6 +203,17 @@ div.spacer {
     &.home {
         background-image: url('../images/lily_sit.jpg');
         background-position-y: 20%;
+
+        @media (max-width: 800px) {
+            height: 50vh;
+
+            &.scroll {
+                background-attachment: scroll;
+                background-position-y: 25%;
+            }
+
+        }
+
     }
 
     &.footer {
