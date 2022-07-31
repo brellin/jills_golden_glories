@@ -4,7 +4,7 @@
     <div class="burger" @click="toggleIsOpen" />
     <nav :class="isOpen ? 'open' : ''">
       <router-link
-        v-for="{ path, meta } in routes"
+        v-for="{ path, meta } in routesC"
         :key="meta.name"
         :to="path"
         @click="close"
@@ -50,6 +50,11 @@ export default {
     },
     close() {
       this.isOpen = false;
+    },
+  },
+  computed: {
+    routesC() {
+      return routes.filter((r) => r.meta.name !== "Puppy Manager");
     },
   },
 };
