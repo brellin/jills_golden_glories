@@ -2,7 +2,7 @@
   <article>
     <button class="x" @click="deletePup">X</button>
     <button class="ellipsis">•••</button>
-    <h3>{{ title }}</h3>
+    <h2>{{ title }}</h2>
     <p>{{ sold ? "Sold" : "Not Sold" }}</p>
     <div
       v-for="{ url, title, public_id } in pictures"
@@ -11,7 +11,9 @@
     >
       <div class="pic-con">
         <div class="head-con">
-          <button class="dimg" @click="deleteImage(public_id)">X</button>
+          <div></div>
+          <h3>{{ readPublicId(public_id) }}</h3>
+          <button class="dimg">X</button>
         </div>
         <img :src="url" :alt="title" :title="title" />
       </div>
@@ -20,6 +22,7 @@
 </template>
 
 <script>
+import { readPublicId } from "../assets/utils/cloudinary";
 export default {
   name: "gg-pup",
   props: {
@@ -31,14 +34,15 @@ export default {
   methods: {
     deleteImage(pid) {
       if (window.confirm(`Are you sure you want to delete this picture?`))
-        console.log(`deleted ${pid}`);
-      else alert(`You have chosen not to delete ${pid}.`);
+        console.log(`deleted ${readPublicId(pid)}`);
+      else alert(`You have chosen not to delete ${readPublicId(pid)}.`);
     },
     deletePup() {
       if (window.confirm(`Are you sure you want to delete ${this.title}?`))
         console.log("deleted");
       else alert(`You have chosen not to delete ${this.title}.`);
     },
+    readPublicId,
   },
 };
 </script>
@@ -74,12 +78,13 @@ article {
 
   div.pic-con-con {
     @include flex(column, flex-start, center);
-    max-width: 100%;
+    width: 100%;
 
     div.pic-con {
       position: relative;
       @include card;
       width: max-content;
+      max-width: calc(100% - 100px);
       padding: 15px;
 
       div.head-con {
