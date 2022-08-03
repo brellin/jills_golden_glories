@@ -5,7 +5,7 @@ import AboutTheBreed from './views/AboutTheBreed.vue';
 import Bloodlines from './views/Bloodlines.vue';
 import PuppyManager from './views/PuppyManager.vue';
 
-const titlize = title => `Golden Glories ${ title }`;
+const titlize = title => `Golden Glories - ${ title }`;
 
 const routes = [
     {
@@ -46,6 +46,11 @@ const routes = [
         meta: {
             title: titlize('Puppy Manager'),
             name: 'Puppy Manager'
+        },
+        beforeEnter: (to, from, next) => {
+            console.log('to', to, '\nfrom', from);
+            if (!to) next('/');
+            else next();
         }
     }
 ];
