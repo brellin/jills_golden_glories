@@ -29,6 +29,12 @@ export const updatePup = async (id, update) => {
     } catch (err) { console.error(err); }
 };
 
+/**
+ * 
+ * @param {String} id id for puppy
+ * @param {String} public_id public id locating picture on cloudinary
+ * @returns Promise from server
+ */
 export const deletePicture = async (id, public_id) => {
     try {
         const { data } = await axios.put(`puppies/picture/${ id }`, { public_id });

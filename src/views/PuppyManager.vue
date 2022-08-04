@@ -1,20 +1,14 @@
 <template>
   <h1>Current Puppies</h1>
   <section class="currentPuppies">
-    <Pup v-for="pup in puppies" v-bind="pup" :key="pup._id" />
+    <Pup v-for="pup in puppies" v-bind="pup" :key="pup._id" @delete-pup="deletePup" @delete-pic="deletePic" />
   </section>
 
   <h1>Add a New Puppy</h1>
   <form class="newPuppy">
     <figure>
       <label for="puppy_uploader">Image:</label>
-      <input
-        type="file"
-        accept="image/*"
-        id="puppy_uploader"
-        multiple
-        disabled
-      />
+      <input type="file" accept="image/*" id="puppy_uploader" multiple disabled />
     </figure>
 
     <figure>
@@ -36,70 +30,82 @@
 </template>
 
 <script>
-import axios from "../plugins/axios";
-import Pup from "../components/Pup/Pup.vue";
-export default {
-  name: "gg-puppy-manager",
-  data() {
-    return {
-      puppies: [],
-      loading: false,
-    };
-  },
-  beforeMount() {
-    axios
-      .get("puppies")
-      .then(({ data }) => {
-        console.log(data);
-        this.puppies = data;
-      })
-      .catch(({ message }) => console.error(message));
-  },
-  components: {
-    Pup,
-  },
-};
+  import axios from "../plugins/axios";
+  import Pup from "../components/Pup/Pup.vue";
+  export default {
+    name: "gg-puppy-manager",
+    data() {
+      return {
+        puppies: [],
+        loading: false,
+      };
+    },
+    beforeMount() {
+      axios
+        .get("puppies")
+        .then(({ data }) => {
+          console.log(data);
+          this.puppies = data;
+        })
+        .catch(({ message }) => console.error(message));
+    },
+    components: {
+      Pup,
+    },
+    methods: {
+      deletePic(id, public_id) {
+        const newPups = this.puppies.slice();
+        const pupMatch = newPups.findIndex((pup) => pup._id === id);
+        newPups[pupMatch].pictures = newPups[pupMatch].pictures.filter((pic) => pic.public_id !== public_id);
+        this.puppies = newPups;
+      },
+      deletePup(id) {
+        const newPups = this.puppies.slice();
+        this.puppies = newPups.filter((pup) => pup._id !== id);
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
-section.current_puppies {
-  width: 100%;
-}
-
-form.newPuppy {
-  @include card;
-  width: 50%;
-  padding: 15px 30px;
-
-  figure {
-    @include flex($j: baseline, $a: center);
+  section.current_puppies {
     width: 100%;
-    margin-bottom: 10px;
-    padding: none;
-    text-align: center;
+  }
 
-    label {
-      width: 75px;
-      text-align: right;
-      font-size: 2.5rem;
-      font-family: "Little Star Story";
-    }
+  form.newPuppy {
+    @include card;
+    width: 50%;
+    padding: 15px 30px;
 
-    input,
-    select {
-      margin-left: 10px;
-      font-size: 2rem;
-    }
+    figure {
+      @include flex($j: baseline, $a: center);
+      width: 100%;
+      margin-bottom: 10px;
+      padding: none;
+      text-align: center;
 
-    img {
-      max-width: 100%;
-    }
+      label {
+        width: 75px;
+        text-align: right;
+        font-size: 2.5rem;
+        font-family: "Little Star Story";
+      }
 
-    button {
-      font-size: 2.5rem;
-      font-family: "Little Star Story";
-      cursor: pointer;
+      input,
+      select {
+        margin-left: 10px;
+        font-size: 2rem;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      button {
+        font-size: 2.5rem;
+        font-family: "Little Star Story";
+        cursor: pointer;
+      }
     }
   }
-}
 </style>
