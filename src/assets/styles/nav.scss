@@ -1,58 +1,56 @@
 nav {
-    width: 100%;
-    @include flex($j: space-around);
-    position: sticky;
-    top: -1px;
-    background: linear-gradient($blue, 80%, transparent);
-    margin-top: -1px;
+  width: 100%;
+  @include flex($j: space-around);
+  position: sticky;
+  top: -1px;
+  background: linear-gradient($blue, 80%, transparent);
+  margin-top: -1px;
+  transition: 0.2s ease;
+  z-index: 5;
+
+  @media (max-width: 800px) {
+    margin: 75px 0 0;
+    background: none;
+    position: fixed;
+    @include flex(column, flex-start, flex-start);
+    width: auto;
+    left: 0;
+
+    @for $i from 1 through 6 {
+      a:nth-child(#{$i}) {
+        transition-duration: #{"." + ($i + 3) + "s"};
+      }
+    }
+
+    &.open a {
+      transform: translateX(0);
+    }
+  }
+
+  a {
+    font-size: 1.5rem;
+    padding: 15px 5%;
     transition: 0.2s ease;
-    z-index: 2;
+    text-decoration: none;
+    color: $gold;
+    font-family: "Little Star Story";
+    font-size: 1.5rem;
+
+    &:hover,
+    &.active {
+      font-size: 1.7rem;
+      font-weight: bolder;
+    }
 
     @media (max-width: 800px) {
-        margin: 75px 0 0;
-        background: none;
-        position: fixed;
-        @include flex(column, flex-start, flex-start);
-        width: auto;
-        left: 0;
-
-        @for $i from 1 through 6 {
-            a:nth-child(#{$i}) {
-                transition-duration: #{"." + ($i + 3) + "s"};
-            }
-        }
-
-        &.open a {
-            transform: translateX(0);
-        }
+      padding: 15px 2%;
+      background: $blue;
+      width: 50vw;
+      text-align: center;
+      transform: translateX(calc(-60vw));
+      transition-duration: 0s;
+      margin-top: -1px;
+      background: $blue;
     }
-
-    a {
-        font-size: 1.5rem;
-        padding: 15px 5%;
-        transition: 0.2s ease;
-        text-decoration: none;
-        color: $gold;
-        font-family: 'Little Star Story';
-        font-size: 1.5rem;
-
-        &:hover,
-        &.active {
-            font-size: 1.7rem;
-            font-weight: bolder;
-        }
-
-        @media (max-width: 800px) {
-            padding: 15px 2%;
-            background: $blue;
-            width: 50vw;
-            text-align: center;
-            transform: translateX(calc(-60vw));
-            transition-duration: 0s;
-            margin-top: -1px;
-            background: $blue;
-        }
-        
-    }
-
+  }
 }

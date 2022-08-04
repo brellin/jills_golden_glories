@@ -15,7 +15,7 @@ export const postNewPuppy = async newPuppy => {
         return data;
     } catch ({ message }) { return message; }
 };
-export const getAllPuppies = async _ => {
+export const getAllPuppies = async () => {
     try {
         const { data } = await axios.get('puppies');
         return data;

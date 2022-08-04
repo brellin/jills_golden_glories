@@ -37,7 +37,7 @@
 
 <script>
 import axios from "../plugins/axios";
-import Pup from "../components/Pup.vue";
+import Pup from "../components/Pup/Pup.vue";
 export default {
   name: "gg-puppy-manager",
   data() {
