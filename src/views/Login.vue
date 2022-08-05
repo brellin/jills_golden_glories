@@ -33,7 +33,8 @@
         e.preventDefault();
         const { status } = await login(this.user.username, this.user.password);
         if (status === 200) {
-          console.log("logged in");
+          this.$store.commit("login");
+          this.$router.push("/puppyManager");
         }
       },
     },

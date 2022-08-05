@@ -31,11 +31,6 @@
         required: true,
         type: String,
       },
-      handleChanges: {
-        required: true,
-        type: Function,
-        default: (e) => (this.field = e.target.value),
-      },
     },
     data() {
       return {

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import store from './plugins/vuex';
 import Home from './views/Home.vue';
 import Puppies from './views/Puppies.vue';
 import AboutTheBreed from './views/AboutTheBreed.vue';
@@ -53,8 +54,7 @@ const routes = [
             name: 'Puppy Manager',
         },
         beforeEnter: (to, from, next) => {
-            console.log('to', to, '\nfrom', from);
-            next('/login');
+            store.state.loggedIn ? next() : next('/login');
         }
     },
     {
