@@ -54,5 +54,4 @@ export const deletePup = async id => {
     } catch (err) { console.error(err); }
 };
 
-export const login = async (username, password) => await axios.create({ headers: { username, password, secret: process.env.SECRET } }).post('users/login');
-
+export const login = async (username, password) => await axios.create({ headers: { username, password, secret: process.env.VUE_APP_SECRET } }).post('users/login');

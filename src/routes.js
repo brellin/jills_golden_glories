@@ -4,6 +4,7 @@ import Puppies from './views/Puppies.vue';
 import AboutTheBreed from './views/AboutTheBreed.vue';
 import Bloodlines from './views/Bloodlines.vue';
 import PuppyManager from './views/PuppyManager.vue';
+import Login from './views/Login.vue';
 
 const titlize = title => `Golden Glories - ${ title }`;
 
@@ -14,6 +15,7 @@ const routes = [
         meta: {
             title: titlize('Home'),
             name: 'Home',
+            show: true
         }
     },
     {
@@ -21,7 +23,8 @@ const routes = [
         component: Puppies,
         meta: {
             title: titlize('Puppies'),
-            name: 'Puppies'
+            name: 'Puppies',
+            show: true
         }
     },
     {
@@ -29,7 +32,8 @@ const routes = [
         component: AboutTheBreed,
         meta: {
             title: titlize('About the Breed'),
-            name: 'About the Breed'
+            name: 'About the Breed',
+            show: true
         }
     },
     {
@@ -37,7 +41,8 @@ const routes = [
         component: Bloodlines,
         meta: {
             title: titlize('Bloodlines'),
-            name: 'Bloodlines'
+            name: 'Bloodlines',
+            show: true
         }
     },
     {
@@ -45,11 +50,19 @@ const routes = [
         component: PuppyManager,
         meta: {
             title: titlize('Puppy Manager'),
-            name: 'Puppy Manager'
+            name: 'Puppy Manager',
         },
         beforeEnter: (to, from, next) => {
             console.log('to', to, '\nfrom', from);
-            next('/');
+            next('/login');
+        }
+    },
+    {
+        path: '/login',
+        component: Login,
+        meta: {
+            title: titlize('Login'),
+            name: 'Login'
         }
     }
 ];
