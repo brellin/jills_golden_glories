@@ -49,8 +49,7 @@ const routes = [
         },
         beforeEnter: (to, from, next) => {
             console.log('to', to, '\nfrom', from);
-            if (!to) next('/');
-            else next();
+            next('/');
         }
     }
 ];

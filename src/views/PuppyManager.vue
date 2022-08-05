@@ -5,37 +5,28 @@
   </section>
 
   <h1>Add a New Puppy</h1>
-  <form class="newPuppy">
-    <figure>
-      <label for="puppy_uploader">Image:</label>
-      <input type="file" accept="image/*" id="puppy_uploader" multiple disabled />
-    </figure>
+  <form class="newPuppy" @submit="addPup">
+    <input type="text" name="title" placeholder="Title" @input="handleNewPupChange" />
 
-    <figure>
-      <label for="sold">Sold:</label>
+    <input type="file" name="pictures" accept="image/*" @input="handleNewPupChange" multiple />
+    <img v-for="pic in this.newPup.imgs" :src="pic" :alt="pic" :key="pic" />
 
-      <select id="sold" disabled>
-        <option value="true">Yes</option>
-        <option value="false" selected>No</option>
-      </select>
-    </figure>
-
-    <figure>
-      <label for="puppy_title">Title:</label>
-      <input type="text" id="puppy_title" disabled />
-    </figure>
-
-    <button id="new_puppy" disabled>Submit</button>
+    <button>Submit</button>
   </form>
 </template>
 
 <script>
   import axios from "../plugins/axios";
   import Pup from "../components/Pup/Pup.vue";
+  import { postNewPuppy } from "@/assets/utils/requests";
   export default {
     name: "gg-puppy-manager",
     data() {
       return {
+        newPup: {
+          pictures: [],
+          imgs: [],
+        },
         puppies: [],
         loading: false,
       };
@@ -63,49 +54,51 @@
         const newPups = this.puppies.slice();
         this.puppies = newPups.filter((pup) => pup._id !== id);
       },
+      handleNewPupChange(e) {
+        if (e.target.name === "pictures")
+          for (const file of e.target.files) {
+            this.newPup.pictures.push(file);
+            this.newPup.imgs.push(URL.createObjectURL(file));
+          }
+        else this.newPup[e.target.name] = e.target.value;
+      },
+      async addPup(e) {
+        e.preventDefault();
+        const { data } = await postNewPuppy(this.newPup);
+        console.log(data);
+        this.newPup = { pictures: [], imgs: [] };
+      },
     },
   };
 </script>
 
 <style lang="scss">
-  section.current_puppies {
-    width: 100%;
+  section.currentPuppies {
+    width: 90%;
   }
 
   form.newPuppy {
     @include card;
-    width: 50%;
+    width: 90%;
     padding: 15px 30px;
+    box-sizing: border-box;
 
-    figure {
-      @include flex($j: baseline, $a: center);
-      width: 100%;
-      margin-bottom: 10px;
-      padding: none;
+    input,
+    select {
+      font-size: 2rem;
+      margin: 15px auto;
       text-align: center;
+    }
 
-      label {
-        width: 75px;
-        text-align: right;
-        font-size: 2.5rem;
-        font-family: "Little Star Story";
-      }
+    img {
+      max-width: 100%;
+    }
 
-      input,
-      select {
-        margin-left: 10px;
-        font-size: 2rem;
-      }
-
-      img {
-        max-width: 100%;
-      }
-
-      button {
-        font-size: 2.5rem;
-        font-family: "Little Star Story";
-        cursor: pointer;
-      }
+    button {
+      margin: 15px auto;
+      font-size: 2.5rem;
+      font-family: "Little Star Story";
+      cursor: pointer;
     }
   }
 </style>

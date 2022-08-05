@@ -5,8 +5,13 @@ axios.defaults.baseURL = process.env.NODE_ENV && process.env.NODE_ENV === 'devel
     'https://goldenglories.herokuapp.com/';
 
 export const postNewPuppy = async newPuppy => {
+    const fd = new FormData();
+    fd.set('title', newPuppy.title);
+    newPuppy.pictures.forEach(pic => fd.set('pictures', pic));
+    fd.set('sold', false);
+
     try {
-        const { data } = await axios.post('/puppies', newPuppy,
+        const { data } = await axios.post('/puppies', fd,
             {
                 headers: {
                     'content-type': 'multipart/form-data'
