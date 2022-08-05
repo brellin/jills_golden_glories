@@ -5,6 +5,7 @@
       :name="id"
       :type="type"
       :id="id"
+      :autocomplete="autofill ? 'on' : 'off'"
       @focus="inFocus"
       @blur="unFocus"
       @input="handleChange"
@@ -30,6 +31,10 @@
       inputName: {
         required: true,
         type: String,
+      },
+      autocomplete: {
+        required: false,
+        type: Boolean,
       },
     },
     data() {
