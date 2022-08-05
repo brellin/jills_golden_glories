@@ -4,13 +4,19 @@
     <button class="ellipsis">•••</button>
     <h2>{{ title }}</h2>
     <p>{{ sold ? "Sold" : "Not Sold" }}</p>
-    <PupPic v-for="pic in pictures" v-bind="pic" @delete-pic="deletePic" :id="_id" :key="pic.public_id" />
+    <PupPic
+      v-for="pic in pictures"
+      v-bind="pic"
+      @delete-pic="deletePic"
+      :id="_id"
+      :key="pic.public_id"
+    />
   </article>
 </template>
 
 <script>
   import PupPic from "./PupPic.vue";
-  // import { deletePup as deletePupReq } from "@/assets/utils/requests";
+  import { deletePup as deletePupReq } from "@/assets/utils/requests";
   export default {
     name: "gg-pup",
     props: {
@@ -22,9 +28,10 @@
     components: { PupPic },
     methods: {
       async deletePup() {
-        window.confirm(`Are you sure you want to delete ${this.title}?`)
-          ? this.$emit("delete-pup", this._id)
-          : alert(`You have chosen not to delete ${this.title}.`);
+        if (window.confirm(`Are you sure you want to delete ${this.title}?`)) {
+          await deletePupReq(this._id);
+          this.$emit("delete-pup", this._id);
+        } else alert(`You have chosen not to delete ${this.title}.`);
       },
       deletePic(pid) {
         this.$emit("delete-pic", this._id, pid);

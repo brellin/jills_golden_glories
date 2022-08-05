@@ -7,8 +7,10 @@ axios.defaults.baseURL = process.env.NODE_ENV && process.env.NODE_ENV === 'devel
 export const postNewPuppy = async newPuppy => {
     const fd = new FormData();
     fd.set('title', newPuppy.title);
-    newPuppy.pictures.forEach(pic => fd.set('pictures', pic));
+    newPuppy.pictures.forEach(pic => fd.append('pictures', pic));
     fd.set('sold', false);
+
+    console.log('fd', fd);
 
     try {
         const { data } = await axios.post('/puppies', fd,

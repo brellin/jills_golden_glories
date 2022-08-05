@@ -5,7 +5,8 @@
       :name="id"
       :type="type"
       :id="id"
-      :autocomplete="autofill ? 'on' : 'off'"
+      :autocomplete="autocomplete ? 'on' : 'off'"
+      :value="this.value"
       @focus="inFocus"
       @blur="unFocus"
       @input="handleChange"
@@ -14,8 +15,6 @@
 </template>
 
 <script>
-  import { handleChanges } from "@/assets/utils";
-
   export default {
     name: "gg-floating-input",
     props: {
@@ -36,11 +35,15 @@
         required: false,
         type: Boolean,
       },
+      value: {
+        required: true,
+        type: String,
+      },
     },
     data() {
       return {
         focused: false,
-        field: "",
+        field: this.value,
       };
     },
     methods: {
@@ -58,7 +61,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   div.floating-input {
     margin-bottom: 2rem;
     background-color: white;
