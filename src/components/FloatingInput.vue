@@ -1,12 +1,9 @@
 <template>
   <div class="floating-input">
-    <label :for="id" :class="focused && 'focused'">{{ inputName }}</label>
+    <label :for="this.$attrs.id" :class="focused && 'focused'">{{ inputName }}</label>
     <input
-      :name="id"
-      :type="type"
-      :id="id"
-      :autocomplete="autocomplete ? 'on' : 'off'"
-      :value="this.value"
+      v-bind="this.$attrs"
+      :name="this.$attrs.id"
       @focus="inFocus"
       @blur="unFocus"
       @input="handleChange"
@@ -18,24 +15,7 @@
   export default {
     name: "gg-floating-input",
     props: {
-      id: {
-        required: true,
-        type: String,
-      },
-      type: {
-        required: false,
-        type: String,
-        default: "text",
-      },
       inputName: {
-        required: true,
-        type: String,
-      },
-      autocomplete: {
-        required: false,
-        type: Boolean,
-      },
-      value: {
         required: true,
         type: String,
       },
@@ -43,7 +23,6 @@
     data() {
       return {
         focused: false,
-        field: this.value,
       };
     },
     methods: {
@@ -51,10 +30,9 @@
         this.focused = true;
       },
       unFocus() {
-        if (!this.field) this.focused = false;
+        if (!this.$attrs.value) this.focused = false;
       },
       handleChange(e) {
-        this.field = e.target.value;
         this.$emit("handle-changes", e);
       },
     },

@@ -41,6 +41,9 @@
         isOpen: false,
       };
     },
+    beforeMount() {
+      this.$store.dispatch("pupulate");
+    },
     beforeUnmount() {
       localStorage.setItem("notFirstVisit", true);
     },

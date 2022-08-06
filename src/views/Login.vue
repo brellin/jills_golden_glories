@@ -1,11 +1,19 @@
 <template>
   <h1>Login</h1>
-  <form @submit="submit">
-    <FloatingInput id="username" inputName="Username" @handle-changes="handleChanges" />
+  <form @submit="submit" autocomplete="off">
+    <FloatingInput
+      id="username"
+      inputName="Username"
+      @handle-changes="handleChanges"
+      :value="user.username"
+      autocomplete="off"
+      autofocus
+    />
     <FloatingInput
       id="password"
       inputName="Password"
       @handle-changes="handleChanges"
+      :value="user.password"
       type="password"
     />
     <button>Submit</button>
@@ -31,10 +39,14 @@
       },
       async submit(e) {
         e.preventDefault();
-        const { status } = await login(this.user.username, this.user.password);
-        if (status === 200) {
+        try {
+          await login(this.user.username, this.user.password);
           this.$store.commit("login");
           this.$router.push("/puppyManager");
+          this.user = { username: "", password: "" };
+        } catch (err) {
+          console.error(err);
+          alert(err);
         }
       },
     },
