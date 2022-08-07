@@ -43,8 +43,7 @@
     methods: {
       async deletePup() {
         if (window.confirm(`Are you sure you want to delete ${this.title}?`)) {
-          await deletePupReq(this._id);
-          this.$emit("delete-pup", this._id);
+          this.$store.dispatch("deletePup", this._id);
         } else alert(`You have chosen not to delete ${this.title}.`);
       },
       deletePic(pid) {

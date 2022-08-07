@@ -1,20 +1,14 @@
 <template>
   <h1>Current Puppies</h1>
   <section class="currentPuppies">
-    <Pup
-      v-for="pup in puppies"
-      v-bind="pup"
-      :key="pup._id"
-      @delete-pup="deletePup"
-      @delete-pic="deletePic"
-    />
+    <Pup v-for="pup in puppies" v-bind="pup" :key="pup._id" @delete-pic="deletePic" />
   </section>
 
   <h1>Add a New Puppy</h1>
   <form class="newPuppy" @submit="addPup">
     <FloatingInput
       @handle-changes="handleNewPupChange"
-      :value="this.newPup.title"
+      :value="newPup.title"
       id="title"
       inputName="Title"
       autocomplete
@@ -23,7 +17,7 @@
     <input type="file" name="pictures" accept="image/*" @input="handleNewPupChange" multiple />
 
     <div class="upload-display">
-      <img v-for="pic in this.newPup.imgs" :src="pic" :alt="pic" :key="pic" />
+      <img v-for="pic in newPup.imgs" :src="pic" :alt="pic" :key="pic" />
     </div>
 
     <button>Submit</button>
@@ -31,10 +25,10 @@
 </template>
 
 <script>
-  import axios from "../plugins/axios";
   import Pup from "../components/Pup/Pup.vue";
-  import { postNewPuppy } from "@/assets/utils/requests";
-  import FloatingInput from "@/components/FloatingInput.vue";
+  import { postNewPuppy } from "../assets/utils/requests";
+  import FloatingInput from "../components/FloatingInput.vue";
+  import { mapState } from "vuex";
   export default {
     name: "gg-puppy-manager",
     data() {
@@ -44,18 +38,8 @@
           imgs: [],
           title: "",
         },
-        puppies: [],
         loading: false,
       };
-    },
-    beforeMount() {
-      axios
-        .get("puppies")
-        .then(({ data }) => {
-          console.log(data);
-          this.puppies = data;
-        })
-        .catch(({ message }) => console.error(message));
     },
     components: {
       Pup,
@@ -69,10 +53,6 @@
           (pic) => pic.public_id !== public_id
         );
         this.puppies = newPups;
-      },
-      deletePup(id) {
-        const newPups = this.puppies.slice();
-        this.puppies = newPups.filter((pup) => pup._id !== id);
       },
       handleNewPupChange(e) {
         if (e.target.name === "pictures")
@@ -90,6 +70,7 @@
         this.newPup = { pictures: [], imgs: [], title: "" };
       },
     },
+    computed: mapState(["puppies"]),
   };
 </script>
 

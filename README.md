@@ -1,24 +1,10 @@
-# golden-glories-vanilla
+# Golden Glories
 
-## Project setup
-```
-npm install
-```
+### Currently made with Vue.js
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Commands
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+| Command | Effect                                                        |
+| :-----: | :------------------------------------------------------------ |
+| `serve` | runs a development server on http://localhost:9455            |
+| `build` | creates a production version of the app in the `/dist` folder |
