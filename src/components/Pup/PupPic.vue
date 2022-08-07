@@ -1,6 +1,6 @@
 <template>
   <div :class="`pic-con${activeImg ? ' active' : ''}`">
-    <div class="head-con">
+    <div v-if="loggedIn" class="head-con">
       <div></div>
       <h3>{{ pid }}</h3>
       <button class="dimg" @click="deleteImage">X</button>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import { mapState } from "vuex";
   import { readPublicId } from "../../assets/utils/cloudinary";
   export default {
     name: "gg-pup-pic",
@@ -33,6 +34,7 @@
       pid() {
         return readPublicId(this.public_id);
       },
+      ...mapState(["loggedIn"]),
     },
   };
 </script>

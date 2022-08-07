@@ -1,7 +1,7 @@
 <template>
   <article>
-    <button class="x" @click="deletePup">X</button>
-    <button class="ellipsis">•••</button>
+    <button v-if="loggedIn" class="x" @click="deletePup">X</button>
+    <button v-if="loggedIn" class="ellipsis">•••</button>
     <h2>{{ title }}</h2>
     <p>{{ sold ? "Sold" : "Not Sold" }}</p>
     <div class="pic-con-con">
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import { mapState } from "vuex";
   import PupPic from "./PupPic.vue";
   export default {
     name: "gg-pup",
@@ -51,6 +52,7 @@
         this.activeImg = this.activeImg === 0 ? this.pictures.length - 1 : this.activeImg - 1;
       },
     },
+    computed: mapState(["loggedIn"]),
   };
 </script>
 
