@@ -2,7 +2,7 @@
   <div :class="`pic-con${activeImg ? ' active' : ''}`">
     <div class="head-con">
       <div></div>
-      <h3>{{ readPublicId(public_id) }}</h3>
+      <h3>{{ pid }}</h3>
       <button class="dimg" @click="deleteImage">X</button>
     </div>
     <img :src="url" :alt="title" :title="title" />
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import { deletePicture } from "../../assets/utils/requests";
   import { readPublicId } from "../../assets/utils/cloudinary";
   export default {
     name: "gg-pup-pic",
@@ -22,15 +21,18 @@
       activeImg: Boolean,
     },
     methods: {
-      async deleteImage() {
+      deleteImage() {
         if (
           window.confirm(`Are you sure you want to delete ${readPublicId(this.public_id)}?`)
         ) {
-          deletePicture(this.id, this.public_id);
-          this.$emit("delete-pic", this.public_id);
+          this.$store.dispatch("deletePic", { id: this.id, public_id: this.public_id });
         } else alert(`You have chosen not to delete ${readPublicId(this.public_id)}.`);
       },
-      readPublicId,
+    },
+    computed: {
+      pid() {
+        return readPublicId(this.public_id);
+      },
     },
   };
 </script>
@@ -63,6 +65,8 @@
       h3 {
         margin: 10px;
         color: $gold;
+        max-width: 70%;
+        overflow: hidden;
       }
 
       div {

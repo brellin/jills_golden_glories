@@ -53,9 +53,9 @@ const routes = [
             title: titlize('Puppy Manager'),
             name: 'Puppy Manager',
         },
-        beforeEnter: (to, from, next) => {
-            store.state.loggedIn ? next() : next('/login');
-        }
+        // beforeEnter: (to, from, next) => {
+        // store.state.loggedIn ? next() : next('/login');
+        // }
     },
     {
         path: '/login',

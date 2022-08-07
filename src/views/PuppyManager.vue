@@ -1,7 +1,7 @@
 <template>
   <h1>Current Puppies</h1>
   <section class="currentPuppies">
-    <Pup v-for="pup in puppies" v-bind="pup" :key="pup._id" @delete-pic="deletePic" />
+    <Pup v-for="pup in puppies" v-bind="pup" :key="pup._id" />
   </section>
 
   <h1>Add a New Puppy</h1>
@@ -46,14 +46,6 @@
       FloatingInput,
     },
     methods: {
-      deletePic(id, public_id) {
-        const newPups = this.puppies.slice();
-        const pupMatch = newPups.findIndex((pup) => pup._id === id);
-        newPups[pupMatch].pictures = newPups[pupMatch].pictures.filter(
-          (pic) => pic.public_id !== public_id
-        );
-        this.puppies = newPups;
-      },
       handleNewPupChange(e) {
         if (e.target.name === "pictures")
           for (const file of e.target.files) {
@@ -64,9 +56,7 @@
       },
       async addPup(e) {
         e.preventDefault();
-        console.log(this.newPup);
-        const { status } = await postNewPuppy(this.newPup);
-        console.log(status);
+        this.$store.dispatch("addPup", this.newPup);
         this.newPup = { pictures: [], imgs: [], title: "" };
       },
     },

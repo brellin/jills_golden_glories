@@ -4,28 +4,26 @@
     <button class="ellipsis">•••</button>
     <h2>{{ title }}</h2>
     <p>{{ sold ? "Sold" : "Not Sold" }}</p>
-    <button class="navigate decrement" :disabled="pictures.length < 2" @click="dAI">
-      {{ "<" }}
-    </button>
     <div class="pic-con-con">
+      <button class="navigate decrement" :disabled="pictures.length < 2" @click="dAI">
+        {{ "<" }}
+      </button>
       <PupPic
         v-for="(pic, index) in pictures"
         v-bind="pic"
-        @delete-pic="deletePic"
         :activeImg="activeImg === index"
         :id="_id"
         :key="pic.public_id"
       />
+      <button class="navigate increment" :disabled="pictures.length < 2" @click="iAI">
+        {{ ">" }}
+      </button>
     </div>
-    <button class="navigate increment" :disabled="pictures.length < 2" @click="iAI">
-      {{ ">" }}
-    </button>
   </article>
 </template>
 
 <script>
   import PupPic from "./PupPic.vue";
-  import { deletePup as deletePupReq } from "@/assets/utils/requests";
   export default {
     name: "gg-pup",
     props: {
@@ -45,9 +43,6 @@
         if (window.confirm(`Are you sure you want to delete ${this.title}?`)) {
           this.$store.dispatch("deletePup", this._id);
         } else alert(`You have chosen not to delete ${this.title}.`);
-      },
-      deletePic(pid) {
-        this.$emit("delete-pic", this._id, pid);
       },
       iAI() {
         this.activeImg = this.activeImg === this.pictures.length - 1 ? 0 : this.activeImg + 1;
