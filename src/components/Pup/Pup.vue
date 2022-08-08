@@ -5,7 +5,7 @@
     </button>
     <button v-if="loggedIn" class="ellipsis" :title="`Edit '${title}'`">•••</button>
     <h2>{{ title }}</h2>
-    <p>{{ sold ? "Sold" : "Not Sold" }}</p>
+    <p>{{ sold ? "Sold" : "Available" }}</p>
     <carousel :settings="settings">
       <slide v-for="(pic, i) in pictures" :key="i">
         <PupPic v-bind="pic" :id="_id" />
