@@ -39,7 +39,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   div.pic-con {
     @include card;
     box-shadow: none;
@@ -73,7 +73,7 @@
     }
 
     img {
-      width: 100%;
+      max-width: 100%;
       border-radius: 0;
     }
   }

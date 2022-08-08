@@ -1,10 +1,12 @@
 <template>
-  <article>
-    <button v-if="loggedIn" class="x" @click="deletePup" :title="`Delete '${title}'`">
-      X
-    </button>
-    <button v-if="loggedIn" class="ellipsis" :title="`Edit '${title}'`">•••</button>
-    <h2>{{ title }}</h2>
+  <article class="pup">
+    <div class="pup-head">
+      <button v-if="loggedIn" class="ellipsis" :title="`Edit '${title}'`">•••</button>
+      <h2>{{ title }}</h2>
+      <button v-if="loggedIn" class="x" @click="deletePup" :title="`Delete '${title}'`">
+        X
+      </button>
+    </div>
     <p>{{ sold ? "Sold" : "Available" }}</p>
     <carousel :settings="settings">
       <slide v-for="(pic, i) in pictures" :key="i">
@@ -58,26 +60,25 @@
 </script>
 
 <style lang="scss">
-  article {
+  article.pup {
     @include card;
     position: relative;
 
-    button.ellipsis {
-      @include spin-button;
-      align-self: flex-end;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 1;
-    }
+    div.pup-head {
+      width: 100%;
+      background-color: $blue;
+      margin-top: -30px;
+      padding: 0 5%;
+      border-radius: 50px 50px 0 0;
+      @include flex($j: space-evenly, $a: center);
 
-    button.x {
-      @include spin-button;
-      align-self: flex-end;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 1;
+      button.ellipsis {
+        @include spin-button;
+      }
+
+      button.x {
+        @include spin-button;
+      }
     }
 
     section.carousel {
