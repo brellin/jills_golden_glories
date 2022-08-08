@@ -7,79 +7,78 @@ $gold_bg: #ffeea9a4;
 $light_blue: #22d4f3;
 
 @mixin flex($d: row, $j: flex-start, $a: flex-start, $w: nowrap) {
-   display: flex;
-   display: -webkit-flex;
-   -webkit-flex-flow: $d $w;
-   flex-flow: $d $w;
-   -webkit-justify-content: $j;
-   justify-content: $j;
-   -webkit-align-items: $a;
-   align-items: $a;
-} 
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-flow: $d $w;
+  flex-flow: $d $w;
+  -webkit-justify-content: $j;
+  justify-content: $j;
+  -webkit-align-items: $a;
+  align-items: $a;
+}
 
 @mixin round-image-vignette($r: 50%, $f: left) {
-   float: $f;
-   border-radius: $r;
-   box-shadow: 0 0 5px 2.5px inset whitesmoke;
+  float: $f;
+  border-radius: $r;
+  box-shadow: 0 0 5px 2.5px inset whitesmoke;
 }
 
 @mixin transform($transforms) {
-	-webkit-transform: $transforms;
-	-moz-transform: $transforms;
-	-ms-transform: $transforms;
-	transform: $transforms;
+  -webkit-transform: $transforms;
+  -moz-transform: $transforms;
+  -ms-transform: $transforms;
+  transform: $transforms;
 }
 
 @mixin card {
-   width: 100%;
-   @include flex(column, center, center);
-   background-color: $gold_bg;
-   padding: 30px 0;
-   margin-bottom: 10px;
-   border-radius: 50px;
-   box-shadow: #00000056 7px 7px 5px;
-   
-   h2 {
-      font-family: 'Samantha Upright';
-      margin: 5px auto;
-      font-size: 7.5rem;
-      color: $gold;
-      text-shadow: 2px 2px 1px black;
-      text-align: center;
+  width: 100%;
+  @include flex(column, center, center);
+  background-color: $gold_bg;
+  padding: 30px 0;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  box-shadow: #00000056 7px 7px 5px;
 
-      @media (max-width: 800px) {
-         font-size: 5rem;
-         line-height: 1;
-      }
-   
-   }
-   
-   img {
-      border-radius: 25px;
-      max-width: 100%;
-   }
-   
+  h2 {
+    font-family: "Samantha Upright";
+    margin: 5px auto;
+    font-size: 7.5rem;
+    color: $gold;
+    text-shadow: 2px 2px 1px black;
+    text-align: center;
+
+    @media (max-width: 800px) {
+      font-size: 5rem;
+      line-height: 1;
+    }
+  }
+
+  img {
+    border-radius: 25px;
+    max-width: 100%;
+  }
 }
 
 @mixin spin-button {
-   border-radius: 50%;
-   outline: none;
-   background: $gold;
-   font-size: 2.5rem;
-   padding: 5px 10px;
-   cursor: pointer;
-   transition: .2s ease-in-out;
-   border: #00000099 2px solid;
-   margin: 1px 2px;
-   
-   &:hover, &.open {
-      padding: 6px 12px;
-      border-radius: 5px;
-      transform: rotate(180deg);
-      margin: 0;
-   }
+  border-radius: 50%;
+  outline: none;
+  background: $gold;
+  font-size: 2.5rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  border: #00000099 2px solid;
+  margin: 1px 2px;
+
+  &:hover,
+  &.open {
+    padding: 6px 12px;
+    border-radius: 5px;
+    transform: rotate(180deg);
+    margin: 0;
+  }
 }
 
 @function scaleBg($x, $y, $tw) {
-   @return math.div(calc($y * $tw), $x);
+  @return math.div(calc($y * $tw), $x);
 }

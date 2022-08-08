@@ -1,5 +1,5 @@
 <template>
-  <div :class="`pic-con${activeImg ? ' active' : ''}`">
+  <div class="pic-con">
     <div v-if="loggedIn" class="head-con">
       <div></div>
       <h3>{{ pid }}</h3>
@@ -41,21 +41,13 @@
 
 <style lang="scss">
   div.pic-con {
-    position: relative;
     @include card;
-    width: 0;
-    max-width: calc(80%);
+    box-shadow: none;
     padding: 0 0 15px;
     background: $gold_input;
     border-radius: 5px;
     overflow: hidden;
-    // transform: scale(0);
     transition: 0.3s ease;
-
-    &.active {
-      width: 100%;
-      // transform: scale(1);
-    }
 
     div.head-con {
       @include flex($j: space-between, $a: center);

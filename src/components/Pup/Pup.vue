@@ -1,29 +1,27 @@
 <template>
   <article>
-    <button v-if="loggedIn" class="x" @click="deletePup">X</button>
-    <button v-if="loggedIn" class="ellipsis">•••</button>
+    <button v-if="loggedIn" class="x" @click="deletePup" :title="`Delete '${title}'`">
+      X
+    </button>
+    <button v-if="loggedIn" class="ellipsis" :title="`Edit '${title}'`">•••</button>
     <h2>{{ title }}</h2>
     <p>{{ sold ? "Sold" : "Not Sold" }}</p>
-    <div class="pic-con-con">
-      <button class="navigate decrement" :disabled="pictures.length < 2" @click="dAI">
-        {{ "<" }}
-      </button>
-      <PupPic
-        v-for="(pic, index) in pictures"
-        v-bind="pic"
-        :activeImg="activeImg === index"
-        :id="_id"
-        :key="pic.public_id"
-      />
-      <button class="navigate increment" :disabled="pictures.length < 2" @click="iAI">
-        {{ ">" }}
-      </button>
-    </div>
+    <carousel :settings="settings">
+      <slide v-for="(pic, i) in pictures" :key="i">
+        <PupPic v-bind="pic" :id="_id" />
+      </slide>
+      <template #addons="{ slidesCount }">
+        <navigation v-if="slidesCount > 1" />
+        <pagination v-if="slidesCount > 1" />
+      </template>
+    </carousel>
   </article>
 </template>
 
 <script>
   import { mapState } from "vuex";
+  import { Carousel, Slide, Navigation, Pagination } from "vue3-carousel";
+  import "vue3-carousel/dist/carousel.css";
   import PupPic from "./PupPic.vue";
   export default {
     name: "gg-pup",
@@ -35,10 +33,13 @@
     },
     data() {
       return {
-        activeImg: 0,
+        settings: {
+          itemsToShow: 1,
+          wrapAround: true,
+        },
       };
     },
-    components: { PupPic },
+    components: { PupPic, Navigation, Pagination, Slide, Carousel },
     methods: {
       async deletePup() {
         if (window.confirm(`Are you sure you want to delete ${this.title}?`)) {
@@ -79,34 +80,39 @@
       z-index: 1;
     }
 
-    button.navigate {
-      position: absolute;
-      border: none;
-      color: $gold;
-      text-shadow: 1px 1px black;
-      font-size: 5rem;
-      font-family: "Little Star Story";
-      top: 50%;
-      background: none;
-      outline: none;
-      cursor: pointer;
-
-      &:disabled {
-        color: gray;
-        cursor: not-allowed;
-      }
-
-      &.increment {
-        right: 5px;
-      }
-
-      &.decrement {
-        left: 5px;
-      }
-    }
-    div.pic-con-con {
-      @include flex(row, center, center, nowrap);
+    section.carousel {
       width: 100%;
+
+      button.carousel__next,
+      button.carousel__prev {
+        background-color: $gold;
+        border: #00000099 2px solid;
+        transition: 0.3s ease;
+      }
+
+      button.carousel__next {
+        &:hover {
+          transform: translate(50%, -50%) scale(1.3);
+        }
+      }
+
+      button.carousel__prev {
+        &:hover {
+          transform: translate(-50%, -50%) scale(1.3);
+        }
+      }
+
+      svg.carousel__icon {
+        fill: black;
+      }
+
+      button.carousel__pagination-button {
+        background-color: #{$gold}50;
+
+        &--active {
+          background-color: $gold;
+        }
+      }
     }
 
     input[type="text"],
