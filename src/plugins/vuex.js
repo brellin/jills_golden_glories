@@ -1,6 +1,13 @@
-import { deletePup } from '../assets/utils/requests';
 import { createStore } from 'vuex';
 import axios from './axios';
+
+function makeFormData(pupData) {
+    const fd = new FormData();
+    fd.set('title', pupData.title);
+    pupData.pictures.forEach(pic => fd.append('pictures', pic));
+    fd.set('sold', pupData.sold);
+    return fd;
+}
 
 const store = createStore({
     state: {
@@ -24,8 +31,14 @@ const store = createStore({
             state.puppies = newPups;
         },
         addPup(state, newPuppy) {
-            console.log(newPuppy);
             state.puppies = [ ...state.puppies, newPuppy ];
+        },
+        editPup(state, { id, edits }) {
+            console.log(id, edits);
+            const editedPups = state.puppies.slice();
+            const pupMatch = editedPups.findIndex(pup => pup._id === id);
+            editedPups[ pupMatch ] = edits;
+            state.puppies = editedPups;
         }
     },
     actions: {
@@ -46,21 +59,25 @@ const store = createStore({
             } catch (err) { console.error(err); }
         },
         async addPup({ commit }, newPuppy) {
-            const fd = new FormData();
-            fd.set('title', newPuppy.title);
-            newPuppy.pictures.forEach(pic => fd.append('pictures', pic));
-            fd.set('sold', false);
-
+            const fd = makeFormData({ ...newPuppy, sold: false });
 
             try {
-                const { data } = await axios.post('/puppies', fd,
-                    {
-                        headers: {
-                            'content-type': 'multipart/form-data'
-                        }
-                    });
+                const { data } = await axios.post('puppies', fd, {
+                    headers: { 'content-type': 'multipart/form-data' }
+                });
                 commit('addPup', data);
             } catch ({ message }) { console.error(message); }
+        },
+        async editPup({ commit }, { id, edits }) {
+            const fd = makeFormData(edits);
+
+            try {
+                const { data } = await axios.put(`puppies/${ id }`, fd, {
+                    headers: { 'content-type': 'multipart/form-data' }
+                });
+                console.log(data);
+                commit('editPup', { id, edits: data });
+            } catch (err) { console.error(err); }
         }
     }
 });

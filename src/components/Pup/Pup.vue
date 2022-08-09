@@ -1,13 +1,24 @@
 <template>
   <article class="pup">
-    <div class="pup-head">
-      <button v-if="loggedIn" class="ellipsis" :title="`Edit '${title}'`">•••</button>
-      <h2>{{ title }}</h2>
-      <button v-if="loggedIn" class="x" @click="deletePup" :title="`Delete '${title}'`">
-        X
-      </button>
-    </div>
-    <p>{{ sold ? "Sold" : "Available" }}</p>
+    <template v-if="!editing">
+      <div class="pup-head" v-if="loggedIn">
+        <button class="spin" @click="edit" :title="`Edit '${title}'`">•••</button>
+        <h2>{{ title }}</h2>
+        <button class="spin" @click="deletePup" :title="`Delete '${title}'`">X</button>
+      </div>
+      <p>{{ sold ? "Sold" : "Available" }}</p>
+    </template>
+    <template v-else>
+      <div class="pup-head" v-if="loggedIn">
+        <button class="spin" @click="edit" :title="`Edit '${title}'`">•••</button>
+        <input type="text" :value="edits.title" name="title" @input="handleEdits" />
+        <button class="spin" @click="deletePup" :title="`Delete '${title}'`">X</button>
+      </div>
+      <select name="sold" :value="edits.sold" @input="handleEdits">
+        <option :value="false">Available</option>
+        <option :value="true">Sold</option>
+      </select>
+    </template>
     <carousel :settings="settings">
       <slide v-for="(pic, i) in pictures" :key="i">
         <PupPic v-bind="pic" :id="_id" />
@@ -17,6 +28,13 @@
         <pagination v-if="slidesCount > 1" />
       </template>
     </carousel>
+    <template v-if="editing">
+      <input type="file" name="pictures" accept="image/*" @input="handlePicUpload" multiple />
+      <div class="upload-display">
+        <img v-for="pic in edits.imgs" :src="pic" :alt="pic" :key="pic" />
+      </div>
+      <button @click="editPup">Submit Changes</button>
+    </template>
   </article>
 </template>
 
@@ -39,11 +57,18 @@
           itemsToShow: 1,
           wrapAround: true,
         },
+        editing: false,
+        edits: {
+          title: this.title,
+          sold: this.sold,
+          imgs: [],
+          pictures: [],
+        },
       };
     },
     components: { PupPic, Navigation, Pagination, Slide, Carousel },
     methods: {
-      async deletePup() {
+      deletePup() {
         if (window.confirm(`Are you sure you want to delete ${this.title}?`)) {
           this.$store.dispatch("deletePup", this._id);
         } else alert(`You have chosen not to delete ${this.title}.`);
@@ -53,6 +78,23 @@
       },
       dAI() {
         this.activeImg = this.activeImg === 0 ? this.pictures.length - 1 : this.activeImg - 1;
+      },
+      edit() {
+        this.editing = !this.editing;
+      },
+      handleEdits(e) {
+        this.edits[e.target.name] = e.target.value;
+      },
+      handlePicUpload(e) {
+        for (const file of e.target.files) {
+          this.edits.pictures.push(file);
+          this.edits.imgs.push(URL.createObjectURL(file));
+        }
+      },
+      editPup(e) {
+        e.preventDefault();
+        this.$store.dispatch("editPup", { id: this._id, edits: this.edits });
+        this.edits = { title: this.title, sold: this.sold, imgs: [], pictures: [] };
       },
     },
     computed: mapState(["loggedIn"]),
@@ -68,51 +110,12 @@
       width: 100%;
       background-color: $blue;
       margin-top: -30px;
-      padding: 0 5%;
       border-radius: 50px 50px 0 0;
-      @include flex($j: space-evenly, $a: center);
+      @include flex($j: space-around, $a: center);
 
-      button.ellipsis {
-        @include spin-button;
-      }
-
-      button.x {
-        @include spin-button;
-      }
-    }
-
-    section.carousel {
-      width: 100%;
-
-      button.carousel__next,
-      button.carousel__prev {
-        background-color: $gold;
-        border: #00000099 2px solid;
-        transition: 0.3s ease;
-      }
-
-      button.carousel__next {
-        &:hover {
-          transform: translate(50%, -50%) scale(1.3);
-        }
-      }
-
-      button.carousel__prev {
-        &:hover {
-          transform: translate(-50%, -50%) scale(1.3);
-        }
-      }
-
-      svg.carousel__icon {
-        fill: black;
-      }
-
-      button.carousel__pagination-button {
-        background-color: #{$gold}50;
-
-        &--active {
-          background-color: $gold;
-        }
+      h2 {
+        margin: 0;
+        line-height: 1.5;
       }
     }
 

@@ -1,33 +1,32 @@
 // globals
 html {
-    font-size: 62.5%;
-    overflow-x: hidden;
+  font-size: 62.5%;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 50px;
+  width: 10px;
+  border-radius: 50px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: $gold_bg;
-    width: 100%;
+  background-color: $gold_bg;
+  width: 100%;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: $gold;
-    border-radius: 50px;
+  background-color: $gold;
+  border-radius: 50px;
 }
 
 @font-face {
-    font-family: 'Samantha Upright';
-    src: url('../fonts/Samantha\ Upright.ttf'),
-        url('../fonts/Samantha\ Upright.otf');
+  font-family: "Samantha Upright";
+  src: url("../fonts/Samantha\ Upright.ttf"), url("../fonts/Samantha\ Upright.otf");
 }
 
 @font-face {
-    font-family: 'Little Star Story';
-    src: url('../fonts/Little\ Star\ Story.otf');
+  font-family: "Little Star Story";
+  src: url("../fonts/Little\ Star\ Story.otf");
 }
 
 body,
@@ -35,312 +34,246 @@ div,
 section,
 header,
 footer {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 // constant styles
 p {
-    width: 80%;
-    margin: 15px auto;
-    text-indent: 15px;
+  width: 80%;
+  margin: 15px auto;
+  text-indent: 15px;
 
-    @media (max-width: 800px) {
-        line-height: 2;
-    }
+  @media (max-width: 800px) {
+    line-height: 2;
+  }
 }
 
 div.sub-contain {
-    width: 80%;
+  width: 80%;
 
-    @media (max-width: 800px) {
-        width: 100%;
-    }
-
-}
-
-div.slideshow {
-    width: 100vw;
-    margin-left: -15%;
-    padding: 0 50px;
-    @include flex($a: center, $j: space-between);
-    height: 50vh;
-    overflow: hidden;
-    background: linear-gradient(transparent 15px,
-            $gold_bg 55px,
-            $gold_bg calc(100% - 55px),
-            transparent calc(100% - 15px));
-
-    @media (max-width: 800px) {
-        margin-left: 0;
-    }
-
-    button {
-        z-index: 1;
-        cursor: pointer;
-        @include spin-button;
-        border-radius: 5px;
-        transition-duration: 0.3s;
-
-        &:hover {
-            @include transform(rotate(360deg));
-            border-radius: 50%;
-        }
-    }
-
-    div.pupDivCont {
-        @include flex(column, space-between, center);
-        height: 100%;
-
-        div.slideThumbs {
-            @include flex(row, center, flex-start);
-
-            img.thumb {
-                margin: 0;
-                width: 50px;
-                height: 50px;
-                object-fit: cover;
-                transition: 0.3s ease;
-                cursor: pointer;
-                border-radius: 5px;
-
-                &:hover,
-                &.active {
-                    transform: scale(1.1);
-                    border: 2px solid $gold;
-                }
-            }
-        }
-
-        div.slideImgs {
-            @include flex(row, center, flex-end);
-            z-index: 0;
-            height: 100%;
-            position: relative;
-
-            @media (max-width: 800px) {
-                height: calc(100% - 100px);
-            }
-
-            div {
-                @include flex(column, flex-end, center);
-                position: absolute;
-                opacity: 0;
-                height: 100%;
-                text-align: center;
-                transition: 0.3s ease;
-
-                img.full {
-                    height: 70%;
-                    width: auto;
-                    margin-top: 0;
-
-                    @media (max-width: 800px) {
-                        max-width: 50vw;
-                        height: auto;
-                        max-height: 100%;
-                    }
-                }
-
-                &.visible {
-                    opacity: 1;
-                }
-            }
-        }
-    }
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 }
 
 h1 {
-    font-family: 'Samantha Upright';
-    font-size: 13rem;
-    line-height: .5;
-    text-align: center;
-    color: $blue;
-    text-shadow: 3px 3px 2px $light_blue;
-    background: linear-gradient(whitesmoke, $gold_bg, whitesmoke);
-    width: calc(100% + 60px);
-    margin-block: 0;
-    padding: .83em 0;
-    box-sizing: border-box;
+  font-family: "Samantha Upright";
+  font-size: 13rem;
+  line-height: 1;
+  text-align: center;
+  color: $blue;
+  text-shadow: 3px 3px 2px $light_blue;
+  background: linear-gradient(whitesmoke, $gold_bg, whitesmoke);
+  width: calc(100% + 60px);
+  margin-block: 0;
+  padding: 0.83em 0;
+  box-sizing: border-box;
+
+  @media (max-width: 800px) {
+    font-size: 7.5rem;
+    padding: 0 1em 0.5em;
+    line-height: 1;
+  }
+
+  &.foot {
+    width: 100%;
+  }
+
+  &.contained {
+    width: 100vw;
+    margin-left: -15%;
 
     @media (max-width: 800px) {
-        font-size: 7.5rem;
-        padding: 0 1em .5em;
-        line-height: 1;
+      margin-left: 0;
     }
-
-    &.foot {
-        width: 100%;
-    }
-
-    &.contained {
-        width: 100vw;
-        margin-left: -15%;
-
-        @media (max-width: 800px) {
-            margin-left: 0;
-        }
-
-    }
-
+  }
 }
 
 // spacer div
 div.spacer {
-    height: 350px;
-    width: calc(100% + 60px);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+  height: 350px;
+  width: calc(100% + 60px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  @media (max-width: 800px) {
+    height: 150px;
+    background-size: 200%;
+    background-position-x: 70%;
+  }
+
+  &.home {
+    background-image: url("../images/lily_sit.jpg");
+    background-position-y: 20%;
 
     @media (max-width: 800px) {
-        height: 150px;
-        background-size: 200%;
-        background-position-x: 70%;
+      height: 50vh;
+
+      &.scroll {
+        background-attachment: scroll;
+        background-position-y: 25%;
+      }
+    }
+  }
+
+  &.footer {
+    @include flex(row, space-around, stretch);
+    background-image: url("../images/lily_baby.jpg");
+    height: auto;
+    width: 100%;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      background-size: cover;
     }
 
-    &.home {
-        background-image: url('../images/lily_sit.jpg');
-        background-position-y: 20%;
+    div {
+      @include card;
+      justify-content: flex-start;
+      width: 25%;
+      margin: 50px auto;
+      padding: 25px;
 
-        @media (max-width: 800px) {
-            height: 50vh;
+      @media (max-width: 800px) {
+        width: 90%;
+      }
 
-            &.scroll {
-                background-attachment: scroll;
-                background-position-y: 25%;
-            }
+      h2 {
+        line-height: 1;
 
+        &.num {
+          width: 75px;
+          background-color: $gold_bg;
+          border: 1px solid black;
+          border-radius: 50%;
         }
+      }
 
+      p {
+        font-size: 2.5rem;
+        font-family: "Little Star Story";
+      }
     }
-
-    &.footer {
-        @include flex(row, space-around, stretch);
-        background-image: url('../images/lily_baby.jpg');
-        height: auto;
-        width: 100%;
-
-        @media (max-width: 800px) {
-            flex-direction: column;
-            background-size: cover;
-        }
-
-        div {
-            @include card;
-            justify-content: flex-start;
-            width: 25%;
-            margin: 50px auto;
-            padding: 25px;
-
-            @media (max-width: 800px) {
-                width: 90%;
-            }
-
-            h2 {
-                line-height: 1;
-
-                &.num {
-                    width: 75px;
-                    background-color: $gold_bg;
-                    border: 1px solid black;
-                    border-radius: 50%;
-                }
-
-            }
-
-            p {
-                font-size: 2.5rem;
-                font-family: 'Little Star Story';
-            }
-
-        }
-
-    }
-
+  }
 }
 
 // underslide links
 a.slide {
+  color: $blue;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  white-space: nowrap;
+
+  @media (max-width: 800px) {
     color: $blue;
-    text-decoration: none;
-    position: relative;
-    transition: .3s ease-in-out;
-    white-space: nowrap;
+    text-decoration: underline;
+    line-height: 2;
+  }
 
-    @media (max-width: 800px) {
-        color: $blue;
-        text-decoration: underline;
-        line-height: 2;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    transform: translate(-100vw, 25px);
+    transition: 0.3s ease-in-out;
+  }
+
+  @media (min-width: 800px) {
+    &:hover {
+      color: $light_blue;
+
+      &::before {
+        background: $light_blue;
+        transform: translateY(25px);
+      }
     }
-
-    &::before {
-        content: '';
-        width: 100%;
-        height: 2px;
-        position: absolute;
-        transform: translate(-100vw, 25px);
-        transition: .3s ease-in-out;
-    }
-
-    @media (min-width: 800px) {
-
-        &:hover {
-            color: $light_blue;
-
-            &::before {
-                background: $light_blue;
-                transform: translateY(25px);
-            }
-
-        }
-
-    }
-
+  }
 }
 
 // slide transition
 .slide-enter-active {
-    position: absolute;
-    transition: 1s ease;
-    left: 100%;
+  position: absolute;
+  transition: 1s ease;
+  left: 100%;
 }
 
 .slide-enter {
-    position: absolute;
-    transition: 1s ease;
+  position: absolute;
+  transition: 1s ease;
 }
 
 .slide-enter-to {
-    position: absolute;
-    left: 0;
-    top: calc(50vh + 50px);
+  position: absolute;
+  left: 0;
+  top: calc(50vh + 50px);
 
-    @media (max-width: 500px) {
-        top: 30vh;
-    }
-
+  @media (max-width: 500px) {
+    top: 30vh;
+  }
 }
 
-
 .slide-leave-active {
-    position: absolute;
-    transition: 1s ease;
-    left: 0;
+  position: absolute;
+  transition: 1s ease;
+  left: 0;
 }
 
 .slide-leave {
-    position: absolute;
-    transition: 1s ease;
+  position: absolute;
+  transition: 1s ease;
 }
 
 .slide-leave-to {
-    position: absolute;
-    left: -100%;
-    top: calc(50vh + 50px);
+  position: absolute;
+  left: -100%;
+  top: calc(50vh + 50px);
 
-    @media (max-width: 500px) {
-        top: 30vh;
+  @media (max-width: 500px) {
+    top: 30vh;
+  }
+}
+
+// global carousel component customization
+section.carousel {
+  width: 100%;
+
+  button.carousel__next,
+  button.carousel__prev {
+    background-color: $gold;
+    border: #00000099 2px solid;
+    transition: 0.3s ease;
+  }
+
+  button.carousel__next {
+    &:hover {
+      transform: translate(50%, -50%) scale(1.3);
     }
+  }
+
+  button.carousel__prev {
+    &:hover {
+      transform: translate(-50%, -50%) scale(1.3);
+    }
+  }
+
+  svg.carousel__icon {
+    fill: black;
+  }
+
+  button.carousel__pagination-button {
+    background-color: #{$gold}50;
+
+    &--active {
+      background-color: $gold;
+    }
+  }
+}
+
+button.spin {
+  @include spin-button;
 }

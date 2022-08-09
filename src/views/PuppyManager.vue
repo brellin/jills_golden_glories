@@ -26,7 +26,6 @@
 
 <script>
   import Pup from "../components/Pup/Pup.vue";
-  import { postNewPuppy } from "../assets/utils/requests";
   import FloatingInput from "../components/FloatingInput.vue";
   import { mapState } from "vuex";
   export default {
@@ -54,7 +53,7 @@
           }
         else this.newPup[e.target.name] = e.target.value;
       },
-      async addPup(e) {
+      addPup(e) {
         e.preventDefault();
         this.$store.dispatch("addPup", this.newPup);
         this.newPup = { pictures: [], imgs: [], title: "" };

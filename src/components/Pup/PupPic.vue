@@ -48,6 +48,8 @@
     border-radius: 5px;
     overflow: hidden;
     transition: 0.3s ease;
+    width: max-content;
+    max-width: 95%;
 
     div.head-con {
       @include flex($j: space-between, $a: center);
