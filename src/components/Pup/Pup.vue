@@ -1,15 +1,22 @@
 <template>
   <article class="pup">
     <template v-if="!editing">
-      <div class="pup-head" v-if="loggedIn">
-        <button class="spin" @click="edit" :title="`Edit '${title}'`">•••</button>
+      <div class="pup-head">
+        <button class="spin" @click="edit" :title="`Edit '${title}'`" v-if="loggedIn">
+          •••
+        </button>
         <h2>{{ title }}</h2>
-        <button class="spin" @click="deletePup" :title="`Delete '${title}'`">X</button>
+        <button class="spin" @click="deletePup" :title="`Delete '${title}'`" v-if="loggedIn">
+          X
+        </button>
       </div>
-      <p>{{ sold ? "Sold" : "Available" }}</p>
+      <h3>
+        Status: <span :class="sold ? 'sold' : ''">{{ sold ? "Sold" : "Available" }}</span>
+      </h3>
     </template>
+
     <template v-else>
-      <div class="pup-head" v-if="loggedIn">
+      <div class="pup-head">
         <button class="spin" @click="edit" :title="`Edit '${title}'`">•••</button>
         <input type="text" :value="edits.title" name="title" @input="handleEdits" />
         <button class="spin" @click="deletePup" :title="`Delete '${title}'`">X</button>
@@ -19,6 +26,7 @@
         <option :value="true">Sold</option>
       </select>
     </template>
+
     <carousel :settings="settings">
       <slide v-for="(pic, i) in pictures" :key="i">
         <PupPic v-bind="pic" :id="_id" />
@@ -33,7 +41,7 @@
       <div class="upload-display">
         <img v-for="pic in edits.imgs" :src="pic" :alt="pic" :key="pic" />
       </div>
-      <button @click="editPup">Submit Changes</button>
+      <button type="submit" @click="editPup">Submit Changes</button>
     </template>
   </article>
 </template>
@@ -73,12 +81,6 @@
           this.$store.dispatch("deletePup", this._id);
         } else alert(`You have chosen not to delete ${this.title}.`);
       },
-      iAI() {
-        this.activeImg = this.activeImg === this.pictures.length - 1 ? 0 : this.activeImg + 1;
-      },
-      dAI() {
-        this.activeImg = this.activeImg === 0 ? this.pictures.length - 1 : this.activeImg - 1;
-      },
       edit() {
         this.editing = !this.editing;
       },
@@ -95,6 +97,7 @@
         e.preventDefault();
         this.$store.dispatch("editPup", { id: this._id, edits: this.edits });
         this.edits = { title: this.title, sold: this.sold, imgs: [], pictures: [] };
+        this.editing = false;
       },
     },
     computed: mapState(["loggedIn"]),
@@ -104,7 +107,6 @@
 <style lang="scss">
   article.pup {
     @include card;
-    position: relative;
 
     div.pup-head {
       width: 100%;
@@ -112,6 +114,7 @@
       margin-top: -30px;
       border-radius: 50px 50px 0 0;
       @include flex($j: space-around, $a: center);
+      overflow: hidden;
 
       h2 {
         margin: 0;
@@ -119,7 +122,18 @@
       }
     }
 
-    input[type="text"],
+    h3 {
+      color: black;
+
+      span {
+        color: green;
+
+        &.sold {
+          color: red;
+        }
+      }
+    }
+
     select {
       background: $gold_input;
       border: 1px inset $gold_bg;
@@ -127,6 +141,7 @@
       font-size: 5rem;
       text-align: center;
       margin: 10px 0;
+      padding: 5px 10px;
       caret-color: $gold;
 
       option {
@@ -138,8 +153,58 @@
       }
     }
 
-    p {
-      width: auto;
+    input[type="text"] {
+      max-width: 60%;
+      background: $gold_input;
+      border: 1px inset $gold_bg;
+      outline: none;
+      font-size: 5rem;
+      text-align: center;
+      margin: 10px 0;
+      caret-color: $gold;
+    }
+
+    input[type="file"] {
+      color: transparent;
+
+      &::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+
+      &::before {
+        content: "Browse for files";
+        color: black;
+        display: inline-block;
+        background-color: $gold;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px 10px;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-left: 60px;
+        margin-bottom: 20px;
+      }
+    }
+
+    button[type="submit"] {
+      background-color: $gold;
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 5px 10px;
+      outline: none;
+      font-weight: 700;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+
+      &:hover {
+        transform: scale(1.3);
+      }
     }
   }
 </style>
