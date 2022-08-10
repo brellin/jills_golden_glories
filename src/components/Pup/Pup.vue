@@ -85,7 +85,8 @@
         this.editing = !this.editing;
       },
       handleEdits(e) {
-        this.edits[e.target.name] = e.target.value;
+        const val = e.target.name === "sold" ? e.target.value === "true" : e.target.value;
+        this.edits[e.target.name] = val;
       },
       handlePicUpload(e) {
         for (const file of e.target.files) {
@@ -96,7 +97,12 @@
       editPup(e) {
         e.preventDefault();
         this.$store.dispatch("editPup", { id: this._id, edits: this.edits });
-        this.edits = { title: this.title, sold: this.sold, imgs: [], pictures: [] };
+        this.edits = {
+          title: this.edits.title,
+          sold: this.edits.sold,
+          imgs: [],
+          pictures: [],
+        };
         this.editing = false;
       },
     },

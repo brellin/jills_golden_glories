@@ -35,6 +35,7 @@ const store = createStore({
         },
         editPup(state, { id, edits }) {
             console.log(id, edits);
+            edits.sold = edits.sold === 'true';
             const editedPups = state.puppies.slice();
             const pupMatch = editedPups.findIndex(pup => pup._id === id);
             editedPups[ pupMatch ] = edits;
