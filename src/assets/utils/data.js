@@ -73,7 +73,7 @@ const bloodlines = [
         bloodlink: ext_links.bloodlines.trust,
         imgSrc: trust,
         imgAlt: "Trust with his head and tail being held up",
-        additionalInfo: `Special thanks to Kelly of <a class="slide" href='https://www.goodasgoldens.com'>Good As Goldens</a> for providing Trust as the stud!'`,
+        additionalInfo: `Special thanks to Kelly of <a class="slide" href='https://www.goodasgoldens.com'>Good As Goldens</a> for providing Trust as the stud!`,
     },
 ];
 
