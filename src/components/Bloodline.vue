@@ -35,5 +35,9 @@
     a {
       margin-top: 15px;
     }
+
+    p {
+      width: max-content;
+    }
   }
 </style>
