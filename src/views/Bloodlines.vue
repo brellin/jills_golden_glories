@@ -1,12 +1,13 @@
 <template>
   <h1 v-html="heading" />
-  <div class="sub-contain">
-    <Bloodline v-for="bl of bloodlines" v-bind="bl" :key="bl.callName" />
+  <div class="sub-contain" v-if="bloodlines.length">
+    <Bloodline v-for="bl of bloodlines" v-bind="bl" :key="bl._id" />
   </div>
 </template>
 
 <script>
-  import { bloodlines, l } from "../assets/utils/data";
+  import axios from "../plugins/axios";
+  import { l } from "../assets/utils/data";
   import Bloodline from "@/components/Bloodline.vue";
 
   export default {
@@ -14,8 +15,12 @@
     data() {
       return {
         heading: `${l("B")}loodlines`,
-        bloodlines,
+        bloodlines: [],
       };
+    },
+    async mounted() {
+      const { data } = await axios.get("/bloodlines");
+      this.bloodlines = data.sort((a, b) => (a._id < b._id ? -1 : a._id > b._id ? 1 : 0));
     },
     components: { Bloodline },
   };

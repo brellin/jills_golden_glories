@@ -1,7 +1,8 @@
 <template>
   <article class="bloodline">
+    <header></header>
     <h2 v-html="headerText" />
-    <img :src="imgSrc" :alt="imgAlt" :title="imgAlt" />
+    <img :src="img.url" :alt="imgAlt" :title="imgAlt" />
     <a :href="bloodlink" target="_blank" rel="noopener noreferrer" class="slide">
       View {{ pluralName }} Pedigree
     </a>
@@ -15,11 +16,18 @@
     props: {
       callName: String,
       headerText: String,
-      imgSrc: String,
+      img: Object,
       imgAlt: String,
       bloodlink: String,
-      pluralName: String,
       additionalInfo: String,
+    },
+    computed: {
+      pluralName() {
+        const callName = this.callName;
+        return callName.charAt(callName.length - 1) !== "s"
+          ? callName.slice(0, callName.length) + "'s"
+          : callName + "'";
+      },
     },
   };
 </script>
