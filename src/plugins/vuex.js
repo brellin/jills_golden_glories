@@ -1,5 +1,7 @@
+import Cookies from 'js-cookie';
 import { createStore } from 'vuex';
 import axios from './axios';
+import router from '../routes';
 
 function makeFormData(pupData) {
     const fd = new FormData();
@@ -46,6 +48,20 @@ const store = createStore({
         async pupulate({ commit }) {
             const { data } = await axios.get('puppies');
             commit('pupulate', data);
+        },
+        async login({ commit }, { username, password }) {
+            try {
+                const { data: { token } } = await axios.create({ headers: { username, password, secret: process.env.VUE_APP_SECRET } }).post('users/login');
+                Cookies.set('token', token);
+                commit('login');
+                router.push('/puppyManager');
+            } catch (err) { console.error(err); }
+        },
+        async checkLogin({ commit }) {
+            try {
+                await axios.post('users/login');
+                commit('login');
+            } catch (err) { console.error(err); }
         },
         async deletePup({ commit }, id) {
             try {

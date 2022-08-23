@@ -1,7 +1,7 @@
 <template>
   <header :class="small ? 'small' : ''">
     <div class="imgs">
-      <img src="../assets/images/logo.png" alt="Golden Glories Logo" @click="goLogin" />
+      <img src="../assets/images/logo.png" alt="Golden Glories Logo" @click="goAdmin" />
       <img src="../assets/images/header.png" alt="Golden Glories Text" @click="goHome" />
     </div>
   </header>
@@ -26,8 +26,13 @@
       goHome() {
         this.$router.push("/");
       },
-      goLogin() {
-        this.$router.push("/login");
+      goAdmin() {
+        this.$router.push(this.loggedIn ? "/puppyManager" : "/login");
+      },
+    },
+    computed: {
+      loggedIn() {
+        return this.$store.state.loggedIn;
       },
     },
   };

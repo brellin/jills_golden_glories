@@ -63,6 +63,9 @@ const routes = [
         meta: {
             title: titlize('Login'),
             name: 'Login'
+        },
+        beforeEnter: (to, from, next) => {
+            store.state.loggedIn ? next('/puppyManager') : next();
         }
     }
 ];

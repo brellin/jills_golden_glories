@@ -21,7 +21,6 @@
 </template>
 
 <script>
-  import { login } from "@/assets/utils/requests";
   import FloatingInput from "../components/FloatingInput.vue";
   export default {
     name: "gg-login",
@@ -39,15 +38,8 @@
       },
       async submit(e) {
         e.preventDefault();
-        try {
-          await login(this.user.username, this.user.password);
-          this.$store.commit("login");
-          this.$router.push("/puppyManager");
-          this.user = { username: "", password: "" };
-        } catch (err) {
-          console.error(err);
-          alert(err);
-        }
+        this.$store.dispatch("login", this.user);
+        this.user = { username: "", password: "" };
       },
     },
     components: { FloatingInput },
