@@ -2,7 +2,7 @@
   <h1>Login</h1>
   <form @submit="submit" autocomplete="off">
     <FloatingInput
-      id="username"
+      name="username"
       inputName="Username"
       @handle-changes="handleChanges"
       :value="user.username"
@@ -10,7 +10,7 @@
       autofocus
     />
     <FloatingInput
-      id="password"
+      name="password"
       inputName="Password"
       @handle-changes="handleChanges"
       :value="user.password"

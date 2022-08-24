@@ -9,7 +9,7 @@
     <FloatingInput
       @handle-changes="handleNewPupChange"
       :value="newPup.title"
-      id="title"
+      name="title"
       inputName="Title"
       autocomplete
     />
@@ -20,7 +20,7 @@
       <img v-for="pic in newPup.imgs" :src="pic" :alt="pic" :key="pic" />
     </div>
 
-    <button>Submit</button>
+    <button class="submit">Submit</button>
   </form>
 </template>
 
@@ -40,10 +40,7 @@
         loading: false,
       };
     },
-    components: {
-      Pup,
-      FloatingInput,
-    },
+    components: { Pup, FloatingInput },
     methods: {
       handleNewPupChange(e) {
         if (e.target.name === "pictures")
@@ -89,13 +86,6 @@
       img {
         max-width: 100%;
       }
-    }
-
-    button {
-      margin: 15px auto;
-      font-size: 2.5rem;
-      font-family: "Little Star Story";
-      cursor: pointer;
     }
   }
 </style>

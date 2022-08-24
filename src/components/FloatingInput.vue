@@ -1,9 +1,9 @@
 <template>
-  <div class="floating-input">
-    <label :for="this.$attrs.id" :class="focused && 'focused'">{{ inputName }}</label>
+  <div :class="`${this.$attrs.name} floating-input`">
+    <label :for="this.$attrs.name" :class="focused && 'focused'">{{ inputName }}</label>
     <input
       v-bind="this.$attrs"
-      :name="this.$attrs.id"
+      :name="this.$attrs.name"
       @focus="inFocus"
       @blur="unFocus"
       @input="handleChange"
@@ -22,7 +22,7 @@
     },
     data() {
       return {
-        focused: false,
+        focused: this.$attrs.value ? true : false,
       };
     },
     methods: {
@@ -65,6 +65,7 @@
       border: none;
       font-size: 2rem;
       outline: none;
+      width: 100%;
     }
   }
 </style>

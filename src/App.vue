@@ -43,6 +43,7 @@
     },
     beforeMount() {
       this.$store.dispatch("pupulate");
+      this.$store.dispatch("bloodulate");
       this.$store.dispatch("checkLogin");
     },
     beforeUnmount() {
