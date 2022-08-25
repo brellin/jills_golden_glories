@@ -1,10 +1,12 @@
 <template>
-  <form class="bledit" @submit="(e) => submitFunc(e, bl)">
+  <form class="bledit" @submit="handleSubmit">
+    <h2 v-if="this.add">New Bloodline</h2>
     <FloatingInput
       name="headerText"
       inputName="Title"
       @handle-changes="handleChanges"
       :value="bl.headerText"
+      :required="add"
       autocomplete="off"
     />
     <FloatingInput
@@ -12,14 +14,22 @@
       inputName="Name"
       @handle-changes="handleChanges"
       :value="bl.callName"
+      :required="add"
       autocomplete="off"
     />
-    <input type="file" name="img" accept="image/*" @input="handleImageChange" />
+    <input
+      type="file"
+      name="img"
+      accept="image/*"
+      :required="add"
+      @input="handleImageChange"
+    />
     <FloatingInput
       name="imgAlt"
       inputName="Photo Description"
       @handle-changes="handleChanges"
       :value="bl.imgAlt"
+      :required="add"
       autocomplete="off"
     />
     <FloatingInput
@@ -27,6 +37,7 @@
       inputName="Link to Pedigree"
       @handle-changes="handleChanges"
       :value="bl.bloodlink"
+      :required="add"
       autocomplete="off"
     />
     <FloatingInput
@@ -34,23 +45,16 @@
       inputName="Additional Information (Optional)"
       @handle-changes="handleChanges"
       :value="bl.additionalInfo"
+      :required="add"
       autocomplete="off"
     />
 
-    <button class="submit">Add Bloodline</button>
+    <button class="submit">{{ this.add ? "Add" : "Edit" }} Bloodline</button>
   </form>
 </template>
 
 <script>
   import FloatingInput from "./FloatingInput.vue";
-  const emptyBloodline = {
-    callName: "",
-    headerText: "",
-    imgAlt: "",
-    bloodlink: "",
-    additionalInfo: "",
-    img: "",
-  };
   export default {
     name: "gg-bleit",
     data() {
@@ -74,6 +78,19 @@
           this.bl.img = file;
         }
       },
+      handleSubmit(e) {
+        e.preventDefault();
+        this.submitFunc(this.bl);
+        if (this.$props.add)
+          this.bl = {
+            callName: "",
+            headerText: "",
+            imgAlt: "",
+            bloodlink: "",
+            additionalInfo: "",
+            img: "",
+          };
+      },
     },
     props: {
       submitFunc: Function,
@@ -83,6 +100,7 @@
       bloodlink: { default: "", type: String },
       additionalInfo: { default: "", type: String },
       img: Object,
+      add: { default: false, type: Boolean },
     },
     components: { FloatingInput },
   };
@@ -99,6 +117,11 @@
       font-size: 2.5rem;
       font-family: "Little Star Story";
       cursor: pointer;
+    }
+
+    h2 {
+      margin: 0 auto;
+      line-height: 1.5;
     }
   }
 </style>

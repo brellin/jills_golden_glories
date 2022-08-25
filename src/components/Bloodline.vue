@@ -12,11 +12,7 @@
       </a>
       <p v-if="additionalInfo" v-html="additionalInfo" />
     </template>
-    <Bledit
-      v-if="editing"
-      v-bind="{ callName, headerText, img, imgAlt, bloodlink, additionalInfo }"
-      :submitFunc="submit"
-    />
+    <Bledit v-if="editing" v-bind="this.$props" :submitFunc="submit" />
   </article>
 </template>
 
@@ -31,6 +27,7 @@
       imgAlt: String,
       bloodlink: String,
       additionalInfo: String,
+      _id: String,
     },
     data() {
       return {
@@ -53,12 +50,16 @@
         this.editing = !this.editing;
       },
       deleteBl() {
-        console.log("delete");
+        this.$store.dispatch("deleteBl", this._id);
       },
       handleChanges(e) {
         this.edits[e.target.name] = e.target.value;
       },
-      submit(e, bl) {},
+      submit(e, bl) {
+        e.preventDefault();
+        this.$store.dispatch("editBl", { id: this._id, bl });
+        this.edit();
+      },
     },
     components: { Bledit },
   };

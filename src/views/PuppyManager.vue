@@ -17,7 +17,7 @@
     <input type="file" name="pictures" accept="image/*" @input="handleNewPupChange" multiple />
 
     <div class="upload-display">
-      <img v-for="pic in newPup.imgs" :src="pic" :alt="pic" :key="pic" />
+      <img v-for="pic in imgs" :src="pic" :alt="pic" :key="pic" />
     </div>
 
     <button class="submit">Submit</button>
@@ -34,9 +34,9 @@
       return {
         newPup: {
           pictures: [],
-          imgs: [],
           title: "",
         },
+        imgs: [],
         loading: false,
       };
     },
@@ -46,7 +46,7 @@
         if (e.target.name === "pictures")
           for (const file of e.target.files) {
             this.newPup.pictures.push(file);
-            this.newPup.imgs.push(URL.createObjectURL(file));
+            this.imgs.push(URL.createObjectURL(file));
           }
         else this.newPup[e.target.name] = e.target.value;
       },
@@ -71,7 +71,6 @@
     padding: 15px 30px;
     box-sizing: border-box;
 
-    input[type="file"],
     select {
       font-family: "Little Star Story";
       font-size: 2rem;

@@ -2,7 +2,7 @@
   <h1 v-html="heading" />
   <div class="sub-contain">
     <Bloodline v-for="bl of bloodlines" v-bind="bl" :key="bl._id" />
-    <Bledit v-if="loggedIn" :submitFunc="submit" />
+    <Bledit v-if="loggedIn" :submitFunc="submit" :add="true" />
   </div>
 </template>
 
@@ -19,9 +19,17 @@
       };
     },
     methods: {
-      submit(e, bl) {
-        e.preventDefault();
-        this.$store.dispatch("addBloodline", bl);
+      submit(bl) {
+        if (
+          bl.headerText &&
+          bl.img &&
+          bl.imgAlt &&
+          bl.callName &&
+          bl.bloodlink &&
+          bl.additionalInfo
+        )
+          this.$store.dispatch("addBl", bl);
+        // else alert("All fields must be filled out.");
       },
     },
     components: { Bloodline, Bledit },
@@ -39,10 +47,5 @@
 <style lang="scss">
   form.new-bloodline {
     @include flex(column, flex-start, center);
-
-    h2 {
-      margin: 0 auto;
-      line-height: 1.5;
-    }
   }
 </style>

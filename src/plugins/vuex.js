@@ -27,7 +27,6 @@ const store = createStore({
             state.puppies = [ ...state.puppies, newPuppy ];
         },
         editPup(state, { id, edits }) {
-            console.log(id, edits);
             edits.sold = edits.sold === 'true';
             const editedPups = state.puppies.slice();
             const pupMatch = editedPups.findIndex(pup => pup._id === id);
@@ -36,6 +35,19 @@ const store = createStore({
         },
         bloodulate(state, bls) {
             state.bloodlines = bls.sort((a, b) => (a._id < b._id ? -1 : a._id > b._id ? 1 : 0));
+        },
+        addBl(state, newBl) {
+            state.bloodlines = [ ...state.bloodlines, newBl ];
+        },
+        editBl(state, { id, edits }) {
+            console.log(id, edits);
+            const editedBls = state.bloodlines.slice();
+            const blMatch = editedBls.findIndex(bl => bl._id === id);
+            editedBls[ blMatch ] = edits;
+            state.bloodlines = editedBls;
+        },
+        deleteBl(state, id) {
+            state.bloodlines = state.bloodlines.filter(bl => bl._id !== id);
         }
     },
     actions

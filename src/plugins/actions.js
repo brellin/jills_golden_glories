@@ -4,9 +4,11 @@ import router from '../routes';
 
 function makeFormData(pupData) {
     const fd = new FormData();
-    fd.set('title', pupData.title);
-    pupData.pictures.forEach(pic => fd.append('pictures', pic));
-    fd.set('sold', pupData.sold);
+    Object.entries(pupData).forEach(n => {
+        if (typeof v !== Array) fd.set(n[ 0 ], n[ 1 ]);
+        else n[ 1 ].forEach(pic => fd.append(n[ 0 ], pic));
+    });
+    // fd.set('title', pupData.title); pupData.pictures.forEach(pic => fd.append('pictures', pic)); fd.set('sold', pupData.sold); return fd;
     return fd;
 }
 
@@ -65,5 +67,32 @@ export default {
     async bloodulate({ commit }) {
         const { data } = await axios.get('bloodlines');
         commit('bloodulate', data);
+    },
+    async addBl({ commit }, newBl) {
+        const fd = makeFormData(newBl);
+
+        try {
+            const { data } = await axios.post('bloodlines/new', fd, {
+                headers: { 'content-type': 'multipart/form-data' }
+            });
+            commit('addBl', data);
+        } catch (err) { console.error(err); }
+    },
+    async editBl({ commit }, { id, bl }) {
+        const fd = makeFormData(bl);
+
+        try {
+            const { data } = await axios.put(`bloodlines/${ id }`, fd, {
+                headers: { 'content-type': 'multipart/form-data' }
+            });
+            console.log(data);
+            commit('editBl', { id, edits: data });
+        } catch (err) { console.error(err); }
+    },
+    async deleteBl({ commit }, id) {
+        try {
+            await axios.delete(`bloodlines/${ id }`);
+            commit('deleteBl', id);
+        } catch (err) { console.error(err); }
     }
 };
