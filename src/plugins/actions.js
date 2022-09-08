@@ -5,8 +5,8 @@ import router from '../routes';
 function makeFormData(pupData) {
     const fd = new FormData();
     Object.entries(pupData).forEach(n => {
-        if (typeof v !== Array) fd.set(n[ 0 ], n[ 1 ]);
-        else n[ 1 ].forEach(pic => fd.append(n[ 0 ], pic));
+        if (n[ 0 ] !== 'pictures') fd.set(n[ 0 ], n[ 1 ]);
+        else n[ 1 ].forEach((pic, i) => fd.set('pic' + i, pic));
     });
     // fd.set('title', pupData.title); pupData.pictures.forEach(pic => fd.append('pictures', pic)); fd.set('sold', pupData.sold); return fd;
     return fd;

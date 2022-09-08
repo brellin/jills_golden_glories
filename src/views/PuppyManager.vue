@@ -53,7 +53,8 @@
       addPup(e) {
         e.preventDefault();
         this.$store.dispatch("addPup", this.newPup);
-        this.newPup = { pictures: [], imgs: [], title: "" };
+        this.newPup = { pictures: [], title: "" };
+        this.imgs = [];
       },
     },
     computed: mapState(["puppies"]),
