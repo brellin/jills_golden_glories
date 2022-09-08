@@ -79,8 +79,7 @@
         }
       },
       handleSubmit(e) {
-        e.preventDefault();
-        this.submitFunc(this.bl);
+        this.submitFunc(e, this.bl);
         if (this.$props.add)
           this.bl = {
             callName: "",
